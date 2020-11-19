@@ -1,10 +1,10 @@
 //import webpack plugins
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 //css rules
 const cssRules = {
   test: /\.styl$/i,
-  use: ["style-loader", "css-loader", "stylus-loader"],
+  use: ['style-loader', 'css-loader', 'stylus-loader'],
   exclude: /node_modules/,
 };
 
@@ -12,7 +12,7 @@ const cssRules = {
 const imgRules = {
   test: /\.(jpg|png|svg)$/,
   use: {
-    loader: "url-loader",
+    loader: 'url-loader',
     options: {
       limit: 90000,
     },
@@ -23,22 +23,22 @@ const imgRules = {
 const babelRules = {
   test: /\.(js|jsx)$/,
   exclude: /node_modules/,
-  loader: "babel-loader",
+  loader: 'babel-loader',
 };
 
 //export config
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: './src/index.jsx',
   output: {
-    filename: "bundle.[contentHash].js",
+    filename: 'bundle.[contentHash].js',
   },
   module: {
     rules: [babelRules, cssRules, imgRules],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: "FastOrder",
-      template: "./public/index.html",
+      title: 'FastOrder',
+      template: './public/index.html',
     }),
   ],
 };
