@@ -1,0 +1,25 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend for FastOrder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swat-FaztOrder/Frontend.git"
+  },
+  "keywords": [
+    "react.js",
+    "frontend",
+    "js",
+    "pwa"
+  ],
+  "author": "Xavier Garcia <xaviergn60@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Swat-FaztOrder/Frontend/issues"
+  },
+  "homepage": "https://github.com/Swat-FaztOrder/Frontend#readme"
+}
