@@ -3,6 +3,8 @@ import ReactDom from 'react-dom';
 import '@babel/polyfill';
 import App from './components/App/index.jsx';
 
+import './stylus/globalStyles.styl'
+
 // create root const
 const root = document.getElementById('root');
 
