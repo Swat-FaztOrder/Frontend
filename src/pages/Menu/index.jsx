@@ -1,21 +1,14 @@
 import React from 'react';
-import MenuCard from '../../components/MenuCard/index.jsx'
+import ItemDetails from '../../components/ItemDetails/index.jsx';
+import MenuGrid from '../../components/MenuGrid/index.jsx';
 
-import './styles.styl';
+import './styles.styl'
 
 const Menu = () => {
   return (
     <div className="Menu">
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
-      <MenuCard title="Lorem Ipsum" price="5.99" image="https://i.imgur.com/gfMP09b.jpg" />
+      <MenuGrid />
+      <ItemDetails />
     </div>
   )
 }
