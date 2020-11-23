@@ -12,6 +12,7 @@ const ItemDetails = ({ extras, image, title, details, price }) => {
         <h3>{price}</h3>
       </div>
       <span>ADD OPTIONS</span>
+      <i className="fab fa-angular"></i>
     </div>
   )
 }
