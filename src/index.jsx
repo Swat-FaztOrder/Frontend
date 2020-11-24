@@ -23,4 +23,3 @@ render(
   </Suspense>,
   root
 )
-
