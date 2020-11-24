@@ -1,8 +1,14 @@
 import React from 'react';
 
+/* i18n  */
+import { useTranslation } from 'react-i18next';
+
+/* styles */
 import './styles.styl';
 
 const ItemDetails = ({ extras, image, title, details, price }) => {
+  const { t } = useTranslation(['ItemDetails'])
+
   return (
     <div className="itemDetails">
       <div className="itemDetails__image">
@@ -18,33 +24,33 @@ const ItemDetails = ({ extras, image, title, details, price }) => {
           <h3>${price}</h3>
         </div>
       </div>
-      <span>ADD OPTIONS</span>
+      <span>{t('ItemDetails:add', 'ADD OPTIONS')}</span>
       <div className="itemDetails__extras">
         <div className="itemDetails__extras--line">
           <div className="itemDetails__extras--lineLeft">
             <input className="checkbox" type="checkbox" id="cbox1" />
-            <p>Extra Cheese</p>
+            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
           </div>
           <p className="itemDetails__extras--lineRight">${price}</p>
         </div>
         <div className="itemDetails__extras--line">
           <div className="itemDetails__extras--lineLeft">
             <input className="checkbox" type="checkbox" id="cbox2" />
-            <p>Extra Cheese</p>
+            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
           </div>
           <p className="itemDetails__extras--lineRight">${price}</p>
         </div>
         <div className="itemDetails__extras--line">
           <div className="itemDetails__extras--lineLeft">
             <input className="checkbox" type="checkbox" id="cbox3" />
-            <p>Extra Cheese</p>
+            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
           </div>
           <p className="itemDetails__extras--lineRight">${price}</p>
         </div>
         <div className="itemDetails__extras--line">
           <div className="itemDetails__extras--lineLeft">
             <input className="checkbox" type="checkbox" id="cbox4" />
-            <p>Extra Cheese</p>
+            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
           </div>
           <p className="itemDetails__extras--lineRight">${price}</p>
         </div>
@@ -56,7 +62,7 @@ const ItemDetails = ({ extras, image, title, details, price }) => {
         className="itemDetails__inputText"
       />
       <button className="itemDetails__addOrder">
-        Add to order
+        {t('ItemDetails:order', 'Add to order')}
       </button>
     </div>
   )

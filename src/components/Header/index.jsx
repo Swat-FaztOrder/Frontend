@@ -1,5 +1,8 @@
 import React from 'react'
 
+/* Components */
+import LanguageButton from '../LanguageButton/index'
+
 import './styles.styl'
 
 const Header = () => {
@@ -18,6 +21,7 @@ const Header = () => {
         <a href="" className="header__right--more">
           <i className="fas fa-angle-down" />
         </a>
+        <LanguageButton />
       </div>
     </header>
   )
