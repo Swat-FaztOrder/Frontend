@@ -21,7 +21,7 @@ const Menu = () => {
         <section className="menu__container--right">
           <OrderDetails/>
         </section>
-        <ItemDetails price="5.99" title="Lorem Ipsum" subtitle="Lorem Ipsum"/>
+        <ItemDetails details="Lorem Ipsum" price="5.99" title="Lorem Ipsum" subtitle="Lorem Ipsum"/>
       </main>
     </div>
   )

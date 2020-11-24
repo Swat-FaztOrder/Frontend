@@ -9,23 +9,96 @@
   right: 0
   top: 10%
   background-color: color2
-  text-align: center
+  display: flex
+  flex-direction: column
+  align-items: center
   &__image
     margin-top: 3%
     height: 28%
     position: relative
     z-index: 2
     img
-      width: 90%
+      width: 100%
       height: 100%
       object-fit: cover
     i
       font-size: 3rem
       position: absolute
       z-index: 3
-      top: 5%
-      left: 10%
+      top: 4%
+      left: 2%
       color: color4
       background-color: basicColor1
       border-radius: 50%
-
+  &__title
+    margin-top: 2%
+    width: 80%
+    font-size: 2rem
+    font-weight: 400
+    color: basicColor1
+  &__subtitle
+    width: 80%
+    display: flex
+    justify-content: space-between
+    align-items: center
+    &--details
+      p
+        font-size: 1.5rem
+        font-weight: 400
+        color: basicColor1
+    &--price
+      h3
+        font-size: 1.5rem
+        font-weight: 900
+        color: basicColor1
+  span
+    margin-top: 8%
+    margin-bottom: 5%
+    width: 80%
+    font-size: 1.1rem
+    font-weight: 900
+    color: gray
+  &__extras
+    width: 80%
+    display: grid
+    grid-template-columns: 1fr
+    grid-row-gap: 18%
+    p
+      font-size: 1.5rem
+      font-weight: 900
+      color: basicColor1
+    &--line
+      display: flex
+      justify-content: space-between
+      align-items: center
+      &Left
+        display: flex
+        align-items: center
+        p
+          font-size: 1.3rem
+          font-weight: 900
+          color: basicColor1
+        .checkbox
+          transform: scale(2)
+          margin-right: 15px
+  &__inputText
+    margin-top: 15%
+    margin-bottom: 8%
+    width: 75%
+    height: 15%
+    border: none
+    border-radius: 30px
+    font-size: 1.3rem
+    font-weight: 900
+    color: gray
+    background-color: color1
+    text-align: justify
+  &__addOrder
+    width: 35%
+    height: 6%
+    border-radius: 20px
+    border: none
+    color: basicColor1
+    font-size: 1.3rem
+    font-weight: 900
+    background-color: color6
