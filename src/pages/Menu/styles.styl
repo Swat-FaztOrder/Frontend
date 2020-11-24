@@ -1,5 +1,9 @@
 @import '../../stylus/variables.styl'
 
+body
+  background-color: color1
+  width: 100%
+
 .menu
   &__container
     width: 100%
@@ -11,22 +15,6 @@
       height: 100vh
       position: relative
       z-index: 1
-      background-color: color2
-      text-align: center
-      div
-        display: flex
-        flex-direction: column
-        justify-content: center
-        height: 12%
-        padding: 0 2% 0 2%
-        &:hover
-          background-color: color1
-        i
-          font-size: 50px
-          color: color3
-        h1
-          color: white
-          font-size: 2rem
     &--center
       position: relative
       height: 91%
@@ -59,7 +47,7 @@
       button
         width: 40%
         height: 6%
-        margin-top: 30%
+        margin-top: 20%
         border: none
         border-radius: 20px
         background-color: color5
