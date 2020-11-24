@@ -1,5 +1,6 @@
 //import webpack plugins
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 //css rules
 const cssRules = {
@@ -39,6 +40,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       title: 'FastOrder',
       template: './public/index.html',
+    }),
+    new CopyPlugin({
+      patterns: [{ from: './public/locales', to: './locales' }]
     }),
   ],
 };
