@@ -1,10 +1,14 @@
 import React from 'react';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from '../../pages/login/index.jsx';
 
 const App = () => {
   return (
-    <div>
-      <p>Hola mundo</p>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/login"><Login /></Route>
+      </Switch>
+    </Router>
   )
 };
 
