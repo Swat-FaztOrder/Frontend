@@ -5,7 +5,7 @@ exports[`<App /> matches the snap shot 1`] = `
   <Switch>
     <Route
       exact={true}
-      path="/login"
+      path="/Login"
     >
       <Login />
     </Route>
