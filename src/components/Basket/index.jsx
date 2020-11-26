@@ -14,12 +14,12 @@ const Basket = () => {
         <BasketItem price="5.99" quantity="1" title="Lorem ipsum" image="https://i.imgur.com/gfMP09b.jpg" />
         <BasketItem price="5.99" quantity="1" title="Lorem ipsum" image="https://i.imgur.com/gfMP09b.jpg" />
       </div>
-      <input
+      {/* <input
         type="text"
         placeholder="Extra info..."
         id=""
         className="basket__inputText"
-      />
+      /> */}
       <button className="basket__send">
         Send order
       </button>
