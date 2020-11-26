@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/login"><Login /></Route>
+        <Route exact path="/Login"><Login /></Route>
         <Route exact path="/Menu"><Menu/></Route>
         <Route exact path="/Profiles"><Profiles/></Route>
       </Switch>
