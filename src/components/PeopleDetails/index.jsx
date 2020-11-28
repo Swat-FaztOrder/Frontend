@@ -1,5 +1,4 @@
 import React from 'react'
-import waiter from '../../assets/waiter.png'
 import PeopleCard from '../PeopleCard/index.jsx'
 
 /* i18n  */
