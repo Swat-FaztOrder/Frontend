@@ -20,8 +20,8 @@ const Menu = () => {
           <PeopleGrid />
         </section>
         <section className="profile__container--right">
-          <NewDetails />
           <AdminDetails />
+          <NewDetails />
           <PeopleDetails />
         </section>
       </main>
