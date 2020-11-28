@@ -1,14 +1,14 @@
 @import '../../stylus/variables.styl'
 
 .basketItem
-  min-height: 100px
+  min-height: 80px
   display: grid
   grid-template-columns: 1.5fr 2.3fr .7fr
   grid-template-rows: 28% 10% 1fr
   margin-bottom: 10px
   border: dashed 3px gray
   border-radius: 10px
-  color: white
+  color: basicColor1
   &__image
     display: flex
     justify-content: center
@@ -22,15 +22,15 @@
     grid-column: 2 / 3
     grid-row: 1 / 4
     h2
-      font-size: 1.5rem
+      font-size: 1.1rem
       font-weight: 400
       margin-bottom: 5%
     span
-      font-size: 1.2rem
+      font-size: 1rem
       font-weight: 500
   &__price
     grid-column: 3 / 4
     grid-row: 2 / 3
-    font-size: 1.2rem
+    font-size: 1rem
     font-weight: 900
     margin-top: 5%

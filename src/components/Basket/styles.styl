@@ -1,7 +1,42 @@
 @import '../../stylus/variables.styl'
 
+// .basket
+//   width: 30%
+//   height: 100%
+//   position fixed
+//   z-index: 13
+//   right: 0
+//   top: 10%
+//   background-color: color2
+//   display: flex
+//   flex-direction: column
+//   align-items: center
+//   // display: none
+//   i
+//     align-self: flex-start
+//     margin: 6% 0 5% 6%
+//     font-size: 2.5rem
+//     color: color4
+//     background-color: basicColor1
+//     border-radius: 50%
+//   &Container
+//     width: 80%
+//     height: 50%
+//     display: grid
+//     grid-template-columns: 1fr
+//     overflow: auto
+//   &__send
+//     width: 35%
+//     height: 6%
+//     margin-top: 10%
+//     border-radius: 20px
+//     border: none
+//     color: basicColor1
+//     font-size: 1.3rem
+//     font-weight: 900
+//     background-color: color6
 .basket
-  width: 30%
+  width: 100%
   height: 100%
   position fixed
   z-index: 13
@@ -11,40 +46,44 @@
   display: flex
   flex-direction: column
   align-items: center
-  display: none
+  // display: none
   i
     align-self: flex-start
     margin: 6% 0 5% 6%
-    font-size: 2.5rem
+    font-size: 2.2rem
     color: color4
     background-color: basicColor1
     border-radius: 50%
   &Container
     width: 80%
     height: 50%
+    margin-top: 10%
     display: grid
     grid-template-columns: 1fr
     overflow: auto
   &__send
-    width: 35%
+    width: 40%
     height: 6%
-    margin-top: 10%
+    margin-top: 15%
     border-radius: 20px
     border: none
     color: basicColor1
     font-size: 1.3rem
     font-weight: 900
     background-color: color6
-  // &__inputText
-  //   margin-top: 10%
-  //   margin-bottom: 8%
-  //   padding: 2px
-  //   width: 75%
-  //   height: 15%
-  //   border: none
-  //   border-radius: 30px
-  //   font-size: 1.3rem
-  //   font-weight: 900
-  //   color: gray
-  //   background-color: color1
-  //   text-align: justify
+
+// @media screen and (min-width: 423px)
+@media screen and (min-width: 760px)
+  .basket
+    width: 30%
+    &__send
+      width: 60%
+      height: 6%
+      margin-top: 15%
+@media screen and (min-width: 1020px)
+  .basket
+    width: 30%
+    &__send
+      width: 50%
+      height: 6%
+      margin-top: 15%
