@@ -15,22 +15,22 @@ const NewDetails = () => {
           <i class="fas fa-plus"/>
         </div>
         <div className="New__data--container">
-          <p className="container__input">Nombre 
-            <input placeholder="Type your name"></input>
+          <p className="container__input">{t('NewDetails:Names', 'Nombres')} 
+            <input placeholder={t('NewDetails:Type_your_name', 'Digite su nombre')}></input>
           </p>
-          <p className="container__input">Categoria 
-            <input type="submit" className="container__input" value="Cheff"></input>
+          <p className="container__input">{t('NewDetails:Category', 'Categoria')} 
+            <input type="submit" className="container__input" value={t('NewDetails:Cheff', 'Cocinero')}></input>
           </p>
-          <p className="container__input">E-mail 
-            <input placeholder="Type your E-mail"></input>
+          <p className="container__input">{t('NewDetails:Mail', 'Correo')} 
+            <input placeholder={t('NewDetails:Type_your_mail', 'Digite su mail')}></input>
           </p>
-          <p className="container__input">Password 
-            <input placeholder="Type your Password"></input>
+          <p className="container__input">{t('NewDetails:Password', 'Contraseña')}
+            <input placeholder={t('NewDetails:Type_your_password', 'Digite su contraseña')}></input>
           </p>
         </div>
       </div>
       <div className="New__buttons">
-        <button className="New__buttons--add">Add</button>
+        <button className="New__buttons--add">{t('NewDetails:Add', 'Agregar')}</button>
       </div>
     </div>
   )

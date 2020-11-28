@@ -10,11 +10,11 @@ const AdminDetails = () => {
   const { t } = useTranslation(['AdminDetails'])
 
   return (
-    <div className="AdminDetails">
-      <div className="AdminDetails__logo">
+    <div className="Admin">
+      <div className="Admin__logo">
         <img src={waiter} alt="" />
       </div>
-      <div className="AdminDetails__container">
+      <div className="Admin__container">
         <span className="a">{t('AdminDetails:Administrador', 'Administrador')}</span>
         <h2 className="b">Diego Valdez Acosta</h2>
         <span className="a">{t('AdminDetails:Restaurante', 'Restaurante')}</span>
