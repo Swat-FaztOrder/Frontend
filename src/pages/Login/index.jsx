@@ -5,10 +5,10 @@ import './styles.styl'
 const Login = () => {
   return (
     <main className="login">
-      <div className="login__up">
-        <div className="login__up--title">
-          <h1 className="title a">Welcome to</h1>
-          <div className="title b">
+      <div className="login__home">
+        <div className="login__home--up">
+          <h1 className="login__home--up a">Welcome to</h1>
+          <div className="login__home--up b">
             <h1 className="b_1">Fast</h1>
             <h1 className="b_2">Order</h1>
           </div>
