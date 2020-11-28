@@ -20,9 +20,9 @@ const Menu = () => {
         </section>
         <section className="menu__container--right">
           <OrderDetails/>
+          <ItemDetails details="Lorem Ipsum" price="5.99" title="Lorem Ipsum" subtitle="Lorem Ipsum"/>
+          <Basket/>
         </section>
-        <ItemDetails details="Lorem Ipsum" price="5.99" title="Lorem Ipsum" subtitle="Lorem Ipsum"/>
-        <Basket/>
       </main>
     </div>
   )
