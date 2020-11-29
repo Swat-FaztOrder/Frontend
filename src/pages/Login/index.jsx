@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { useTranslation } from 'react-i18next';
-
 /* Components */
-import LanguageButton from '../../components/LanguageButton/index'
+import LanguageButton from '../../components/LanguageButton/index.jsx'
 //import { Link } from 'react-router-dom';
 import './styles.styl'
 

@@ -17,6 +17,12 @@ exports[`<App /> matches the snap shot 1`] = `
     </Route>
     <Route
       exact={true}
+      path="/Tables"
+    >
+      <Tables />
+    </Route>
+    <Route
+      exact={true}
       path="/Profiles"
     >
       <Menu />
