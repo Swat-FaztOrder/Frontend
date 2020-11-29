@@ -4,7 +4,7 @@ import MenuGrid from '../../components/MenuGrid/index.jsx';
 import Header from '../../components/Header/index.jsx'
 import MenuCategories from '../../components/MenuCategories/index.jsx'
 import OrderDetails from '../../components/OrderDetails/index.jsx';
-
+import Basket from '../../components/Basket/index.jsx'
 import './styles.styl'
 
 const Menu = () => {
@@ -22,6 +22,7 @@ const Menu = () => {
           <OrderDetails/>
         </section>
         <ItemDetails details="Lorem Ipsum" price="5.99" title="Lorem Ipsum" subtitle="Lorem Ipsum"/>
+        <Basket/>
       </main>
     </div>
   )

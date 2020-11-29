@@ -1,0 +1,50 @@
+@import '../../stylus/variables.styl'
+
+.basket
+  width: 30%
+  height: 100%
+  position fixed
+  z-index: 13
+  right: 0
+  top: 10%
+  background-color: color2
+  display: flex
+  flex-direction: column
+  align-items: center
+  // display: none
+  i
+    align-self: flex-start
+    margin: 6% 0 5% 6%
+    font-size: 2.5rem
+    color: color4
+    background-color: basicColor1
+    border-radius: 50%
+  &Container
+    width: 80%
+    height: 50%
+    display: grid
+    grid-template-columns: 1fr
+    overflow: auto
+  &__send
+    width: 35%
+    height: 6%
+    margin-top: 10%
+    border-radius: 20px
+    border: none
+    color: basicColor1
+    font-size: 1.3rem
+    font-weight: 900
+    background-color: color6
+  // &__inputText
+  //   margin-top: 10%
+  //   margin-bottom: 8%
+  //   padding: 2px
+  //   width: 75%
+  //   height: 15%
+  //   border: none
+  //   border-radius: 30px
+  //   font-size: 1.3rem
+  //   font-weight: 900
+  //   color: gray
+  //   background-color: color1
+  //   text-align: justify

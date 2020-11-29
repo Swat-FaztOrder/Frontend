@@ -1,4 +1,9 @@
 import React from 'react';
+
+import { useTranslation } from 'react-i18next';
+
+/* Components */
+import LanguageButton from '../../components/LanguageButton/index'
 //import { Link } from 'react-router-dom';
 import './styles.styl'
 
@@ -6,7 +11,6 @@ import './styles.styl'
 import { useTranslation } from 'react-i18next';
 
 const Login = () => {
-
   const { t } = useTranslation(['login'])
 
   return (
@@ -26,7 +30,8 @@ const Login = () => {
             <p className="input--title">Password</p>
             <div className="input__box"><i className="fas fa-lock"/><input placeholder="Type your password" /></div>
           </div>
-          <button className="login__down--button">Sign In</button>
+          <button className="login__down--button">{t('Login:SignIn', 'Ingresar')}</button>
+          <LanguageButton />
         </div>
       </div>
     </main>
