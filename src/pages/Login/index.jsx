@@ -1,11 +1,13 @@
 import React from 'react';
 
-import { useTranslation } from 'react-i18next';
 
 /* Components */
 import LanguageButton from '../../components/LanguageButton/index'
 //import { Link } from 'react-router-dom';
 import './styles.styl'
+
+/* i18n  */
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const { t } = useTranslation(['Login'])
