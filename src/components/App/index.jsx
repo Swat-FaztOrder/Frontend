@@ -6,6 +6,7 @@ import Login from '../../pages/Login/index.jsx';
 import Menu from '../../pages/Menu/index.jsx'
 import Tables from '../../pages/Tables/index.jsx'
 import Profiles from '../../pages/Profiles/index.jsx'
+import Kitchen from '../../pages/Kitchen/index.jsx'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route exact path="/Menu"><Menu/></Route>
         <Route exact path="/Tables"><Tables/></Route>
         <Route exact path="/Profiles"><Profiles/></Route>
+        <Route exact path="/Kitchen"><Kitchen/></Route>
       </Switch>
     </Router>
   )

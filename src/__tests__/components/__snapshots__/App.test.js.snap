@@ -27,6 +27,12 @@ exports[`<App /> matches the snap shot 1`] = `
     >
       <Menu />
     </Route>
+    <Route
+      exact={true}
+      path="/Kitchen"
+    >
+      <Kitchen />
+    </Route>
   </Switch>
 </HashRouter>
 `;
