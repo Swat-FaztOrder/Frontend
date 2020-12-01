@@ -1,0 +1,64 @@
+@import '../../stylus/variables.styl'
+
+.New
+  width: 100%
+  height: 100%
+  padding: 10% 2% 0 2%
+  background-color: color2
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-align: center
+  &__data
+    width: 70%
+    height: 60%
+    &--image
+      margin: 10%
+      width: 60%
+      height: 30%
+      color: basicColor1
+      border-radius: 50%
+      border: 18px solid
+      display: flex
+      justify-content: center
+      align-items: center
+      i
+        font-size: 70px
+    &--container
+      margin-top: 15%
+      .container__input
+        height: 40px
+        margin: 20px 0
+        font-size: 16px 
+        font-family: Font1 
+        color: basicColor1
+        display: flex
+        justify-content: space-between
+        align-items: center
+        input
+          margin-left: 5px
+          padding-left: 5px
+          width: 70%
+          height: 30px
+          border: 1px basicColor1
+          background-color: color2
+          border-style: none
+          font-size: 16px
+          color: basicColor1
+          border-bottom-style: solid
+  &__buttons
+    width: 100%
+    height: 5%
+    margin-top: 10%
+    display: flex
+    justify-content: space-around
+    button
+      width: 40%
+      border: none
+      border-radius: 20px
+      color: basicColor1
+      font-size: 20px
+      font-family: Font1
+      font-weight: bold
+    &--add
+      background-color: color4

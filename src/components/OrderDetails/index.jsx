@@ -20,7 +20,7 @@ const OrderDetails = () => {
         <span>{t('OrderDetails:Table', 'Table')}</span>
         <h2>8</h2>
       </div>
-      <button>{t('OrderDetails:Finish', 'Finish order')}Finish order</button>
+      <button>{t('OrderDetails:Finish', 'Finish order')}</button>
     </div>
   )
 }
