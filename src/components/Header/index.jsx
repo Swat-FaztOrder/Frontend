@@ -23,7 +23,9 @@ const Header = () => {
         <a href="" className="header__right--more">
           <i className="fas fa-angle-down" />
         </a>
-        <LogoutButton/>
+        <div className="header__right--logout">
+          <LogoutButton />
+        </div>
       </div>
     </header>
   )
