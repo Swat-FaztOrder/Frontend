@@ -1,5 +1,10 @@
 {
   "Email": "Correo Electronico",
+  "errors": {
+    "credentials": "Credenciales invalidas",
+    "email": "Email no debe estar vacío",
+    "password": "Password no debe estar vacío"
+  },
   "Password": "Contraseña",
   "SignIn": "Ingresar",
   "Type_your_mail": "Digite su e-mail",
