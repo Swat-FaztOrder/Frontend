@@ -1,7 +1,12 @@
 {
   "Email": "Email Address",
+  "errors": {
+    "credentials": "Invalid credentials",
+    "email": "Email should not be empty",
+    "password": "Password should not be empty"
+  },
   "Password": "Password",
-  "SignIn": "Sign-In",
+  "SignIn": "Sign In",
   "Type_your_mail": "Type your mail",
   "Type_your_password": "Type your password",
   "Welcome_to": "Welcome to"

@@ -1,6 +1,7 @@
 //import webpack plugins
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack')
 
 //css rules
 const cssRules = {
@@ -44,5 +45,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: './public/locales', to: './locales' }]
     }),
+    new Dotenv()
   ],
 };
