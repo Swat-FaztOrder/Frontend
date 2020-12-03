@@ -15,9 +15,9 @@ const AdminDetails = () => {
         <img src={waiter} alt="" />
       </div>
       <div className="Admin__container">
-        <span className="a">{t('AdminDetails:Administrador', 'Administrador')}</span>
+        <span className="a">{t('AdminDetails:Administrator', 'Administrador')}</span>
         <h2 className="b">Diego Valdez Acosta</h2>
-        <span className="a">{t('AdminDetails:Restaurante', 'Restaurante')}</span>
+        <span className="a">{t('AdminDetails:Restaurant', 'Restaurante')}</span>
         <h2 className="b">La cocina del Fast-Order</h2>
       </div>
     </div>

@@ -6,8 +6,20 @@ import { useTranslation } from 'react-i18next';
 /* Styles */
 import './styles.styl'
 
+/* Components */
+import Button from '../Button/index.jsx'
+
+/* Contants */
+import BUTTONS from '../constants/buttons'
+import { TOKEN } from '../constants/itemsLocalStorage'
+
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
+
+  const handleClick = () => {
+    localStorage.removeItem(TOKEN)
+    window.location.reload()
+  }
 
   return (
     <div className="menuCategories">
@@ -35,6 +47,7 @@ const MenuCategories = () => {
         <i className="fas fa-cookie-bite" />
         <h1>{t('MenuCategories:Extras', 'Extras')}</h1>
       </div>
+      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Logout</Button>
     </div>
   )
 }
