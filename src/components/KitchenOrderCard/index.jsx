@@ -1,10 +1,10 @@
 import React from 'react'
 import './styles.styl'
 
-const KitchenOrderCard = ({ tableNum, items }) => {
+const KitchenOrderCard = ({ tableNum, items, stat }) => {
   return (
     <div className="orderCard">
-      <div className="orderCard__table redStat">
+      <div className={`orderCard__table ${stat}`}>
         <h1>Table {tableNum}</h1>
       </div>
       <div className="orderCard__list">
