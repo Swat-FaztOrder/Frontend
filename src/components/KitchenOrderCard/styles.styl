@@ -1,21 +1,28 @@
 @import '../../stylus/variables.styl'
 
+.redStat
+  background-color: colorRed
+.yellowStat
+  background-color: colorYellow
+.greenStat
+  background-color: colorGreen
+
 .orderCard
-  min-width: 455px
+  width: 100%
   height: auto
   background-color: basicColor1
   border-radius: 5px
   display: flex
   flex-direction: column
   &__table
-    height: 120px
+    height: 60px
     color: basicColor1
     display: flex
     align-items: center
     padding: 0 25px
     h1
       font-weight: 400
-      font-size: 2.3rem
+      font-size: 1.8rem
   &__list
     height: 100%
     &--item
@@ -23,23 +30,28 @@
       padding: 5%
       padding-bottom: 0
       h3
-        font-size: 1.8rem
+        font-size: 1.1rem
         font-weight: 400
         color: #3E4651
       &Quantity
         margin-right: 40px
   &__icon
     align-self: flex-end
-    padding: 0 20px 20px 0
+    padding: 10px 20px 20px 0
     i
-      font-size: 3.5rem
+      font-size: 3rem
       color: color3
 
-
-
-.redStat
-  background-color: colorRed
-.yellowStat
-  background-color: colorYellow
-.greenStat
-  background-color: colorGreen
+@media screen and (min-width: 1400px)
+  .orderCard
+    &__table
+      height: 100px
+      h1
+        font-size: 2.3rem
+    &__list
+      &--item
+        h3
+          font-size: 1.3rem
+    &__icon
+      i
+        font-size: 3.5rem
