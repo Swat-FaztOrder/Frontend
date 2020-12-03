@@ -1,5 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from 'react-modal'
+
 import PeopleCard from '../PeopleCard/index.jsx'
+import UpdatePeopleModal from '../UpdatePeopleModal/index.jsx'
+import DeletePeopleModal from '../DeletePeopleModal/index.jsx'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -8,6 +12,11 @@ import './styles.styl'
 
 const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
+
+  const [
+    modalIsOpen, 
+    setmodalIsOpen
+  ] = useState(false)
 
   return (
     <div className="People">
@@ -31,9 +40,22 @@ const PeopleDetails = () => {
         </div>
       </div>
       <div className="People__buttons">
-        <button className="People__buttons--delete">{t('PeopleDetails:Delete', 'Borrar')}</button>
-        <button className="People__buttons--update">{t('PeopleDetails:Update', 'Actualizar')}</button>
+        <button
+          onClick = {() => setmodalIsOpen(true)} 
+          className="People__buttons--update"
+        >{t('PeopleDetails:Update', 'Actualizar')}</button>
+        <button
+          onClick = {() => setmodalIsOpen(true)}
+          className="People__buttons--delete"
+        >{t('PeopleDetails:Delete', 'Borrar')}</button>
       </div>
+      <Modal 
+        isOpen={modalIsOpen}
+        onRequestClose = {() => setmodalIsOpen(false)}
+        className="Modal"
+      >
+        <UpdatePeopleModal />
+      </Modal>
     </div>
   )
 }
