@@ -6,6 +6,7 @@ import Login from '../../pages/Login/index.jsx';
 import Menu from '../../pages/Menu/index.jsx'
 import Tables from '../../pages/Tables/index.jsx'
 import Profiles from '../../pages/Profiles/index.jsx'
+import Kitchen from '../../pages/Kitchen/index.jsx'
 
 /* Constants */
 import { TOKEN } from '../constants/itemsLocalStorage'
@@ -20,6 +21,11 @@ const App = () => {
   return (
     <Router>
       <Switch>
+        {/* <Route exact path="/Login"><Login /></Route>
+        <Route exact path="/Menu"><Menu/></Route>
+        <Route exact path="/Tables"><Tables/></Route>
+        <Route exact path="/Profiles"><Profiles/></Route>
+        <Route exact path="/Kitchen"><Kitchen/></Route> */}
         <Route exact path={ROUTES.SIGN_IN}>
           {token ? <Redirect to={ROUTES.TABLES} /> : <Login />}
         </Route>

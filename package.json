@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Swat-FaztOrder/Frontend.git"
+    "url": "git+https://github.com/Swat-FastOrder/Frontend.git"
   },
   "keywords": [
     "react.js",
@@ -24,9 +24,9 @@
   "author": "FastOrder Team",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Swat-FaztOrder/Frontend/issues"
+    "url": "https://github.com/Swat-FastOrder/Frontend/issues"
   },
-  "homepage": "https://github.com/Swat-FaztOrder/Frontend#readme",
+  "homepage": "https://github.com/Swat-FastOrder/Frontend#readme",
   "dependencies": {
     "axios": "^0.21.0",
     "copy-webpack-plugin": "^6.3.2",
@@ -39,6 +39,7 @@
     "react-dom": "^17.0.1",
     "react-i18next": "^11.7.3",
     "react-modal": "^3.12.1",
+    "react-responsive-masonry": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "stylus": "^0.54.8"
   },

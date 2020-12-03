@@ -9,14 +9,17 @@
   position: sticky
   z-index: 14
   top: 0
-  background-color: color3
+  background-color: color6
   &__left
     margin-left: 4%
     h1
+      color: white
       font-weight: 400
       font-size: 2.2rem
+      font-family: Font2
       strong
         font-size: 1em
+        font-family: Font3
   &__right
     display: flex
     align-items: center
@@ -35,6 +38,8 @@
       visibility: visible
       i
         font-size: 65px
+    &--logout
+      display: none
 
 @media screen and (min-width: 760px)
   .header
@@ -54,3 +59,19 @@
           margin: 0 10px 0 40px
       &--more
         display none
+
+@media screen and (min-width: 1400px)
+  .header
+    &__left
+      margin-left: 1%
+      h1
+        font-size: 3.5rem
+        strong
+          font-size: 1em
+    &__right
+      &--grid
+        display: none
+      &--basket
+        display: none
+      &--logout
+        display: block

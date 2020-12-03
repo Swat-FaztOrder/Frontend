@@ -2,6 +2,7 @@ import React from 'react'
 
 /* Components */
 import LanguageButton from '../LanguageButton/index.jsx'
+import LogoutButton from '../LogoutButton/index.jsx'
 
 import './styles.styl'
 
@@ -22,6 +23,9 @@ const Header = () => {
         <a href="" className="header__right--more">
           <i className="fas fa-angle-down" />
         </a>
+        <div className="header__right--logout">
+          <LogoutButton />
+        </div>
       </div>
     </header>
   )
