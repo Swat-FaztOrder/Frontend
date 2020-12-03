@@ -49,10 +49,10 @@ const Kitchen = () => {
         <KitchenOrderCard tableNum="2" items={itemList2} />
         <KitchenOrderCard tableNum="3" items={itemList3} />
         <KitchenOrderCard tableNum="4" items={itemList1} />
-        {/* <KitchenOrderCard tableNum="5" items={itemList2} />
+        <KitchenOrderCard tableNum="5" items={itemList2} />
         <KitchenOrderCard tableNum="5" items={itemList3} />
         <KitchenOrderCard tableNum="6" items={itemList1} />
-        <KitchenOrderCard tableNum="7" items={itemList2} /> */}
+        <KitchenOrderCard tableNum="7" items={itemList2} />
       </main>
     </div>
   )
