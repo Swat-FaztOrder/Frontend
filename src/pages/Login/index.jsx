@@ -1,7 +1,7 @@
 import React from 'react';
 
 /* Components */
-import LanguageButton from '../../components/LanguageButton/index'
+import LanguageButton from '../../components/LanguageButton/index.jsx'
 //import { Link } from 'react-router-dom';
 import './styles.styl'
 
