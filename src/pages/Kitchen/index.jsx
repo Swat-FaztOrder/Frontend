@@ -2,6 +2,7 @@ import React from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import Header from '../../components/Header/index.jsx'
 import KitchenOrderCard from '../../components/KitchenOrderCard/index.jsx'
+import KitchenModal from '../../components/KitchenModal/index.jsx'
 
 import './styles.styl'
 
@@ -38,9 +39,12 @@ const Kitchen = () => {
   ]
 
   return (
-    <div className="kitchen">
+    <section className="kitchen">
+      <div className="kitchen__modals">
+        <KitchenModal tableNum="5" items={itemList2} stat="greenStat" />
+      </div>
       <Header />
-      <main className="orders">
+      <main className="kitchen__orders">
         <ResponsiveMasonry columnsCountBreakPoints={{ 1000: 4, 1400: 5 }}>
           <Masonry gutter="20px">
             <KitchenOrderCard tableNum="1" items={itemList1} stat="redStat" />
@@ -66,7 +70,7 @@ const Kitchen = () => {
           </Masonry>
         </ResponsiveMasonry>
       </main>
-    </div>
+    </section>
   )
 }
 

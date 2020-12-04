@@ -1,4 +1,18 @@
 @import '../../stylus/variables.styl'
 
-.orders
-  padding: 20px
+.kitchen
+  position: absolute
+  z-index: 1
+  width: 100%
+  &__orders
+    padding: 20px
+  &__modals
+    position: fixed
+    top: 0
+    right: 0
+    z-index: 25
+    height: 100%
+    width: 100%
+    background-color: rgba(80, 133, 173, .5)
+    transition: all 0.3s linear
+    // visibility: hidden
