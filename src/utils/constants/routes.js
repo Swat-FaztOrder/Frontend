@@ -3,5 +3,6 @@ export default {
   SIGN_IN: '/signin',
   TABLES: '/tables',
   MENU: '/menu',
-  PROFILES: '/profiles'
+  PROFILES: '/profiles',
+  KITCHEN: '/kitchen'
 }

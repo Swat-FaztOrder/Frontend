@@ -21,12 +21,12 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/Login"><Login /></Route>
+        {/* <Route exact path="/Login"><Login /></Route>
         <Route exact path="/Menu"><Menu/></Route>
         <Route exact path="/Tables"><Tables/></Route>
         <Route exact path="/Profiles"><Profiles/></Route>
-        <Route exact path="/Kitchen"><Kitchen/></Route>
-        {/* <Route exact path={ROUTES.SIGN_IN}>
+        <Route exact path="/Kitchen"><Kitchen/></Route> */}
+        <Route exact path={ROUTES.SIGN_IN}>
           {token ? <Redirect to={ROUTES.TABLES} /> : <Login />}
         </Route>
         <Route exact path={ROUTES.MENU}>
@@ -38,9 +38,12 @@ const App = () => {
         <Route exact path={ROUTES.PROFILES}>
           {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>}
         </Route>
+        <Route exact path={ROUTES.PROFILES}>
+          {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Kitchen/>}
+        </Route>
         <Route>
           <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>
-        </Route> */}
+        </Route>
       </Switch>
     </Router>
   )

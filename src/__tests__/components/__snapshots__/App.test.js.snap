@@ -5,33 +5,48 @@ exports[`<App /> matches the snap shot 1`] = `
   <Switch>
     <Route
       exact={true}
-      path="/Login"
+      path="/signin"
     >
       <Login />
     </Route>
     <Route
       exact={true}
-      path="/Menu"
+      path="/menu"
     >
+      <Redirect
+        to="/signin"
+      />
+    </Route>
+    <Route
+      exact={true}
+      path="/tables"
+    >
+      <Redirect
+        to="/signin"
+      />
+    </Route>
+    <Route
+      exact={true}
+      path="/profiles"
+    >
+      <Redirect
+        to="/signin"
+      />
+    </Route>
+    <Route
+      exact={true}
+      path="/profiles"
+    >
+      <Redirect
+        to="/signin"
+      />
+    </Route>
+    <Route>
+      <Redirect
+        to="/signin"
+      />
+       : 
       <Menu />
-    </Route>
-    <Route
-      exact={true}
-      path="/Tables"
-    >
-      <Tables />
-    </Route>
-    <Route
-      exact={true}
-      path="/Profiles"
-    >
-      <Menu />
-    </Route>
-    <Route
-      exact={true}
-      path="/Kitchen"
-    >
-      <Kitchen />
     </Route>
   </Switch>
 </HashRouter>
