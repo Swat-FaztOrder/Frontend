@@ -18,6 +18,7 @@ const KitchenModal = ({ tableNum, stat, items, info }) => {
           ))}
         </div>
         <div className="kitchenModalContent__right">
+          <i className="fas fa-arrow-circle-left" />
           <div className="kitchenModalContent__right--title">
             <i className="fas fa-sticky-note" />
             <h2>Extra info...</h2>

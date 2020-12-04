@@ -41,7 +41,7 @@ const Kitchen = () => {
   return (
     <section className="kitchen">
       <div className="kitchen__modals">
-        <KitchenModal tableNum="5" items={itemList2} stat="greenStat" />
+        <KitchenModal tableNum="5" items={itemList2} stat="greenStat" info="Hamburguer without spicy and the fries without salt. The beverages without ice and with a touch of lemon juice" />
       </div>
       <Header />
       <main className="kitchen__orders">
