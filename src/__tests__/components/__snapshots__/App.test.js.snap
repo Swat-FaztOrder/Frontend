@@ -33,6 +33,14 @@ exports[`<App /> matches the snap shot 1`] = `
         to="/signin"
       />
     </Route>
+    <Route
+      exact={true}
+      path="/profiles"
+    >
+      <Redirect
+        to="/signin"
+      />
+    </Route>
     <Route>
       <Redirect
         to="/signin"

@@ -14,8 +14,8 @@ import Axios from 'axios'
 
 /* JWT */
 import JwtDecode from 'jwt-decode'
-import { TOKEN, VERIFY } from '../../components/constants/itemsLocalStorage'
-import ROUTES from '../../components/constants/routes'
+import { TOKEN, VERIFY } from '../../utils/constants/itemsLocalStorage'
+import ROUTES from '../../utils/constants/routes'
 import config from '../../../config'
 
 const Login = () => {

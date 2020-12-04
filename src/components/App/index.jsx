@@ -9,11 +9,11 @@ import Profiles from '../../pages/Profiles/index.jsx'
 import Kitchen from '../../pages/Kitchen/index.jsx'
 
 /* Constants */
-import { TOKEN } from '../constants/itemsLocalStorage'
-import ROUTES from '../constants/routes'
+import { TOKEN } from '../../utils/constants/itemsLocalStorage'
+import ROUTES from '../../utils/constants/routes'
 
 /* Hooks */
-import useGetItemFromLocalStorage from '../../Hooks/useGetItemFromLocalStorage'
+import useGetItemFromLocalStorage from '../../utils/Hooks/useGetItemFromLocalStorage'
 
 const App = () => {
   const [token] = useGetItemFromLocalStorage(TOKEN)
@@ -37,6 +37,9 @@ const App = () => {
         </Route>
         <Route exact path={ROUTES.PROFILES}>
           {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>}
+        </Route>
+        <Route exact path={ROUTES.PROFILES}>
+          {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Kitchen/>}
         </Route>
         <Route>
           <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>

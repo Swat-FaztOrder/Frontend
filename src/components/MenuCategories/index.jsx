@@ -10,8 +10,8 @@ import './styles.styl'
 import Button from '../Button/index.jsx'
 
 /* Contants */
-import BUTTONS from '../constants/buttons'
-import { TOKEN } from '../constants/itemsLocalStorage'
+import BUTTONS from '../../utils/constants/buttons'
+import { TOKEN } from '../../utils/constants/itemsLocalStorage'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
