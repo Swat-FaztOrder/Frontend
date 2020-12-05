@@ -6,7 +6,16 @@ import Button from '../Button/index.jsx'
 
 import './styles.styl'
 
+/* Contants */
+import BUTTONS from '../../utils/constants/buttons'
+import { TOKEN } from '../../utils/constants/itemsLocalStorage'
+
 const Header = () => {
+  const handleClick = () => {
+    localStorage.removeItem(TOKEN)
+    window.location.reload()
+  }
+
   return (
     <header className="header">
       <div className="header__left">
@@ -23,7 +32,7 @@ const Header = () => {
           <i className="fas fa-shopping-basket" />
         </a>
         <div className="header__right--logout">
-          <Button />
+          <Button onClick={handleClick} type={BUTTONS.CANCEL}>Log out</Button>
         </div>
       </div>
     </header>
