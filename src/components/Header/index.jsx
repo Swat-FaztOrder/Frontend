@@ -2,7 +2,7 @@ import React from 'react'
 
 /* Components */
 import LanguageButton from '../LanguageButton/index.jsx'
-import LogoutButton from '../LogoutButton/index.jsx'
+import Button from '../Button/index.jsx'
 
 import './styles.styl'
 
@@ -13,18 +13,17 @@ const Header = () => {
         <h1>Fast <strong>ORDER</strong></h1>
       </div>
       <div className="header__right">
-        <LanguageButton />
+        <div className="header__right--lang">
+          <LanguageButton />
+        </div>
         <a href="" className="header__right--grid">
           <i className="fas fa-th" />
         </a>
         <a href="" className="header__right--basket">
           <i className="fas fa-shopping-basket" />
         </a>
-        <a href="" className="header__right--more">
-          <i className="fas fa-angle-down" />
-        </a>
         <div className="header__right--logout">
-          <LogoutButton />
+          <Button />
         </div>
       </div>
     </header>

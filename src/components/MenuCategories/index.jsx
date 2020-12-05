@@ -47,7 +47,7 @@ const MenuCategories = () => {
         <i className="fas fa-cookie-bite" />
         <h1>{t('MenuCategories:Extras', 'Extras')}</h1>
       </div>
-      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Logout</Button>
+      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Log out</Button>
     </div>
   )
 }
