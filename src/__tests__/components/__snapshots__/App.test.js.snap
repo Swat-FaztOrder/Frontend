@@ -2,37 +2,54 @@
 
 exports[`<App /> matches the snap shot 1`] = `
 <HashRouter>
-  <Switch>
-    <Route
-      exact={true}
-      path="/Login"
-    >
-      <Login />
-    </Route>
-    <Route
-      exact={true}
-      path="/Menu"
-    >
-      <Menu />
-    </Route>
-    <Route
-      exact={true}
-      path="/Tables"
-    >
-      <Tables />
-    </Route>
-    <Route
-      exact={true}
-      path="/Profiles"
-    >
-      <Menu />
-    </Route>
-    <Route
-      exact={true}
-      path="/Kitchen"
-    >
-      <Kitchen />
-    </Route>
-  </Switch>
+  <index>
+    <Switch>
+      <Route
+        exact={true}
+        path="/signin"
+      >
+        <Login />
+      </Route>
+      <Route
+        exact={true}
+        path="/menu"
+      >
+        <Redirect
+          to="/signin"
+        />
+      </Route>
+      <Route
+        exact={true}
+        path="/tables"
+      >
+        <Redirect
+          to="/signin"
+        />
+      </Route>
+      <Route
+        exact={true}
+        path="/profiles"
+      >
+        <Redirect
+          to="/signin"
+        />
+      </Route>
+      <Route
+        exact={true}
+        path="/kitchen"
+      >
+        <Redirect
+          to="/signin"
+        />
+      </Route>
+      <Route>
+        <Redirect
+          to="/signin"
+        />
+         : 
+        <Menu />
+      </Route>
+    </Switch>
+  </index>
 </HashRouter>
 `;

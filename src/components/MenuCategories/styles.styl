@@ -2,9 +2,11 @@
 
 .menuCategories
   width: 100%
-  height: 100%
+  height: "calc(100vh - %s)" % headerHeight
   background-color: color8
   text-align: center
+  position sticky
+  top: headerHeight
   div
     display: flex
     flex-direction: column
