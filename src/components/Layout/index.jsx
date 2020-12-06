@@ -4,7 +4,7 @@ import React from 'react';
 import Header from '../Header/index.jsx'
 import MenuCategories from '../MenuCategories/index.jsx';
 import OrderDetails from '../OrderDetails/index.jsx';
-import constants from '../constants/routes'
+import constants from '../../utils/constants/routes'
 
 /* Hooks */
 import { useLocation } from 'react-router-dom'

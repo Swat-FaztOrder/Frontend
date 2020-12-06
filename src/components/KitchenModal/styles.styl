@@ -1,0 +1,61 @@
+@import '../../stylus/variables.styl'
+
+.redStat
+  background-color: colorRed
+.yellowStat
+  background-color: colorYellow
+.greenStat
+  background-color: colorGreen
+
+.kitchenModal
+  width: 45%
+  max-height: 700px
+  border-radius: 5px
+  &__table
+    height: 80px
+    color: basicColor1
+    display: flex
+    align-items: center
+    padding: 0 25px
+    h1
+      font-weight: 400
+      font-size: 1.8rem
+  &Content
+    display: grid
+    grid-template-columns: 1fr .9fr
+    padding: 20px
+    background-color: basicColor1
+    &__left
+      overflow-y: auto
+      height: 100%
+      &--item
+        display: flex
+        padding: 10px 20px
+        h3
+          font-size: 1.3rem
+          font-weight: 400
+          color: #3E4651
+        &Quantity
+          margin-right: 40px
+    &__right
+      display: flex
+      flex-direction: column
+      .fa-arrow-circle-left
+        align-self: flex-end
+        font-size: 3rem
+        color: color5
+      p
+        text-align: justify
+        font-size: 1.5rem
+        color: color5
+      &--title
+        display: flex
+        align-items: center
+        margin-top: 10%
+        color: color3
+        i
+          font-size: 3.5rem
+        h2
+          font-size: 2.6rem
+          padding-left: 10px
+          padding-bottom: 8px

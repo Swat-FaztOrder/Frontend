@@ -1,0 +1,70 @@
+@import '../../stylus/variables.styl'
+
+.modalContainer
+  height: 100%
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  position: fixed
+  top: 0
+  right: 0
+  z-index: 25
+  background-color: rgba(32, 68, 112, .5)
+  transition: all 0.3s linear
+  &__modal
+    width: 40%
+    height: 75%
+    border-radius: 5px
+    background-color: color8
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    color: basicColor1
+    text-align: center
+    padding: 2%
+    padding-bottom: 5%
+    &--title
+      h1
+        font-size: 2.5rem
+    &--image
+      height: 40%
+      img
+        height: 100%
+    &--subtitle
+      h3
+        font-size: 1.3rem
+    &--lastMessage
+      h2
+        font-size: 1.5rem
+        color: darkgray
+    &--buttons
+      &-1
+        margin-right: 20px
+        background-color: color6
+      &-2
+        background-color: colorGreen
+      button
+        width: 120px
+        height: 50px
+        border-radius: 20px
+        border: none
+        color: basicColor1
+        font-size: 1.1rem
+        font-weight: 900
+
+
+@media screen and (min-width: 1020px)
+  .modalContainer
+    &__modal
+      &--title
+        h1
+          font-size: 2.3rem
+      &--subtitle
+        h3
+          font-size: 1.5rem
+      &--lastMessage
+        h2
+          font-size: 1.8rem
+          color: darkgray

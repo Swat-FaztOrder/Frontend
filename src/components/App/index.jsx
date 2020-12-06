@@ -12,11 +12,11 @@ import Kitchen from '../../pages/Kitchen/index.jsx'
 import Layout from '../Layout/index.jsx'
 
 /* Constants */
-import { TOKEN } from '../constants/itemsLocalStorage'
-import ROUTES from '../constants/routes'
+import { TOKEN } from '../../utils/constants/itemsLocalStorage'
+import ROUTES from '../../utils/constants/routes'
 
 /* Hooks */
-import useGetItemFromLocalStorage from '../../Hooks/useGetItemFromLocalStorage'
+import useGetItemFromLocalStorage from '../../utils/Hooks/useGetItemFromLocalStorage'
 
 const App = () => {
   const [token] = useGetItemFromLocalStorage(TOKEN)
@@ -25,7 +25,12 @@ const App = () => {
     <Router>
       <Layout>
         <Switch>
-          <Route exact path={ROUTES.SIGN_IN}>
+          <Route exact path="/Login"><Login /></Route>
+          <Route exact path="/Menu"><Menu/></Route>
+          <Route exact path="/Tables"><Tables/></Route>
+          <Route exact path="/Profiles"><Profiles/></Route>
+          <Route exact path="/Kitchen"><Kitchen/></Route>
+          {/* <Route exact path={ROUTES.SIGN_IN}>
             {token ? <Redirect to={ROUTES.TABLES} /> : <Login />}
           </Route>
           <Route exact path={ROUTES.MENU}>
@@ -42,10 +47,9 @@ const App = () => {
           </Route>
           <Route>
             <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>
-          </Route>
+          </Route> */}
         </Switch>
       </Layout>
-
     </Router>
   )
 };

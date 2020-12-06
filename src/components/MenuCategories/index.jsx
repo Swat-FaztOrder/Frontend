@@ -10,8 +10,8 @@ import './styles.styl'
 import Button from '../Button/index.jsx'
 
 /* Contants */
-import BUTTONS from '../constants/buttons'
-import { TOKEN } from '../constants/itemsLocalStorage'
+import BUTTONS from '../../utils/constants/buttons'
+import { TOKEN } from '../../utils/constants/itemsLocalStorage'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
@@ -47,7 +47,7 @@ const MenuCategories = () => {
         <i className="fas fa-cookie-bite" />
         <h1>{t('MenuCategories:Extras', 'Extras')}</h1>
       </div>
-      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Logout</Button>
+      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Log out</Button>
     </div>
   )
 }

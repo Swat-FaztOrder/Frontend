@@ -1,18 +1,31 @@
+@import '../../stylus/variables.styl'
+
 .Button
-    width: 100%
-    display: flex
-    justify-content: center
-    align-items: center
-    position: absolute
-    bottom: 100px
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  position: absolute
+  bottom: 100px
+  &__container
+    border: none
+    border-radius: 5px
+    padding: 5px 1rem
+    color: basicColor1
+    font-weight: 600
+    cursor: pointer
+    &--Cancel
+      background: colorRed
+    &--Confirmation
+      background: colorGreen
+    &--Standard
+      background: #274472
+
+@media screen and (min-width: 1400px)
+  .Button
+    bottom: 0
     &__container
-        border: none
-        padding: 1px 5px
-        color: white
-        cursor: pointer
-        &--Cancel
-            background: #E84752
-        &--Confirmation
-            background: #50B83C
-        &--Standard
-            background: #274472
+      width: 110px
+      padding: 2px
+      padding-bottom: 4px
+      font-size: 1.1rem
