@@ -48,7 +48,6 @@ const Kitchen = () => {
 
   return (
     <div className="kitchen">
-      <Header />
       <main className="orders">
         <ResponsiveMasonry columnsCountBreakPoints={{ 1000: 4, 1400: 5 }}>
           <Masonry gutter="20px">
