@@ -1,7 +1,7 @@
 @import '../../stylus/variables.styl'
 
 .menuCard
-  width: 150px
+  width: 100%
   height: 200px
   border-radius: 5px
   &__container
@@ -16,7 +16,6 @@
       height: 100%
       position:absolute
       z-index: 1
-      opacity: 1
       border-radius: 5px
       object-fit: cover
       &:hover
@@ -35,29 +34,32 @@
       padding: 0 10%
       line-height: 1.3
       &Title
-        font-size: 1.1rem
+        font-size: .8rem
         font-weight: 400
         color: basicColor1
       &Price
-        font-size: 1.1rem
+        font-size: .9rem
         font-weight: 600
         color: basicColor1
 
 
 @media screen and (min-width: 423px)
   .menuCard
-    width: 150px
     height: 280px
 
 @media screen and (min-width: 760px)
   .menuCard
-    width: 100px
     height: 150px
 
 @media screen and (min-width: 1020px)
   .menuCard
-    width: 150px
     height: 200px
+    &__container
+      &--text
+        &Title
+          font-size: 1.1rem
+        &Price
+          font-size: 1.1rem
 
 @media screen and (min-width: 1400px)
   .menuCard
