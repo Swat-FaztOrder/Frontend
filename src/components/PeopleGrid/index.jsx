@@ -17,7 +17,7 @@ const MenuGrid = () => {
         <PeopleCard image="https://images.pexels.com/photos/4253305/pexels-photo-4253305.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
         <PeopleCard image="https://images.pexels.com/photos/4050084/pexels-photo-4050084.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
         <PeopleCard image="https://images.pexels.com/photos/2494704/pexels-photo-2494704.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-        <button className="Profile--add"><i class="fas fa-plus"/></button>
+        <button className="Profile--add"><i className="fas fa-plus"/></button>
       </div>
       <h2 className="Profile__Title">{t('Profiles:Waiters', 'Meseros')}</h2>
       <div className="Profile__WaiterGrid">
@@ -30,9 +30,8 @@ const MenuGrid = () => {
         <PeopleCard image="https://images.pexels.com/photos/4920897/pexels-photo-4920897.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
         <PeopleCard image="https://images.pexels.com/photos/4341034/pexels-photo-4341034.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
         <PeopleCard image="https://images.pexels.com/photos/4920892/pexels-photo-4920892.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
-        <button className="Profile--add"><i class="fas fa-plus"/></button>
+        <button className="Profile--add"><i className="fas fa-plus"/></button>
       </div>
-
     </div>
   )
 }
