@@ -13,7 +13,7 @@ const DeletePeopleModal = () => {
       <h1 className="DeleteModal__title">User Deleted!!!</h1>
       <div className="DeleteModal__data">
         <div className="DeleteModal__data--image">
-          <i class="fas fa-user-slash"/>
+          <i className="fas fa-user-slash"/>
         </div>
         <div className="DeleteModal__data--container">
           <p className="container__p">Diego Valdez</p>
