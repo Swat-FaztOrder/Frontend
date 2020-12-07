@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 /* Components */
 import LanguageButton from '../../components/LanguageButton/index.jsx'
@@ -12,11 +12,15 @@ import { useTranslation } from 'react-i18next';
 /* Axios */
 import Axios from 'axios'
 
+import authService from '../../services/auth'
+
 /* JWT */
 import JwtDecode from 'jwt-decode'
 import { TOKEN, VERIFY } from '../../utils/constants/itemsLocalStorage'
 import ROUTES from '../../utils/constants/routes'
 import config from '../../../config'
+
+import { Context } from '../../Context'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -25,25 +29,22 @@ const Login = () => {
   const [loading, setLoading] = useState(false)
   const { t } = useTranslation(['Login'])
   const source = Axios.CancelToken.source()
+  const { Login } = useContext(Context);
 
   const handleSubmit = (e) => {
     e.preventDefault()
     setError(null)
     setLoading(true)
 
-    Axios({
-      baseURL: config.API_URL_SERVER,
-      url: '/auth/signin',
-      method: 'POST',
-      cancelToken: source.token,
-      data: {
-        email,
-        password
-      }
-    })
-      .then(({ data }) => {
+    console.log('email', email)
+    console.log('password', password)
+
+    authService.login(email, password)
+      .then((data) => {
+        console.debug('data', data)
+        Login(data)
         const { confirmed, suspended } = JwtDecode(data.accessToken)
-        localStorage.setItem(TOKEN, data.accessToken)
+        // localStorage.setItem(TOKEN, data.accessToken)
         localStorage.setItem(
           VERIFY,
           JSON.stringify({ confirmed, suspended })
