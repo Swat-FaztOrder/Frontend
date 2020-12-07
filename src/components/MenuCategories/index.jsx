@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -13,11 +13,15 @@ import Button from '../Button/index.jsx'
 import BUTTONS from '../../utils/constants/buttons'
 import { TOKEN } from '../../utils/constants/itemsLocalStorage'
 
+import { Context } from '../../Context'
+
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
+  const { Logout } = useContext(Context)
 
   const handleClick = () => {
-    localStorage.removeItem(TOKEN)
+    // localStorage.removeItem(TOKEN)
+    Logout();
     window.location.reload()
   }
 
