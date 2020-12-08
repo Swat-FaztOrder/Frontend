@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import Modal from 'react-modal'
 
-import AddPeopleModal from '../AddPeopleModal/index.jsx'
 /* i18n  */
 import { useTranslation } from 'react-i18next';
 
@@ -41,13 +39,6 @@ const NewDetails = () => {
          onClick = {() => setmodalIsOpen(true)} 
          className ="New__buttons--add"
         >{t('NewDetails:Add', 'Agregar')}</button>
-        <Modal 
-          isOpen={modalIsOpen}
-          onRequestClose = {() => setmodalIsOpen(false)}
-          className="Modal"
-        >
-          <AddPeopleModal />
-        </Modal>
       </div>
     </div>
   )

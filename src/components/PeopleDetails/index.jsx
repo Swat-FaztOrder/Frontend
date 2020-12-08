@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
-import Modal from 'react-modal'
 
 import PeopleCard from '../PeopleCard/index.jsx'
-import UpdatePeopleModal from '../UpdatePeopleModal/index.jsx'
-import DeletePeopleModal from '../DeletePeopleModal/index.jsx'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -49,13 +46,6 @@ const PeopleDetails = () => {
           className="People__buttons--delete"
         >{t('PeopleDetails:Delete', 'Borrar')}</button>
       </div>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose = {() => setmodalIsOpen(false)}
-        className="Modal"
-      >
-        <UpdatePeopleModal />
-      </Modal>
     </div>
   )
 }
