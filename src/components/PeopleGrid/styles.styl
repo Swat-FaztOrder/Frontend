@@ -5,7 +5,7 @@
   flex-wrap: wrap
   &__Title
     padding: 2% 0 0 5%
-    color: basicColor1
+    color: color8
     font-family: Font1
     font-size: 2em
   &__ChefGrid
@@ -23,3 +23,37 @@
     justify-self: center
     font-size: 50px
     color: basicColor1
+
+@media screen and (min-width: 310px)
+  .Profile
+    &__ChefGrid
+    &__WaiterGrid
+      margin: 20px 0
+      padding: 0 5% 0 5%
+      grid-template-columns: repeat(2, 80px)
+      grid-auto-rows: 80px
+
+@media screen and (min-width: 760px)
+  .Profile
+    &__ChefGrid
+    &__WaiterGrid
+      padding: 0 10%
+      grid-template-columns: repeat(3, 100px)
+      grid-auto-rows: 100px
+
+@media screen and (min-width: 1020px)
+  .Profile
+    &__ChefGrid
+    &__WaiterGrid
+      padding: 0 5%
+      grid-template-columns: repeat(4, 120px)
+      grid-auto-rows: 120px
+
+@media screen and (min-width: 1400px)
+  .Profile
+    flex-direction: column
+    &__ChefGrid
+    &__WaiterGrid
+      padding: 0 5%
+      grid-template-columns: repeat(5, 120px)
+      grid-auto-rows: 120px
