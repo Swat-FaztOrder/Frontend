@@ -19,30 +19,30 @@ const NewDetails = () => {
     <div className="New">
       <div className="New__data">
         <div className="New__data--image">
-          <i class="fas fa-plus"/>
+          <i className="fas fa-plus"/>
         </div>
         <div className="New__data--container">
           <p className="container__input">{t('NewDetails:Names', 'Nombres')}
-            <input placeholder={t('NewDetails:Type_your_name', 'Digite su nombre')}></input>
+            <input placeholder={t('NewDetails:Type_your_name', 'Digite su nombre')}/>
           </p>
           <p className="container__input">{t('NewDetails:Category', 'Categoria')}
-            <input type="submit" className="container__input" value={t('NewDetails:Cheff', 'Cocinero')}></input>
+            <input type="submit" className="container__input" value={t('NewDetails:Cheff', 'Cocinero')}/>
           </p>
           <p className="container__input">{t('NewDetails:Mail', 'Correo')}
-            <input placeholder={t('NewDetails:Type_your_mail', 'Digite su mail')}></input>
+            <input placeholder={t('NewDetails:Type_your_mail', 'Digite su mail')}/>
           </p>
           <p className="container__input">{t('NewDetails:Password', 'Contraseña')}
-            <input placeholder={t('NewDetails:Type_your_password', 'Digite su contraseña')}></input>
+            <input placeholder={t('NewDetails:Type_your_password', 'Digite su contraseña')}/>
           </p>
         </div>
       </div>
       <div className="New__buttons">
-        <button className ="New__buttons--add">
+        <button className="New__buttons--add">
           {t('NewDetails:Add', 'Agregar')}
-          </button>
+        </button>
         <Modal
           isOpen={modalIsOpen}
-          onRequestClose = {() => setmodalIsOpen(false)}
+          onRequestClose={() => setmodalIsOpen(false)}
           className="Modal"
         >
           <AddPeopleModal />

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "webpack --config ./webpack.config.prod.js",
     "dev": "webpack-dev-server --open --config ./webpack.config.dev.js",
+    "start": "npx serve ./dist -s",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
