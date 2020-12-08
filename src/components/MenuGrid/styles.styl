@@ -1,0 +1,31 @@
+@import '../../stylus/variables.styl'
+
+// .MenuGrid
+//   height: "calc(100vh - %s)" % headerHeight
+//   display: grid
+//   grid-template-columns: repeat(2, 45%)
+//   grid-gap: 2% 0
+//   justify-content: center
+//   overflow-y: scroll
+//   padding: 20px;
+//   box-sizing: border-box;
+
+// @media screen and (min-width: 760px)
+//   .MenuGrid
+//     grid-template-columns: repeat(4, 25%)
+.MenuGrid
+  height: 100%
+  display: grid
+  grid-template-columns: repeat(2, 45%)
+  grid-gap: 1% 2%
+  justify-content: center
+  overflow-y: scroll
+  box-sizing: border-box;
+
+@media screen and (min-width: 760px)
+  .MenuGrid
+    padding: 15px 5% 20%
+    grid-template-columns: repeat(4, 25%)
+@media screen and (min-width: 1020px)
+  .MenuGrid
+    grid-template-columns: repeat(4, 25%)

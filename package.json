@@ -1,0 +1,111 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "Frontend for FastOrder",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.prod.js",
+    "dev": "webpack-dev-server --open --config ./webpack.config.dev.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Swat-FastOrder/Frontend.git"
+  },
+  "keywords": [
+    "react.js",
+    "frontend",
+    "js",
+    "pwa"
+  ],
+  "author": "FastOrder Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Swat-FastOrder/Frontend/issues"
+  },
+  "homepage": "https://github.com/Swat-FastOrder/Frontend#readme",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "copy-webpack-plugin": "^6.3.2",
+    "i18next": "^19.8.4",
+    "i18next-browser-languagedetector": "^6.0.1",
+    "i18next-parser": "^3.3.0",
+    "i18next-xhr-backend": "^3.2.2",
+    "jwt-decode": "^3.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-i18next": "^11.7.3",
+    "react-modal": "^3.12.1",
+    "react-responsive-masonry": "^2.1.0",
+    "react-router-dom": "^5.2.0",
+    "stylus": "^0.54.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "babel-jest": "^26.6.3",
+    "babel-loader": "^8.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "css-loader": "^5.0.1",
+    "dotenv-webpack": "^6.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "jest-css-modules": "^2.1.0",
+    "jsdom": "^16.4.0",
+    "style-loader": "^2.0.0",
+    "stylus-loader": "^4.3.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.44.2",
+    "webpack-bundle-analyzer": "^4.1.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.2.0"
+  },
+  "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>./setupTest.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/./src/__mocks__/fileMock.js"
+    },
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "jsx",
+      ".test.(js)$/",
+      "node"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared",
+      "masonry-layout"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test",
+      "pre-push": "npm test"
+    }
+  }
+}

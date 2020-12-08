@@ -1,0 +1,73 @@
+@import '../../stylus/variables.styl'
+
+.menuCard
+  width: 100%
+  height: 200px
+  border-radius: 5px
+  &__container
+    width: 100%
+    height: 100%
+    position: relative
+    z-index: 2
+    border-radius: 5px
+    overflow: hidden
+    img
+      width: 100%
+      height: 100%
+      position:absolute
+      z-index: 1
+      border-radius: 5px
+      object-fit: cover
+      &:hover
+        cursor: pointer
+        opacity: .8
+    &--text
+      width: 100%
+      height:30%
+      background-color:rgba(32, 68, 112, .7)
+      position: absolute
+      z-index: 3
+      bottom: 0
+      display: flex
+      flex-direction: column
+      justify-content: center
+      padding: 0 10%
+      line-height: 1.3
+      &Title
+        font-size: .8rem
+        font-weight: 400
+        color: basicColor1
+      &Price
+        font-size: .9rem
+        font-weight: 600
+        color: basicColor1
+
+
+@media screen and (min-width: 423px)
+  .menuCard
+    height: 280px
+
+@media screen and (min-width: 760px)
+  .menuCard
+    height: 150px
+
+@media screen and (min-width: 1020px)
+  .menuCard
+    height: 200px
+    &__container
+      &--text
+        &Title
+          font-size: 1.1rem
+        &Price
+          font-size: 1.1rem
+
+@media screen and (min-width: 1400px)
+  .menuCard
+    width: minmax(150px, 250px)
+    height: 260px
+    &__container
+      &--text
+        &Title
+          font-size: 1.5rem
+        &Price
+          font-size: 1.5rem

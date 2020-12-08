@@ -1,0 +1,44 @@
+@import '../../stylus/variables.styl'
+
+.menuCategories
+  width: 100%
+  height: "calc(100vh - %s)" % headerHeight
+  background-color: color8
+  text-align: center
+  position sticky
+  top: headerHeight
+  div
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 10%
+    &:hover
+      background-color: Background
+      i
+        color: color8
+      h1
+        color: color8
+    i
+      font-size: 35px
+      color: basicColor1
+    h1
+      color: basicColor1
+      font-size: 1rem
+      font-weight: 400
+
+@media screen and (min-width: 1020px)
+  .menuCategories
+    div
+      height: 11%
+      i
+        font-size: 40px
+      h1
+        font-size: 1.3rem
+@media screen and (min-width: 1400px)
+  .menuCategories
+    div
+      height: 12%
+      i
+        font-size: 65px
+      h1
+        font-size: 1.8rem

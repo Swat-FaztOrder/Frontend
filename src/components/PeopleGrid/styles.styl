@@ -1,0 +1,25 @@
+@import '../../stylus/variables.styl'
+
+.Profile
+  display: flex
+  flex-wrap: wrap
+  &__Title
+    padding: 2% 0 0 5%
+    color: basicColor1
+    font-family: Font1
+    font-size: 2em
+  &__ChefGrid
+  &__WaiterGrid
+    padding: 2% 8% 0 5%
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    grid-gap: 2%
+  &--add
+    background-color: color1
+    border-radius 50%
+    border: 15px solid basicColor1
+  .fas
+    align-self: center
+    justify-self: center
+    font-size: 50px
+    color: basicColor1
