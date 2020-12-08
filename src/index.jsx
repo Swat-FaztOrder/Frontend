@@ -1,6 +1,12 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, { Suspense } from 'react'
+import { render } from 'react-dom'
+
 import '@babel/polyfill';
+
+/* i18n  */
+import { I18nextProvider } from 'react-i18next'
+import i18n from './i18n'
+
 import App from './components/App/index.jsx';
 
 import './stylus/globalStyles.styl';
