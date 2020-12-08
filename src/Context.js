@@ -20,7 +20,7 @@ const Provider = ({ children }) => {
     },
     Logout: () => {
       setUser(null)
-      window.sessionStorage.removeItem(TOKEN)
+      window.localStorage.removeItem(TOKEN)
     }
   }
   return (
