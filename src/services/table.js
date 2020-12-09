@@ -20,7 +20,7 @@ tableService.get = (id) => {
     .catch(err => console.log('[ERROR]', err))
 }
 
-tableService.update = (name, isActive) => {
+tableService.update = (id, name, isActive) => {
   return fastOrderService.put(`/tables/${id}`, { name, isActive })
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
