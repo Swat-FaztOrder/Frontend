@@ -1,6 +1,6 @@
 import React from 'react'
 
-import '../RightContainer/styles.styl'
+import './styles.styl'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -9,7 +9,7 @@ const OrderDetails = ({ handleButton, Button = 'false', image, title1, title2, s
   const { t } = useTranslation(['OrderDetails'])
 
   return (
-    <>
+    <div className="orderDetails">
       <img src={image} alt="" />
       <div className="orderDetails__waiter">
         <span>{subtitle1}</span>
@@ -22,7 +22,7 @@ const OrderDetails = ({ handleButton, Button = 'false', image, title1, title2, s
       {Button === 'true' &&
         <button onClick={handleButton}>{t('OrderDetails:Finish', 'Finish order')}</button>
       }
-    </>
+    </div>
   )
 }
 
