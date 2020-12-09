@@ -21,7 +21,7 @@ const Provider = ({ children }) => {
 
   const [tables, setTables] = useState(null)
   const [dishes, setDishes] = useState(null)
-  const [actionLayout, setActionLayout] = useState(ActionTypes.DISH_ADD)
+  const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
 
   const value = {
 
