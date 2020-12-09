@@ -14,7 +14,7 @@ const Provider = ({ children }) => {
     PROFILE_UPDATE: 'PROFILE_UPDATE',
     DISH_ADD: 'DISH_ADD',
     DISH_UPDATE: 'DISH_UPDATE',
-    BASKET: 'BASKET'
+    BASKET: 'BASKET',
   }
 
   const [user, setUser] = useState(null)
@@ -24,7 +24,7 @@ const Provider = ({ children }) => {
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
 
   const value = {
-    user,
+
     tables,
     actionLayout,
     Login: (userInfo) => {
@@ -38,6 +38,7 @@ const Provider = ({ children }) => {
     updateAction: (action) => {
       setActionLayout(action)
     },
+    user,
     ActionTypes: ActionTypes
   }
   return (

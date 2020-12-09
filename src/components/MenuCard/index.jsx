@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.styl';
 
-const MenuCard = ({ image, title, price }) => {
+const MenuCard = ({ onClick, image, title, price }) => {
   return (
-    <div className="menuCard" aria-label="menu card">
+    <div onClick={onClick} className="menuCard" aria-label="menu card">
       <div className="menuCard__container" aria-label="menu card container">
         <img
           aria-label="menu card image"

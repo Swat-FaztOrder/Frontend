@@ -7,11 +7,12 @@ import { Context } from '../../Context'
 import OrderDetails from '../OrderDetails/index.jsx'
 import PeopleDetails from '../PeopleDetails/index.jsx'
 import ItemDetails from '../ItemDetails/index.jsx'
+import Basket from '../Basket/index.jsx'
 
 import './styles.styl'
 
 const RightContainer = () => {
-  const { actionLayout, setActionLayout, ActionTypes } = useContext(Context)
+  const { actionLayout, setActionLayout, ActionTypes, user } = useContext(Context)
 
   return (
     <div className="rightContainer">
@@ -38,6 +39,12 @@ const RightContainer = () => {
       {actionLayout === ActionTypes.DISH_ADD || actionLayout === ActionTypes.DISH_UPDATE ?
         <ItemDetails title="Title" details="details" price="56" /> :
         ''}
+      {actionLayout === ActionTypes.CATEGORIES_ADD || actionLayout === ActionTypes.CATEGORIES_UPDATE ?
+        <CategoriesRight title="Title" details="details" price="56" /> :
+        ''}
+      {actionLayout === ActionTypes.BASKET &&
+        <Basket title="Title" details="details" price="56" />}
+
     </div>
   )
 }

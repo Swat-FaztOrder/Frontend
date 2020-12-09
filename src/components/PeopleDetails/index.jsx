@@ -43,6 +43,10 @@ const PeopleDetails = () => {
         <button onClick={() => setmodalIsOpen(true)} className="People__buttons--delete">
           {t('PeopleDetails:Delete', 'Borrar')}
         </button>
+        <button
+          onClick={() => setmodalIsOpen(true)}
+          className="People__buttons--add"
+        >{t('NewDetails:Add', 'Agregar')}</button>
       </div>
     </div>
   )
