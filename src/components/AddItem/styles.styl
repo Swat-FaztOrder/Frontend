@@ -1,0 +1,63 @@
+@import '../../stylus/variables.styl'
+
+.addItem
+  height: 100%
+  width: 100%
+  box-sizing: border-box
+  padding: 20px
+  &__form
+    height: 100%
+    width: 100%
+    display: flex
+    flex-direction: column
+    align-items: center
+    i
+      align-self: flex-start
+      font-size: 2rem
+      color: basicColor1
+
+    &--image
+      width: 100%
+      height: 30%
+      margin-top: 20px
+      margin-bottom: 20px
+      display: flex
+      justify-content: center
+      align-items: center
+      border: solid 3px basicColor1
+      border-radius: 5px
+      i
+        font-size: 2rem
+        align-self: center
+        color: basicColor1
+    &--group
+      width:100%
+      text-align: left
+      align-self: flex-start
+      display: flex
+      flex-direction: column
+      margin: 12px 0px
+      label
+        font-weight: 900
+        color: basicColor1
+        margin-bottom: 8px
+      input
+        height: 30px
+        border: none
+        padding: 0 8px
+        border-radius: 5px
+        font-size: .9rem
+        font-weight: 400
+        color: basicColor1
+        background-color: color6
+        text-align: justify
+    &--submit
+      width: 40%
+      height: 40px
+      margin-top: 20px
+      border-radius: 20px
+      border: none
+      font-size: 1.3rem
+      font-weight: bold
+      color: basicColor1
+      background-color: colorGreen
