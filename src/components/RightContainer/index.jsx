@@ -1,33 +1,47 @@
 import React, { useContext } from 'react'
-import waiter from '../../assets/waiter.png'
 
-/* i18n  */
-import { useTranslation } from 'react-i18next';
+import waiter from '../../assets/waiter.png'
 
 /* Context */
 import { Context } from '../../Context'
+import OrderDetails from '../OrderDetails/index.jsx'
 
 import './styles.styl'
 
 const RightContainer = () => {
-  const { t } = useTranslation(['OrderDetails'])
   const { actionLayout, setActionLayout, ActionTypes } = useContext(Context)
 
   return (
     <div className="orderDetails">
       {actionLayout === ActionTypes.BASE &&
-    <>
-      <img src={waiter} alt="" />
-      <div className="orderDetails__waiter">
-        <span>{t('OrderDetails:Waiter', 'Waiter')}</span>
-        <h2>Diego Valdez Acosta</h2>
-      </div>
-      <div className="orderDetails__table">
-        <span>{t('OrderDetails:Table', 'Table')}</span>
-        <h2>8</h2>
-      </div>
-      <button>{t('OrderDetails:Finish', 'Finish order')}</button>
-    </>
+        <OrderDetails
+          image={waiter}
+          Button="false"
+          subtitle1="Admin"
+          title1="Diego Valdez"
+          subtitle2="Restaurant"
+          title2="Platzi Master"
+        />
+      }
+      {actionLayout === ActionTypes.PROFILE_ADD &&
+        <OrderDetails
+          image={waiter}
+          Button="false"
+          subtitle1="Admin"
+          title1="Diego Valdez"
+          subtitle2="Restaurant"
+          title2="Platzi Master"
+        />
+      }
+      {actionLayout === ActionTypes.PROFILE_UPDATE &&
+        <OrderDetails
+          image={waiter}
+          Button="false"
+          subtitle1="Admin"
+          title1="Diego Valdez"
+          subtitle2="Restaurant"
+          title2="Platzi Master"
+        />
       }
     </div>
   )

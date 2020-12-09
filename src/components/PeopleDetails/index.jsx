@@ -23,28 +23,26 @@ const PeopleDetails = () => {
         </div>
         <div className="People__data--container">
           <p className="container__input">{t('PeopleDetails:Names', 'Nombres')}
-            <input placeholder={t('PeopleDetails:Type_your_name', 'Digite su nombre')}></input>
+            <input placeholder={t('PeopleDetails:Type_your_name', 'Digite su nombre')}/>
           </p>
           <p className="container__input">{t('PeopleDetails:Category', 'Categoria')}
-            <input type="submit" className="container__input" value={t('PeopleDetails:Cheff', 'Cocinero')}></input>
+            <input type="submit" className="container__input" value={t('PeopleDetails:Cheff', 'Cocinero')}/>
           </p>
           <p className="container__input">{t('PeopleDetails:Mail', 'Correo')}
-            <input placeholder={t('PeopleDetails:Type_your_mail', 'Digite su mail')}></input>
+            <input placeholder={t('PeopleDetails:Type_your_mail', 'Digite su mail')}/>
           </p>
           <p className="container__input">{t('PeopleDetails:Password', 'Contraseña')}
-            <input placeholder={t('PeopleDetails:Type_your_password', 'Digite su contraseña')}></input>
+            <input placeholder={t('PeopleDetails:Type_your_password', 'Digite su contraseña')}/>
           </p>
         </div>
       </div>
       <div className="People__buttons">
-        <button
-          onClick = {() => setmodalIsOpen(true)}
-          className="People__buttons--update"
-        >{t('PeopleDetails:Update', 'Actualizar')}</button>
-        <button
-          onClick = {() => setmodalIsOpen(true)}
-          className="People__buttons--delete"
-        >{t('PeopleDetails:Delete', 'Borrar')}</button>
+        <button onClick={() => setmodalIsOpen(true)} className="People__buttons--update" >
+          {t('PeopleDetails:Update', 'Actualizar')}
+        </button>
+        <button onClick={() => setmodalIsOpen(true)} className="People__buttons--delete">
+          {t('PeopleDetails:Delete', 'Borrar')}
+        </button>
       </div>
     </div>
   )
