@@ -80,8 +80,8 @@ const TableGrid = () => {
     <>
       <div className="TableGrid">
         {tablesList}
-        <Button onClick={() => handleClick('ADD')} type="Add table"> + </Button>
-        <Button onClick={() => handleClick('DELETE')} type="Del table"> X </Button>
+        <Button onClick={() => handleClick('ADD')} type="Add table"><i className="fas fa-plus"/></Button>
+        <Button onClick={() => handleClick('DELETE')} type="Del table"><i className="fas fa-times"/></Button>
       </div>
     </>
   )
