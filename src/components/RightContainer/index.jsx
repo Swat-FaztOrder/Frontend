@@ -1,34 +1,44 @@
 import React, { useContext } from 'react'
-import waiter from '../../assets/waiter.png'
 
-/* i18n  */
-import { useTranslation } from 'react-i18next';
+import waiter from '../../assets/waiter.png'
 
 /* Context */
 import { Context } from '../../Context'
+import OrderDetails from '../OrderDetails/index.jsx'
+import PeopleDetails from '../PeopleDetails/index.jsx'
+import ItemDetails from '../ItemDetails/index.jsx'
+import Basket from '../Basket/index.jsx'
+import FormRight from '../FormRight/index.jsx'
 
 import './styles.styl'
 
 const RightContainer = () => {
-  const { t } = useTranslation(['OrderDetails'])
-  const { actionLayout, setActionLayout, ActionTypes } = useContext(Context)
+  const { actionLayout, setActionLayout, ActionTypes, user } = useContext(Context)
 
   return (
-    <div className="orderDetails">
+    <div className="rightContainer">
       {actionLayout === ActionTypes.BASE &&
-    <>
-      <img src={waiter} alt="" />
-      <div className="orderDetails__waiter">
-        <span>{t('OrderDetails:Waiter', 'Waiter')}</span>
-        <h2>Diego Valdez Acosta</h2>
-      </div>
-      <div className="orderDetails__table">
-        <span>{t('OrderDetails:Table', 'Table')}</span>
-        <h2>8</h2>
-      </div>
-      <button>{t('OrderDetails:Finish', 'Finish order')}</button>
-    </>
+        <OrderDetails
+          image={waiter}
+          Button="false"
+          subtitle1="Admin"
+          title1="Diego Valdez"
+          subtitle2="Restaurant"
+          title2="Platzi Master"
+        />
       }
+      {actionLayout === ActionTypes.PROFILE_ADD || actionLayout === ActionTypes.PROFILE_UPDATE ?
+        <PeopleDetails/> :
+        ''}
+      {actionLayout === ActionTypes.DISH_ADD || actionLayout === ActionTypes.DISH_UPDATE ?
+        <ItemDetails title="Title" details="details" price="56" /> :
+        ''}
+      {actionLayout === ActionTypes.BASKET &&
+        <Basket title="Title" details="details" price="56" />}
+
+      {actionLayout === ActionTypes.CATEGORY_ADD || actionLayout === ActionTypes.CATEGORY_UPDATE ?
+        <FormRight buttonMessage="Send" title="Enter the name of the new categorie" /> :
+        ''}
     </div>
   )
 }
