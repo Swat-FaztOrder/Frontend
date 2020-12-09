@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -16,9 +16,14 @@ import { TOKEN } from '../../utils/constants/itemsLocalStorage'
 import { Context } from '../../Context'
 import { Link } from 'react-router-dom';
 
+/* Services */
+import categoryService from '../../services/category'
+
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
   const { Logout, updateAction, ActionTypes } = useContext(Context)
+  const [categories, setCategories] = useState([])
+  const [change, setChange] = useState(false)
 
   const handleClick = () => {
     // localStorage.removeItem(TOKEN)
@@ -30,40 +35,26 @@ const MenuCategories = () => {
     updateAction(ActionTypes.CATEGORY_UPDATE)
   }
 
+  useEffect(() => {
+    categoryService.getAll()
+      .then(data => {
+        setCategories(data)
+      })
+  }, [change])
+
+  const categoriesList = categories.map((category) => {
+    return (
+      <Link key={category.id} to="/Menu" onClick={handleAction}>
+        <div className="menuCategories__popular">
+          <h1>{category.name}</h1>
+        </div>
+      </Link>
+    )
+  })
+
   return (
     <div className="menuCategories">
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__popular">
-          <i className="fas fa-star" />
-          <h1>{t('MenuCategories:Popular', 'Popular')}</h1>
-        </div>
-      </Link>
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__fast" >
-          <i className="fas fa-hamburger" />
-          <h1>{t('MenuCategories:FastFood', 'Fast Food')}</h1>
-        </div>
-      </Link>
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__dessert">
-          <i className="fas fa-ice-cream" />
-          <h1>{t('MenuCategories:Dessert', 'Dessert')}</h1>
-        </div></Link>
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__beverages">
-          <i className="fas fa-glass-martini" />
-          <h1>{t('MenuCategories:Beverages', 'Beverages')}</h1>
-        </div></Link>
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__starter">
-          <i className="fas fa-bread-slice" />
-          <h1>{t('MenuCategories:Starter', 'Starter')}</h1>
-        </div></Link>
-      <Link to="/Menu" onClick={handleAction}>
-        <div className="menuCategories__extras">
-          <i className="fas fa-cookie-bite" />
-          <h1>{t('MenuCategories:Extras', 'Extras')}</h1>
-        </div></Link>
+      {categoriesList}
       <div>
         <button className="menuCategories--add" onClick={() => updateAction(ActionTypes.CATEGORY_ADD)}><i className="fas fa-plus"/></button>
       </div>
