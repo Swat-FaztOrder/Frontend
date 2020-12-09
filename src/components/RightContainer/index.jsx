@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import waiter from '../../assets/waiter.png'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
 
+/* Context */
+import { Context } from '../../Context'
+
 import './styles.styl'
 
-const OrderDetails = () => {
+const RightContainer = () => {
   const { t } = useTranslation(['OrderDetails'])
+  const { actionLayout, setActionLayout, ActionTypes } = useContext(Context)
 
   return (
     <div className="orderDetails">
+      {actionLayout === ActionTypes.BASE &&
+    <>
       <img src={waiter} alt="" />
       <div className="orderDetails__waiter">
         <span>{t('OrderDetails:Waiter', 'Waiter')}</span>
@@ -21,8 +27,10 @@ const OrderDetails = () => {
         <h2>8</h2>
       </div>
       <button>{t('OrderDetails:Finish', 'Finish order')}</button>
+    </>
+      }
     </div>
   )
 }
 
-export default OrderDetails
+export default RightContainer

@@ -3,7 +3,7 @@ import React from 'react';
 /* Components */
 import Header from '../Header/index.jsx'
 import MenuCategories from '../MenuCategories/index.jsx';
-import OrderDetails from '../OrderDetails/index.jsx';
+import RightContainer from '../RightContainer/index.jsx';
 import constants from '../../utils/constants/routes'
 
 /* Hooks */
@@ -17,7 +17,7 @@ const index = ({ children }) => {
 
   const HeaderComponent = location !== constants.SIGN_IN ? <Header/> : ''
   const MenuComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <MenuCategories/> : ''
-  const OrderComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <OrderDetails/> : ''
+  const RightComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <RightContainer/> : ''
 
   return (
     <>
@@ -25,7 +25,7 @@ const index = ({ children }) => {
       <div className={`Main${location !== '/signin' && location !== constants.KITCHEN ? '' : '--Login'}`}>
         {MenuComponent}
         {children}
-        {OrderComponent}
+        {RightComponent}
       </div>
     </>
   );
