@@ -24,37 +24,6 @@ const ItemDetails = ({ extras, image, title, details, price }) => {
           <h3>${price}</h3>
         </div>
       </div>
-      <span>{t('ItemDetails:add', 'ADD OPTIONS')}</span>
-      <div className="itemDetails__extras">
-        <div className="itemDetails__extras--line">
-          <div className="itemDetails__extras--lineLeft">
-            <input className="checkbox" type="checkbox" id="cbox1" />
-            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
-          </div>
-          <p className="itemDetails__extras--lineRight">${price}</p>
-        </div>
-        <div className="itemDetails__extras--line">
-          <div className="itemDetails__extras--lineLeft">
-            <input className="checkbox" type="checkbox" id="cbox2" />
-            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
-          </div>
-          <p className="itemDetails__extras--lineRight">${price}</p>
-        </div>
-        <div className="itemDetails__extras--line">
-          <div className="itemDetails__extras--lineLeft">
-            <input className="checkbox" type="checkbox" id="cbox3" />
-            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
-          </div>
-          <p className="itemDetails__extras--lineRight">${price}</p>
-        </div>
-        <div className="itemDetails__extras--line">
-          <div className="itemDetails__extras--lineLeft">
-            <input className="checkbox" type="checkbox" id="cbox4" />
-            <p>{t('ItemDetails:extra', 'Extra Cheese')}</p>
-          </div>
-          <p className="itemDetails__extras--lineRight">${price}</p>
-        </div>
-      </div>
       <input
         type="text"
         placeholder="Extra info..."
