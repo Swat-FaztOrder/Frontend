@@ -26,7 +26,7 @@ const TableGrid = () => {
       tableService.update(table.id, table.name, true)
         .then(() => setChange(!change))
     } else {
-      return tableService.create(`Table ${tables.length + 1}`)
+      return tableService.create(`table ${tables.length + 1}`)
         .then(() => setChange(!change))
     }
   }
@@ -69,7 +69,10 @@ const TableGrid = () => {
 
   const tablesList = tables.map((table) => {
     if (table?.isActive) {
-      return <TableCard key={table.id} title={`${table.name}`} state="No order" />
+      console.log(table.id, table.name)
+      return (
+        <TableCard key={table.id} title={`${table.name}`} state="No order" />
+      )
     }
   })
 
@@ -77,8 +80,8 @@ const TableGrid = () => {
     <>
       <div className="TableGrid">
         {tablesList}
-        <Button onClick={() => handleClick('ADD')}>ADD </Button>
-        <Button onClick={() => handleClick('DELETE')} >Delete </Button>
+        <Button onClick={() => handleClick('ADD')} type="Add table"> + </Button>
+        <Button onClick={() => handleClick('DELETE')} type="Del table"> X </Button>
       </div>
     </>
   )
