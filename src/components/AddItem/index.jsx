@@ -12,18 +12,19 @@ const AddItem = () => {
         <div className="addItem__form--image">
           <i className="fas fa-plus" />
         </div>
-        <div className="addItem__form--title">
-          <label htmlFor="">Add title</label>
-          <input type="text" placeholder="Add title" />
+        <div className="addItem__form--group">
+          <label htmlFor="title">Add title</label>
+          <input type="text" id="title" />
         </div>
-        <div className="addItem__form--details">
-          <label htmlFor="">Add title</label>
-          <input type="text" placeholder="Add details" />
+        <div className="addItem__form--group">
+          <label htmlFor="details">Add details</label>
+          <input type="text" id="details" />
         </div>
-        <div className="addItem__form--price">
-          <input type="text" placeholder="Add price" />
+        <div className="addItem__form--group">
+          <label htmlFor="price">Add price</label>
+          <input type="text" id="price" />
         </div>
-        <input type="submit" value="" className="addItem__form--submit" />
+        <input type="submit" value="Send" className="addItem__form--submit" />
       </form>
     </div >
   )
