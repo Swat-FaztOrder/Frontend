@@ -20,8 +20,9 @@ categoryService.get = (id) => {
     .catch(err => console.log('[ERROR]', err))
 }
 
-categoryService.update = ({ id, name }) => {
-  return fastOrderService.put(`/menu-dishes/${dishId}`, { name })
+categoryService.update = (id, name) => {
+  console.log(id, name)
+  return fastOrderService.put(`/menu-categories/${id}`, { name })
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
 }
