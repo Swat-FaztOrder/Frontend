@@ -37,6 +37,7 @@ const Provider = ({ children }) => {
     Logout: () => {
       setUser(null)
       window.localStorage.removeItem(TOKEN)
+      window.localStorage.removeItem(USER)
     },
     updateAction: (action) => {
       setActionLayout(action)
