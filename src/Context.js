@@ -42,6 +42,7 @@ const Provider = ({ children }) => {
       setUser(null)
       window.localStorage.removeItem(TOKEN)
       window.localStorage.removeItem(USER)
+      window.location.reload()
     },
     updateAction: (action) => {
       setActionLayout(action)
