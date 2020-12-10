@@ -21,7 +21,7 @@ import categoryService from '../../services/category'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
-  const { Logout, updateAction, ActionTypes } = useContext(Context)
+  const { Logout, updateAction, ActionTypes, updateCategory } = useContext(Context)
   const [categories, setCategories] = useState([])
   const [change, setChange] = useState(false)
 
@@ -31,8 +31,9 @@ const MenuCategories = () => {
     window.location.reload()
   }
 
-  const handleAction = () => {
+  const handleAction = (category) => {
     updateAction(ActionTypes.CATEGORY_UPDATE)
+    updateCategory(category)
   }
 
   useEffect(() => {
@@ -42,9 +43,9 @@ const MenuCategories = () => {
       })
   }, [change])
 
-  const categoriesList = categories.map((category) => {
+  const categoriesList = categories.sort((a, b) => a.id - b.id).map((category) => {
     return (
-      <Link key={category.id} to="/Menu" onClick={handleAction}>
+      <Link key={category.id} to="/Menu" onClick={() => handleAction(category)}>
         <div className="menuCategories__popular">
           <h1>{category.name}</h1>
         </div>
