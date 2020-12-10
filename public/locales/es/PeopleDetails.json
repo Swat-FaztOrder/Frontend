@@ -5,8 +5,10 @@
   "Mail": "Correo",
   "Names": "Nombres",
   "Password": "Contraseña",
+  "LastName": "Apellidos",
   "Type_your_mail": "Digite su mail",
   "Type_your_name": "Digite su nombre",
+  "Type_your_lastname": "Digite su apellido",
   "Type_your_password": "Digite su contraseña",
   "Update": "Actualizar"
 }

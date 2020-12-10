@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import PeopleCard from '../PeopleCard/index.jsx'
 
@@ -6,6 +6,12 @@ import PeopleCard from '../PeopleCard/index.jsx'
 import { useTranslation } from 'react-i18next';
 
 import './styles.styl'
+
+import { Context } from '../../Context'
+
+import userservice from '../../services/user'
+import rolservice from '../../services/rol'
+import userService from '../../services/user';
 
 const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
@@ -15,6 +21,59 @@ const PeopleDetails = () => {
     setmodalIsOpen
   ] = useState(false)
 
+  const {
+    peopleDetail,
+    setPeople,
+    actionLayout,
+    updateAction,
+    ActionTypes
+  } = useContext(Context)
+
+  const [roles, setRoles] = useState([])
+
+  useEffect(() => {
+    rolservice.getAll()
+      .then(res => setRoles(res))
+      .catch(err => console.log(err))
+  }, [])
+
+  const addPeople = () => {
+    console.log(peopleDetail)
+    userService.create(peopleDetail)
+      .then(res => {
+        setPeople({})
+        setmodalIsOpen(true)
+        updateAction(ActionTypes.BASE)
+      })
+      .catch(err => console.log(err))
+
+    setmodalIsOpen(true)
+  }
+
+  const updatePeople = () => {
+    userService.update(peopleDetail)
+      .then(res => {
+        setPeople({})
+        setmodalIsOpen(true)
+        updateAction(ActionTypes.BASE)
+      })
+      .catch(err => console.log(err))
+
+    setmodalIsOpen(true)
+  }
+
+  const deletePeople = () => {
+    userService.delete(peopleDetail.id)
+      .then(res => {
+        setPeople({})
+        setmodalIsOpen(true)
+        updateAction(ActionTypes.BASE)
+      })
+      .catch(err => console.log(err))
+
+    setmodalIsOpen(true)
+  }
+
   return (
     <div className="People">
       <div className="People__data">
@@ -23,30 +82,57 @@ const PeopleDetails = () => {
         </div>
         <div className="People__data--container">
           <p className="container__input">{t('PeopleDetails:Names', 'Nombres')}
-            <input placeholder={t('PeopleDetails:Type_your_name', 'Digite su nombre')}/>
+            <input
+              defaultValue={peopleDetail.firstname}
+              placeholder={t('PeopleDetails:Type_your_name', 'Digite su nombre')}
+              onChange={(e) => setPeople({ ...peopleDetail, firstname: e.target.value })}
+            />
           </p>
-          <p className="container__input">{t('PeopleDetails:Category', 'Categoria')}
-            <input type="submit" className="container__input" value={t('PeopleDetails:Cheff', 'Cocinero')}/>
+          <p className="container__input">{t('PeopleDetails:LastName', 'Apellidos')}
+            <input
+              defaultValue={peopleDetail.lastname}
+              placeholder={t('PeopleDetails:Type_your_lastname', 'Digite su apellido"')}
+              onChange={(e) => setPeople({ ...peopleDetail, lastname: e.target.value })}
+            />
           </p>
-          <p className="container__input">{t('PeopleDetails:Mail', 'Correo')}
-            <input placeholder={t('PeopleDetails:Type_your_mail', 'Digite su mail')}/>
-          </p>
-          <p className="container__input">{t('PeopleDetails:Password', 'Contraseña')}
-            <input placeholder={t('PeopleDetails:Type_your_password', 'Digite su contraseña')}/>
-          </p>
+          {actionLayout === ActionTypes.PROFILE_ADD &&
+            <>
+              <p className="container__input">{t('PeopleDetails:Category', 'Categoria')}
+                <select
+                  defaultValue={peopleDetail.roleId}
+                  onChange={(e) => setPeople({ ...peopleDetail, roleId: e.target.value })}
+                >
+                  <option value={0}>Select</option>
+                  {roles.map(rol => <option key={rol.id} value={rol.id}>{rol.name}</option>)}
+                </select>
+              </p>
+              <p className="container__input">{t('PeopleDetails:Mail', 'Correo')}
+                <input
+                  placeholder={t('PeopleDetails:Type_your_mail', 'Digite su mail')}
+                  defaultValue={peopleDetail.email}
+                  onChange={(e) => setPeople({ ...peopleDetail, email: e.target.value })}
+                />
+              </p>
+            </>
+          }
         </div>
       </div>
       <div className="People__buttons">
-        <button onClick={() => setmodalIsOpen(true)} className="People__buttons--update" >
-          {t('PeopleDetails:Update', 'Actualizar')}
-        </button>
-        <button onClick={() => setmodalIsOpen(true)} className="People__buttons--delete">
-          {t('PeopleDetails:Delete', 'Borrar')}
-        </button>
-        <button
-          onClick={() => setmodalIsOpen(true)}
-          className="People__buttons--add"
-        >{t('NewDetails:Add', 'Agregar')}</button>
+        {actionLayout === ActionTypes.PROFILE_ADD ?
+
+          <button
+            onClick={() => addPeople()}
+            className="People__buttons--add"
+          >{t('NewDetails:Add', 'Agregar')}</button> :
+          <>
+            <button onClick={() => updatePeople()} className="People__buttons--update" >
+              {t('PeopleDetails:Update', 'Actualizar')}
+            </button>
+            <button onClick={() => deletePeople()} className="People__buttons--delete">
+              {t('PeopleDetails:Delete', 'Borrar')}
+            </button>
+          </>
+        }
       </div>
     </div>
   )

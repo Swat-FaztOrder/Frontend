@@ -18,15 +18,19 @@ const Provider = ({ children }) => {
   }
 
   const [user, setUser] = useState(null)
+  const [peopleDetail, setPeopleDetail] = useState({})
 
   const [tables, setTables] = useState(null)
   const [dishes, setDishes] = useState(null)
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
 
   const value = {
-
+    peopleDetail,
     tables,
     actionLayout,
+    setPeople: (people) => {
+      setPeopleDetail(people)
+    },
     Login: (userInfo) => {
       window.localStorage.setItem(TOKEN, userInfo.accessToken)
       setUser(userInfo)

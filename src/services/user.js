@@ -10,17 +10,10 @@ userService.getAll = () => {
 
 userService.create = ({ firstname, lastname, email, roleId }) => {
   return fastOrderService.post('users', {
-    firstname, lastname, email, roleId
+    firstname, lastname, email, roleId: parseInt(roleId)
   })
     .then(res => res.data)
     .catch(err => console.log('[ERROR] ', err))
-}
-
-userService.getAll = () => {
-  return fastOrderService.post('getUsers', {
-  })
-    .then(res => res.data)
-    .catch(err => console.log('[ERROR]', err))
 }
 
 userService.get = (userId) => {
