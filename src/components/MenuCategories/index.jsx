@@ -7,10 +7,10 @@ import { useTranslation } from 'react-i18next';
 import './styles.styl'
 
 /* Components */
-import Button from '../Button/index.jsx'
+// import Button from '../Button/index.jsx'
 
 /* Contants */
-import BUTTONS from '../../utils/constants/buttons'
+// import BUTTONS from '../../utils/constants/buttons'
 import { TOKEN } from '../../utils/constants/itemsLocalStorage'
 
 import { Context } from '../../Context'
@@ -25,11 +25,11 @@ const MenuCategories = () => {
   const [categories, setCategories] = useState([])
   const [change, setChange] = useState(false)
 
-  const handleClick = () => {
-    // localStorage.removeItem(TOKEN)
-    Logout();
-    window.location.reload()
-  }
+  // const handleClick = () => {
+  //   // localStorage.removeItem(TOKEN)
+  //   Logout();
+  //   window.location.reload()
+  // }
 
   const handleAction = (category) => {
     updateAction(ActionTypes.CATEGORY_UPDATE)
@@ -55,14 +55,14 @@ const MenuCategories = () => {
 
   return (
     <div className="menuCategories">
-      {categoriesList}
       <div>
         <button className="menuCategories--add" onClick={() => updateAction(ActionTypes.CATEGORY_ADD)}><i className="fas fa-plus"/></button>
       </div>
+      {categoriesList}
 
-      <Button onClick={handleClick} type={BUTTONS.CANCEL}>Log out</Button>
     </div>
   )
 }
 
+//<Button onClick={handleClick} type={BUTTONS.CANCEL}>Log out</Button>
 export default MenuCategories;

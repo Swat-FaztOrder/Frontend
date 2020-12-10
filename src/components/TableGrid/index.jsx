@@ -69,7 +69,7 @@ const TableGrid = () => {
 
   const tablesList = tables.map((table) => {
     if (table?.isActive) {
-      console.log(table.id, table.name)
+      //console.log(table.id, table.name)
       return (
         <TableCard key={table.id} title={`${table.name}`} state="No order" />
       )
