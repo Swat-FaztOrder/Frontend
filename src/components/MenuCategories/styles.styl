@@ -7,13 +7,13 @@
   text-align: center
   position sticky
   top: headerHeight
+  overflow-y: scroll
   a
     text-decoration: none
   div
     display: flex
     flex-direction: column
     justify-content: center
-    height: 10%
     &:hover
       background-color: Background
       i
@@ -22,29 +22,34 @@
         color: color8
     i
       font-size: 35px
-      color: basicColor1
+      color: Background
     h1
-      color: basicColor1
+      color: Background
       font-size: 1rem
       font-weight: 400 
   &--add
-    width: 70%
-    height: 100%
+    width: 50%
+    height: 80%
     margin: 0 auto
-    background-color: Background
+    background-color: color8
     border-radius 50%
-    border: 8px solid colorGreen
+    border: 8px solid Background
     cursor: pointer
-  .fa-plus
-    align-self: center
-    justify-self: center
-    font-size: 40px
-    color: colorGreen
+    .fa-plus
+      align-self: center
+      justify-self: center
+      font-size: 30px
+      color: Background
+    &:hover
+      background-color: Background
+      border-color: color8
+      .fa-plus
+        color: color8
 
 @media screen and (min-width: 1020px)
   .menuCategories
     div
-      height: 11%
+      height: 10%
       i
         font-size: 40px
       h1
