@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 
-import { TOKEN } from './utils/constants/itemsLocalStorage'
+import { TOKEN, USER } from './utils/constants/itemsLocalStorage'
 
 export const Context = createContext()
 
@@ -30,8 +30,9 @@ const Provider = ({ children }) => {
     actionLayout,
     categorySelected,
     Login: (userInfo) => {
-      window.localStorage.setItem(TOKEN, userInfo.accessToken)
       setUser(userInfo)
+      window.localStorage.setItem(USER, JSON.stringify(userInfo))
+      window.localStorage.setItem(TOKEN, userInfo.accessToken)
     },
     Logout: () => {
       setUser(null)
