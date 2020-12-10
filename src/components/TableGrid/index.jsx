@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import TableCard from '../TableCard/index.jsx'
+import React, { useEffect, useState, useContext } from 'react';
 
 /* Constants */
 import { USER } from '../../utils/constants/itemsLocalStorage'
@@ -9,17 +8,16 @@ import './styles.styl';
 
 /* Components */
 import Button from '../Button/index.jsx'
+import TableCard from '../TableCard/index.jsx'
 
+/* Context */
+import { Context } from '../../Context'
+
+/* Services */
 import tableService from '../../services/table'
 
-// const generateList = (size) => {
-//   for (let i = 1; i <= size; i++) {
-//     tables.push(i)
-//   }
-//   return tables
-// }
-
 const TableGrid = () => {
+  const { updateTable } = useContext(Context)
   const [tables, setTables] = useState([]);
   const [change, setChange] = useState(false)
   const [role, setRole] = useState(JSON.parse(window.localStorage.getItem(USER)).role)
@@ -43,7 +41,6 @@ const TableGrid = () => {
       tableService.update(table.id, table.name, false)
         .then(() => setChange(!change))
     }
-
   }
 
   useEffect(() => {
@@ -53,10 +50,14 @@ const TableGrid = () => {
       })
   }, [change])
 
+  const handleTableClick = (id) => {
+    updateTable(id)
+  }
+
   const tablesList = tables.map((table) => {
     if (table?.isActive) {
       return (
-        <TableCard key={table.id} title={`${table.name}`} state="No order" />
+        <TableCard key={table.id} title={`${table.name}`} state="No order" onClick={() => handleTableClick(table.id)} />
       )
     }
   })

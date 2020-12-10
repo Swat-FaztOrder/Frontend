@@ -20,6 +20,7 @@ const Provider = ({ children }) => {
   const [user, setUser] = useState(null)
 
   const [tables, setTables] = useState(null)
+  const [selectedTable, setSelectedTable] = useState(null)
   const [dishes, setDishes] = useState(null)
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
   const [categorySelected, setCategorySelected] = useState('')
@@ -29,6 +30,7 @@ const Provider = ({ children }) => {
     tables,
     actionLayout,
     categorySelected,
+    selectedTable,
     Login: (userInfo) => {
       setUser(userInfo)
       window.localStorage.setItem(USER, JSON.stringify(userInfo))
@@ -40,6 +42,9 @@ const Provider = ({ children }) => {
     },
     updateAction: (action) => {
       setActionLayout(action)
+    },
+    updateTable: (table) => {
+      setSelectedTable(table)
     },
     updateCategory: (category) => {
       setCategorySelected(category)
