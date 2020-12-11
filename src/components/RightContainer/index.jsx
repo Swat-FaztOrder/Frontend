@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 
 import waiter from '../../assets/waiter.png'
 
@@ -19,7 +19,8 @@ import './styles.styl'
 const RightContainer = () => {
   const { actionLayout, setActionLayout, ActionTypes, selectedTable, dishSelected } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
-  const [dish, setDish] = useState([dishSelected])
+  const dish = dishSelected
+
   return (
     <div className="rightContainer">
       {actionLayout === ActionTypes.BASE && user?.role === 'admin' ?
@@ -50,10 +51,10 @@ const RightContainer = () => {
         ''}
       {actionLayout === ActionTypes.ORDER_ADD &&
         <ItemDetails
-          image={dish.imageUrl}
-          title={dish.name}
-          details={dish.description}
-          price={dish.price}
+          image={dish?.imageUrl}
+          title={dish?.name}
+          details={dish?.description}
+          price={dish?.price}
         />
       }
       {actionLayout === ActionTypes.BASKET &&

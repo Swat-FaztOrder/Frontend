@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import './styles.styl';
 
 const ItemDetails = ({ image, title, details, price }) => {
-  console.log(image)
+
   const { t } = useTranslation(['ItemDetails'])
 
   return (
