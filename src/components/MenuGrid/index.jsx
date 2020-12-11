@@ -2,11 +2,16 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Context } from '../../Context';
 import MenuCard from '../MenuCard/index.jsx';
 import dishService from '../../services/dish';
+
+/*Constants */
+import { USER } from '../../utils/constants/itemsLocalStorage'
+
 import './styles.styl';
 
 const MenuGrid = () => {
   const { updateAction, ActionTypes, updateDish, categorySelected } = useContext(Context)
   const [dishes, setDishes] = useState([])
+  const [role, setRole] = useState('')
 
   const handleAction = (dish) => {
     updateAction(ActionTypes.DISH_UPDATE)
@@ -21,6 +26,9 @@ const MenuGrid = () => {
   useEffect( () => {
     dishService.getAll()
     .then(dishes => setDishes(dishes));
+    if(window.localStorage.getItem(USER) != null) {
+      setRole(JSON.parse(window.localStorage.getItem(USER)).role)
+    }
   }, [])
 
 
@@ -30,7 +38,10 @@ const MenuGrid = () => {
 
   return (
     <div className="MenuGrid">
-      <button className="MenuGrid--add" onClick={() => handleNew() }><i className="fas fa-plus"/></button>
+      {
+        role == 'admin' &&
+          <button className="MenuGrid--add" onClick={() => handleNew() }><i className="fas fa-plus"/></button>
+      }
       {dishesList}
     </div>
   )
