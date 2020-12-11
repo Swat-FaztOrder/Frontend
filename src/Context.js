@@ -25,6 +25,7 @@ const Provider = ({ children }) => {
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
   const [categorySelected, setCategorySelected] = useState('')
   const [dishSelected, setDishSelected] = useState('')
+  const [modalDisplay, setModalDisplay] = useState('')
 
   const value = {
 
@@ -33,6 +34,7 @@ const Provider = ({ children }) => {
     categorySelected,
     selectedTable,
     dishSelected,
+    modalDisplay,
     Login: (userInfo) => {
       setUser(userInfo)
       window.localStorage.setItem(USER, JSON.stringify(userInfo))
@@ -55,6 +57,9 @@ const Provider = ({ children }) => {
     },
     updateDish: (dish) => {
       setDishSelected(dish)
+    },
+    updateModalDisplay: (modalName) => {
+      setModalDisplay(modalName)
     },
     user,
     ActionTypes: ActionTypes
