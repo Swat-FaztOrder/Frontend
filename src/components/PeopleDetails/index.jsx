@@ -9,9 +9,8 @@ import './styles.styl'
 
 import { Context } from '../../Context'
 
-import userservice from '../../services/user'
 import rolservice from '../../services/rol'
-import userService from '../../services/user';
+import userService from '../../services/user'
 
 const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
@@ -22,6 +21,7 @@ const PeopleDetails = () => {
   ] = useState(false)
 
   const {
+    defaultPeopleDetail,
     peopleDetail,
     setPeople,
     actionLayout,
@@ -40,8 +40,9 @@ const PeopleDetails = () => {
   const addPeople = () => {
     console.log(peopleDetail)
     userService.create(peopleDetail)
+      .then(userService.updateAvatar(peopleDetail))
       .then(res => {
-        setPeople({})
+        setPeople(defaultPeopleDetail)
         setmodalIsOpen(true)
         updateAction(ActionTypes.BASE)
       })
@@ -51,11 +52,33 @@ const PeopleDetails = () => {
   }
 
   const updatePeople = () => {
+    const formData = new FormData();
     userService.update(peopleDetail)
-      .then(res => {
-        setPeople({})
-        setmodalIsOpen(true)
-        updateAction(ActionTypes.BASE)
+      .then((res) => {
+        console.log('updateProfile', res)
+        console.group('value avatar')
+        console.log('value', peopleDetail.avatar)
+        console.log('type', typeof peopleDetail.avatar)
+        console.log('type validation', typeof peopleDetail.avatar === 'object')
+        console.log('type validation', peopleDetail.avatar !== null)
+        console.log('complete validation', peopleDetail.avatar !== null && typeof peopleDetail.avatar === 'object')
+
+        console.groupEnd('value avatar')
+
+        if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
+          console.log('entro a avalidacion')
+          userService.updateAvatar(peopleDetail, formData)
+            .then(res => {
+              console.log('res update photo', res)
+              setPeople(defaultPeopleDetail)
+              setmodalIsOpen(true)
+              updateAction(ActionTypes.BASE)
+            })
+        } else {
+          setPeople(defaultPeopleDetail)
+          setmodalIsOpen(true)
+          updateAction(ActionTypes.BASE)
+        }
       })
       .catch(err => console.log(err))
 
@@ -65,7 +88,7 @@ const PeopleDetails = () => {
   const deletePeople = () => {
     userService.delete(peopleDetail.id)
       .then(res => {
-        setPeople({})
+        setPeople(defaultPeopleDetail)
         setmodalIsOpen(true)
         updateAction(ActionTypes.BASE)
       })
@@ -78,19 +101,27 @@ const PeopleDetails = () => {
     <div className="People">
       <div className="People__data">
         <div className="People__data--image">
-          <PeopleCard image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+          <label htmlFor="filePeople">
+            <PeopleCard avatar={peopleDetail.avatar} />
+          </label>
+          <input
+            id="filePeople"
+            type="file"
+            onChange={(e) => setPeople({ ...peopleDetail, avatar: e.target.files[0] })}
+            hidden
+          />
         </div>
         <div className="People__data--container">
           <p className="container__input">{t('PeopleDetails:Names', 'Nombres')}
             <input
-              defaultValue={peopleDetail.firstname}
+              value={peopleDetail.firstname}
               placeholder={t('PeopleDetails:Type_your_name', 'Digite su nombre')}
               onChange={(e) => setPeople({ ...peopleDetail, firstname: e.target.value })}
             />
           </p>
           <p className="container__input">{t('PeopleDetails:LastName', 'Apellidos')}
             <input
-              defaultValue={peopleDetail.lastname}
+              value={peopleDetail.lastname}
               placeholder={t('PeopleDetails:Type_your_lastname', 'Digite su apellido"')}
               onChange={(e) => setPeople({ ...peopleDetail, lastname: e.target.value })}
             />
@@ -99,7 +130,8 @@ const PeopleDetails = () => {
             <>
               <p className="container__input">{t('PeopleDetails:Category', 'Categoria')}
                 <select
-                  defaultValue={peopleDetail.roleId}
+                  disabled
+                  value={peopleDetail.roleId}
                   onChange={(e) => setPeople({ ...peopleDetail, roleId: e.target.value })}
                 >
                   <option value={0}>Select</option>
@@ -109,7 +141,7 @@ const PeopleDetails = () => {
               <p className="container__input">{t('PeopleDetails:Mail', 'Correo')}
                 <input
                   placeholder={t('PeopleDetails:Type_your_mail', 'Digite su mail')}
-                  defaultValue={peopleDetail.email}
+                  value={peopleDetail.email}
                   onChange={(e) => setPeople({ ...peopleDetail, email: e.target.value })}
                 />
               </p>

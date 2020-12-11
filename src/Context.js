@@ -17,14 +17,16 @@ const Provider = ({ children }) => {
     BASKET: 'BASKET',
   }
 
+  const defaultPeopleDetail = { firstname: '', lastname: '', roleID: 0, email: '', avatar: '', roleId: 0 }
   const [user, setUser] = useState(null)
-  const [peopleDetail, setPeopleDetail] = useState({})
+  const [peopleDetail, setPeopleDetail] = useState(defaultPeopleDetail)
 
   const [tables, setTables] = useState(null)
   const [dishes, setDishes] = useState(null)
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
 
   const value = {
+    defaultPeopleDetail,
     peopleDetail,
     tables,
     actionLayout,

@@ -22,9 +22,9 @@ userService.get = (userId) => {
     .catch(err => console.log('[ERROR] ', err))
 }
 
-userService.update = ({ id, firstname, lastname, avatar }) => {
+userService.update = ({ id, firstname, lastname }) => {
   return fastOrderService.put(`/users/${id}`, {
-    firstname, lastname, avatar
+    firstname, lastname
   })
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
@@ -37,14 +37,16 @@ userService.delete = (id) => {
     .catch(err => console.log('[ERROR]', err))
 }
 userService.getAvatar = (fileId) => {
-  return fastOrderService.get(`/users/avater/${fileId}`, {
+  return fastOrderService.get(`/users/avatar/${fileId}`, {
   })
     .then(res => res.data)
     .catch(err => console.log('[ERROR] ', err))
 }
 
-userService.updateAvatar = (userId) => {
-  return fastOrderService.post(`/users/avatar/${userId}`)
+userService.updateAvatar = ({ id, avatar }) => {
+  const form = new FormData()
+  form.append('avatar', avatar, avatar.name)
+  return fastOrderService.post(`/users/avatar/${id}`, form)
     .then(res => res.data)
     .catch(err => console.log('[ERROR] ', err))
 }

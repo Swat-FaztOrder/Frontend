@@ -13,8 +13,13 @@ import './styles.styl';
 
 const MenuGrid = () => {
   const { t } = useTranslation(['Profiles'])
-  const { updateAction, ActionTypes, actionLayout, setPeople } = useContext(Context);
+  const { updateAction, ActionTypes, actionLayout, setPeople, defaultPeopleDetail } = useContext(Context);
   const [peoples, setPeoples] = useState([])
+
+  const PEOPLE_ROLES = {
+    CHEFF: 2,
+    WAITRESS: 3
+  }
 
   useEffect(() => {
     userService.getAll()
@@ -27,21 +32,21 @@ const MenuGrid = () => {
     updateAction(ActionTypes.PROFILE_UPDATE)
   }
 
-  const handleClickAdd = () => {
-    setPeople({})
+  const handleClickAdd = (role) => {
+    setPeople({ ...defaultPeopleDetail, roleId: role })
     updateAction(ActionTypes.PROFILE_ADD)
   }
   const getRndInteger = () => {
-    const min = 100000
-    const max = 999999
+    const min = 1000000000000
+    const max = 9999999999999
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   const addRamdonImage = (arrayPeoples) => {
     return arrayPeoples.map(p => {
-      if (p.avatar === null) {
+      if (p.avatar === '') {
         const idAvatar = getRndInteger()
-        p.avatar = `https://images.pexels.com/photos/${idAvatar}/pexels-photo-${idAvatar}.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500`
+        p.avatar = `http://placeimg.com/500/500/people?t=${idAvatar}`
       }
       return p
     })
@@ -52,16 +57,26 @@ const MenuGrid = () => {
       <h2 className="Profile__Title">{t('Profiles:Cheffs', 'Cocineros')}</h2>
       <div className="Profile__ChefGrid">
         {peoples.filter(people => people.role.id === 2 && people.isActive).map(p => {
-          return <PeopleCard key={p.id} people={p} onClick={() => handleClick(p)}/>
+          return (
+            <div key={p.id}>
+              <PeopleCard avatar={p.avatar} onClick={() => handleClick(p)}/>
+              <span>{`${p.firstname}`}</span>
+            </div>
+          )
         })}
-        <button className="Profile--add" onClick={() => handleClickAdd()}><i className="fas fa-plus"/></button>
+        <button className="Profile--add" onClick={() => handleClickAdd(PEOPLE_ROLES.CHEFF)}><i className="fas fa-plus"/></button>
       </div>
       <h2 className="Profile__Title">{t('Profiles:Waiters', 'Meseros')}</h2>
       <div className="Profile__WaiterGrid">
         {peoples.filter(people => people.role.id === 3 && people.isActive).map(p => {
-          return <PeopleCard key={p.id} people={p} onClick={() => handleClick(p)}/>
+          return (
+            <div key={p.id}>
+              <PeopleCard avatar={p.avatar} onClick={() => handleClick(p)}/>
+              <span>{`${p.firstname} ${p.lastname}`}</span>
+            </div>
+          )
         })}
-        <button className="Profile--add" onClick={() => handleClickAdd()}><i className="fas fa-plus"/></button>
+        <button className="Profile--add" onClick={() => handleClickAdd(PEOPLE_ROLES.WAITRESS)}><i className="fas fa-plus"/></button>
       </div>
     </div>
   )
