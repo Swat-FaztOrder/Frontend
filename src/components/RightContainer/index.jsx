@@ -17,7 +17,7 @@ import ItemDetails from '../ItemDetails/index.jsx'
 import './styles.styl'
 
 const RightContainer = () => {
-  const { actionLayout, setActionLayout, ActionTypes, selectedTable, dishSelected } = useContext(Context)
+  const { actionLayout, ActionTypes, selectedTable, dishSelected } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const dish = dishSelected
 

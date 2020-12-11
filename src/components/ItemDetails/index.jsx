@@ -12,19 +12,19 @@ const ItemDetails = ({ image, title, details, price }) => {
 
   return (
     <div className="itemDetails">
+      <i className="fas fa-arrow-circle-left" />
       <div className="itemDetails__image">
         <img src={image} alt="" />
-        <i className="fas fa-arrow-circle-left" />
       </div>
-      <h2 className="itemDetails__title">{title}</h2>
-      <div className="itemDetails__subtitle">
-        <div className="itemDetails__subtitle--details">
-          <p>{details}</p>
-        </div>
-        <div className="itemDetails__subtitle--price">
-          <h3>${price}</h3>
-        </div>
-      </div>
+      <h2 className="itemDetails__title">
+        {title}
+      </h2>
+      <p className="itemDetails__details">
+        {details}
+      </p>
+      <h3 className="itemDetails__price">
+        ${price}
+      </h3>
       <button className="itemDetails__addOrder">
         {t('ItemDetails:order', 'Add to order')}
       </button>
