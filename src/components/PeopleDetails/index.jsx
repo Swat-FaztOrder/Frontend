@@ -42,9 +42,17 @@ const PeopleDetails = () => {
     userService.create(peopleDetail)
       .then(userService.updateAvatar(peopleDetail))
       .then(res => {
-        setPeople(defaultPeopleDetail)
-        setmodalIsOpen(true)
-        updateAction(ActionTypes.BASE)
+        const { id } = res
+        setPeople({ ...peopleDetail, id })
+        if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
+
+          userService.updateAvatar(peopleDetail, formData)
+            .then(res => {
+              setPeople(defaultPeopleDetail)
+              setmodalIsOpen(true)
+              updateAction(ActionTypes.BASE)
+            })
+        }
       })
       .catch(err => console.log(err))
 
@@ -55,21 +63,11 @@ const PeopleDetails = () => {
     const formData = new FormData();
     userService.update(peopleDetail)
       .then((res) => {
-        console.log('updateProfile', res)
-        console.group('value avatar')
-        console.log('value', peopleDetail.avatar)
-        console.log('type', typeof peopleDetail.avatar)
-        console.log('type validation', typeof peopleDetail.avatar === 'object')
-        console.log('type validation', peopleDetail.avatar !== null)
-        console.log('complete validation', peopleDetail.avatar !== null && typeof peopleDetail.avatar === 'object')
-
-        console.groupEnd('value avatar')
 
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
-          console.log('entro a avalidacion')
+
           userService.updateAvatar(peopleDetail, formData)
             .then(res => {
-              console.log('res update photo', res)
               setPeople(defaultPeopleDetail)
               setmodalIsOpen(true)
               updateAction(ActionTypes.BASE)
