@@ -15,7 +15,7 @@ tableService.create = (name) => {
 }
 
 tableService.get = (id) => {
-  return fastOrderService.get(`/tables${id}`)
+  return fastOrderService.get(`/tables/${id}`)
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
 }
