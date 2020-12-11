@@ -1,26 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
-/* Components */
 import LanguageButton from '../LanguageButton/index.jsx'
 import Button from '../Button/index.jsx'
-
-import './styles.styl'
-
-/* Context */
 import { Context } from '../../Context'
-
-/* Contants */
 import BUTTONS from '../../utils/constants/buttons'
-import { TOKEN } from '../../utils/constants/itemsLocalStorage'
+import { USER } from '../../utils/constants/itemsLocalStorage'
+import './styles.styl'
 
 const Header = () => {
   const { Logout, updateAction, ActionTypes } = useContext(Context)
+  const [role, setRole] = useState('')
 
-  // const handleClick = () => {
-  //   localStorage.removeItem(TOKEN)
-  //   window.location.reload()
-  // }
+  useEffect(()=> {
+    if(window.localStorage.getItem(USER) != null) {
+      setRole(JSON.parse(window.localStorage.getItem(USER)).role)
+    }
+  }, [])
 
   const handleAction = (actionType) => {
     updateAction(actionType)
@@ -35,15 +30,20 @@ const Header = () => {
         <div className="header__right--lang">
           <LanguageButton />
         </div>
-        <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Profiles" className="header__right--grid">
-          <i className="fas fa-users" />
-        </Link>
+        {
+          role == 'admin' &&  <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Profiles" className="header__right--grid">
+            <i className="fas fa-users" />
+          </Link>
+        }
         <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Tables" className="header__right--grid">
           <i className="fas fa-th" />
         </Link>
-        <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
-          <i className="fas fa-shopping-basket" />
-        </span>
+
+        {
+          role == 'waitress' && <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
+            <i className="fas fa-shopping-basket" />
+          </span>
+        }
         <div className="header__right--logout">
           <Button onClick={Logout} type={BUTTONS.CANCEL}>Log out</Button>
         </div>
