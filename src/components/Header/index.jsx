@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import LanguageButton from '../LanguageButton/index.jsx'
 import Button from '../Button/index.jsx'
@@ -9,13 +9,7 @@ import './styles.styl'
 
 const Header = () => {
   const { Logout, updateAction, ActionTypes } = useContext(Context)
-  const [role, setRole] = useState('')
-
-  useEffect(()=> {
-    if(window.localStorage.getItem(USER) != null) {
-      setRole(JSON.parse(window.localStorage.getItem(USER)).role)
-    }
-  }, [])
+  const user = JSON.parse(window.localStorage.getItem(USER))
 
   const handleAction = (actionType) => {
     updateAction(actionType)
@@ -31,7 +25,7 @@ const Header = () => {
           <LanguageButton />
         </div>
         {
-          role == 'admin' &&  <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Profiles" className="header__right--grid">
+          user?.role === 'admin' && <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Profiles" className="header__right--grid">
             <i className="fas fa-users" />
           </Link>
         }
@@ -40,7 +34,7 @@ const Header = () => {
         </Link>
 
         {
-          role == 'waitress' && <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
+          user?.role === 'waitress' && <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
             <i className="fas fa-shopping-basket" />
           </span>
         }

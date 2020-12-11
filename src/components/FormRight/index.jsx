@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 
 import './styles.styl'
 
@@ -20,7 +20,6 @@ const FormRight = ({ buttonMessage, title }) => {
       categoryService.create(category)
         .then(() => location.reload())
     }
-
   }
 
   return (

@@ -10,12 +10,16 @@ const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
   const { updateAction, ActionTypes, updateCategory } = useContext(Context)
   const [categories, setCategories] = useState([])
+  const user = JSON.parse(window.localStorage.getItem(USER))
   const [change, setChange] = useState(false)
 
-  const [role, setRole] = useState('')
-
   const handleAction = (category) => {
-    updateAction(ActionTypes.CATEGORY_UPDATE)
+    if (user?.role === 'admin') {
+      updateAction(ActionTypes.CATEGORY_UPDATE)
+    } else {
+      updateAction(ActionTypes.BASE)
+    }
+
     updateCategory(category)
   }
 
@@ -24,9 +28,6 @@ const MenuCategories = () => {
       .then(data => {
         setCategories(data)
       })
-    if(window.localStorage.getItem(USER) != null) {
-      setRole(JSON.parse(window.localStorage.getItem(USER)).role)
-    }
   }, [change])
 
   const categoriesList = categories.sort((a, b) => a.id - b.id).map((category) => {
@@ -42,13 +43,12 @@ const MenuCategories = () => {
   return (
     <div className="menuCategories">
       {
-        role == 'admin' &&
+        user?.role === 'admin' &&
         <div>
           <button className="menuCategories--add" onClick={() => updateAction(ActionTypes.CATEGORY_ADD)}><i className="fas fa-plus"/></button>
         </div>
       }
       {categoriesList}
-
     </div>
   )
 }

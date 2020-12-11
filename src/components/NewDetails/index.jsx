@@ -8,10 +8,7 @@ import './styles.styl'
 const NewDetails = () => {
   const { t } = useTranslation(['NewDetails'])
 
-  const [
-    modalIsOpen,
-    setmodalIsOpen
-  ] = useState(false)
+  const [modalIsOpen, setmodalIsOpen] = useState(false)
 
   return (
     <div className="New">

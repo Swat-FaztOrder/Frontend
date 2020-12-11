@@ -10,10 +10,7 @@ import './styles.styl'
 const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
 
-  const [
-    modalIsOpen,
-    setmodalIsOpen
-  ] = useState(false)
+  const [modalIsOpen, setmodalIsOpen] = useState(false)
 
   return (
     <div className="People">
