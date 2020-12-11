@@ -20,8 +20,20 @@ orderDetailsService.delete = (id) => {
     .catch(err => console.log('[ERROR]', err))
 }
 
-orderDetailsService.send = (id) => {
-  return fastOrderService.put(`/orders/send-to-kitchen/${id}`, { id })
+orderDetailsService.preparing = (id) => {
+  return fastOrderService.put(`/order-details/preparing/${id}`, { id })
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
+orderDetailsService.ready = (id) => {
+  return fastOrderService.put(`/order-details/ready-to-serve/${id}`, { id })
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
+orderDetailsService.served = (id) => {
+  return fastOrderService.put(`/order-details/served/${id}`, { id })
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
 }
