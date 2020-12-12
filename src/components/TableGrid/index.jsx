@@ -46,7 +46,6 @@ const TableGrid = () => {
   useEffect(() => {
     tableService.getAll()
       .then(data => {
-        console.log(data)
         setTables(data.sort((a, b) => (a.id - b.id)))
       })
   }, [change])
