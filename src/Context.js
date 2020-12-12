@@ -17,7 +17,9 @@ const Provider = ({ children }) => {
     BASKET: 'BASKET',
   }
 
+  const defaultPeopleDetail = { firstname: '', lastname: '', roleID: 0, email: '', avatar: '', roleId: 0 }
   const [user, setUser] = useState(null)
+  const [peopleDetail, setPeopleDetail] = useState(defaultPeopleDetail)
 
   const [tables, setTables] = useState(null)
   const [selectedTable, setSelectedTable] = useState(null)
@@ -28,13 +30,17 @@ const Provider = ({ children }) => {
   const [modalDisplay, setModalDisplay] = useState('')
 
   const value = {
-
+    defaultPeopleDetail,
+    peopleDetail,
     tables,
     actionLayout,
     categorySelected,
     selectedTable,
     dishSelected,
     modalDisplay,
+    setPeople: (people) => {
+      setPeopleDetail(people)
+    },
     Login: (userInfo) => {
       setUser(userInfo)
       window.localStorage.setItem(USER, JSON.stringify(userInfo))
