@@ -6,9 +6,9 @@ import waiter from '../../assets/waiter.png'
 import { Context } from '../../Context'
 import OrderDetails from '../OrderDetails/index.jsx'
 import PeopleDetails from '../PeopleDetails/index.jsx'
-import ItemDetails from '../ItemDetails/index.jsx'
 import Basket from '../Basket/index.jsx'
 import FormRight from '../FormRight/index.jsx'
+import AddItem from '../AddItem/index.jsx'
 
 import './styles.styl'
 
@@ -31,7 +31,7 @@ const RightContainer = () => {
         <PeopleDetails/> :
         ''}
       {actionLayout === ActionTypes.DISH_ADD || actionLayout === ActionTypes.DISH_UPDATE ?
-        <ItemDetails title="Title" details="details" price="56" /> :
+        <AddItem /> :
         ''}
       {actionLayout === ActionTypes.BASKET &&
         <Basket title="Title" details="details" price="56" />}

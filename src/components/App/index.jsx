@@ -12,7 +12,7 @@ import Kitchen from '../../pages/Kitchen/index.jsx'
 import Layout from '../Layout/index.jsx'
 
 /* Constants */
-import { TOKEN } from '../../utils/constants/itemsLocalStorage'
+import { TOKEN, USER } from '../../utils/constants/itemsLocalStorage'
 import ROUTES from '../../utils/constants/routes'
 
 /* Hooks */
@@ -20,6 +20,27 @@ import useGetItemFromLocalStorage from '../../utils/Hooks/useGetItemFromLocalSto
 
 const App = () => {
   const [token] = useGetItemFromLocalStorage(TOKEN)
+  const role = JSON.parse(window.localStorage.getItem(USER))?.role
+
+  const signInPath = () => {
+    if (token) {
+      if (role !== 'chef') {
+        return <Redirect to={ROUTES.TABLES} />
+      }
+      return <Redirect to={ROUTES.KITCHEN} />
+    }
+    return <Login />
+  }
+
+  const adminAndWaiterPath = (component) => {
+    if (token) {
+      if (role !== 'chef') {
+        return component
+      }
+      return <Redirect to={ROUTES.KITCHEN} />
+    }
+    return <Redirect to={ROUTES.SIGN_IN} />
+  }
 
   return (
     <Router>
@@ -31,19 +52,19 @@ const App = () => {
           <Route exact path="/Profiles"><Profiles/></Route>
           <Route exact path="/Kitchen"><Kitchen/></Route> */}
           <Route exact path={ROUTES.SIGN_IN}>
-            {token ? <Redirect to={ROUTES.TABLES} /> : <Login />}
+            {signInPath()}
           </Route>
-          <Route exact path={ROUTES.MENU}>
-            {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Menu/>}
+          <Route exact path={ROUTES.MENU} >
+            {adminAndWaiterPath(<Menu />)}
           </Route>
           <Route exact path={ROUTES.TABLES}>
-            {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Tables/>}
+            {adminAndWaiterPath(<Tables />)}
           </Route>
           <Route exact path={ROUTES.PROFILES}>
-            {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>}
+            {token && role === 'admin' ? <Profiles/> : <Redirect to={ROUTES.SIGN_IN} />}
           </Route>
           <Route exact path={ROUTES.KITCHEN}>
-            {!token ? <Redirect to={ROUTES.SIGN_IN} /> : <Kitchen/>}
+            {token && role === 'chef' ? <Kitchen/> : <Redirect to={ROUTES.SIGN_IN} />}
           </Route>
           <Route>
             <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>

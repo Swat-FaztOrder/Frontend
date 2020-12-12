@@ -1,8 +1,7 @@
 import React from 'react'
-
 import './styles.styl'
 
-const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, buttonB }) => {
+const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, buttonB, handleClickB, hideModal, hideButton }) => {
   return (
     <section className="modalContainer">
       <main className="modalContainer__modal">
@@ -24,8 +23,17 @@ const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, but
             <button className="modalContainer__modal--buttons-1">
               {buttonA}
             </button>
-            <button className="modalContainer__modal--buttons-2">
+            <button className="modalContainer__modal--buttons-2" onClick={()=>handleClickB()}>
               {buttonB}
+            </button>
+          </div>
+        }
+        {
+          //only for hide modal
+          buttons == 'false' &&
+          <div className="modalContainer__modal--buttons">
+            <button className="modalContainer__modal--buttons-2" onClick={()=>hideModal()}>
+              {hideButton}
             </button>
           </div>
         }
