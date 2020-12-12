@@ -17,7 +17,7 @@ import ItemDetails from '../ItemDetails/index.jsx'
 import './styles.styl'
 
 const RightContainer = () => {
-  const { actionLayout, ActionTypes, selectedTable, dishSelected } = useContext(Context)
+  const { actionLayout, ActionTypes, selectedTable, dishSelected, order } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const dish = dishSelected
 
@@ -51,10 +51,12 @@ const RightContainer = () => {
         ''}
       {actionLayout === ActionTypes.ORDER_ADD &&
         <ItemDetails
+          id={dish?.id}
           image={dish?.imageUrl}
           title={dish?.name}
           details={dish?.description}
           price={dish?.price}
+          order={order}
         />
       }
       {actionLayout === ActionTypes.BASKET &&

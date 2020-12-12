@@ -54,7 +54,10 @@ const TableGrid = () => {
   const handleTableClick = (id) => {
     updateTable(id)
     orderService.create(id)
-      .then(data => updateOrder(data.id))
+      .then(data => {
+        console.log(data.id)
+        updateOrder(data.id)
+      })
   }
 
   const tablesList = tables.map((table) => {
