@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -8,26 +8,23 @@ import './styles.styl';
 
 /* Services */
 import orderDetailsService from '../../services/orderDetails'
-import orderService from '../../services/order';
+
+/* Context */
+import { Context } from '../../Context'
 
 const ItemDetails = ({ id, image, title, details, price, order }) => {
 
   const { t } = useTranslation(['ItemDetails'])
 
   const handleClick = () => {
-    // return orderService.getAll()
-    //   .then((data) => data.filter(item => item.tableId === table.id))
-    //   .then((order) => {
-    //     console.log(order, table.id)
-    //     // orderDetailsService.create(order.id, id)
-    //   })
-    console.log(order, id)
     return orderDetailsService.create(order, id)
   }
 
+  const { ActionTypes, updateAction } = useContext(Context)
+
   return (
     <div className="itemDetails">
-      <i className="fas fa-arrow-circle-left" />
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="itemDetails__image">
         <img src={image} alt="" />
       </div>

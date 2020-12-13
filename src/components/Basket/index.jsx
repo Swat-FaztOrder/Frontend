@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react'
-import orderDetailsService from '../../services/orderDetails.js'
 import '../BasketItem/index.jsx'
 import BasketItem from '../BasketItem/index.jsx'
 
@@ -8,12 +7,16 @@ import './styles.styl'
 /* Context */
 import { Context } from '../../Context'
 
+/* Services */
+import orderDetailsService from '../../services/orderDetails.js'
+import orderService from '../../services/order.js'
+
 const Basket = () => {
-  const { order } = useContext(Context)
+  const { order, updateAction, ActionTypes } = useContext(Context)
   const [dishes, setDishes] = useState([])
 
   const handleClick = () => {
-    return console.log('hola')
+    return orderService.send(order)
   }
 
   useEffect(() => {
@@ -45,13 +48,15 @@ const Basket = () => {
 
   return (
     <div className="basket">
-      <i className="fas fa-arrow-circle-left" />
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="basketContainer">
-        {dishesList}
+        {dishesList.length > 0 ? dishesList : <h1 className="basket__message">You haven't added any dish to the order :(</h1>}
       </div>
-      <button className="basket__send" onClick={handleClick}>
-        Send order
-      </button>
+      {dishesList.length > 0 &&
+        <button className="basket__send" onClick={handleClick}>
+          Send order
+        </button>
+      }
     </div>
   )
 }

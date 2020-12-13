@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import PeopleCard from '../PeopleCard/index.jsx'
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
+
+/* Context */
+import { Context } from '../../Context'
 
 import './styles.styl'
 
@@ -11,9 +14,11 @@ const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
 
   const [modalIsOpen, setmodalIsOpen] = useState(false)
+  const { updateAction, ActionTypes } = useContext(Context)
 
   return (
     <div className="People">
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="People__data">
         <div className="People__data--image">
           <PeopleCard image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
