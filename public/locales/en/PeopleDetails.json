@@ -5,8 +5,10 @@
   "Mail": "Mail",
   "Names": "Names",
   "Password": "Password",
+  "LastName": "Last Name",
   "Type_your_mail": "Type your mail",
-  "Type_your_name": "Type your name",
+  "Type_your_name": "Type your firstname",
+  "Type_your_lastname": "Type your lastname",
   "Type_your_password": "type your password",
   "Update": "Update"
 }

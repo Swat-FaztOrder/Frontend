@@ -2,7 +2,8 @@ import axios from 'axios'
 import qs from 'qs'
 import config from '../../config'
 /* Constants */
-import { TOKEN } from '../utils/constants/itemsLocalStorage'
+import { TOKEN, USER, VERIFY } from '../utils/constants/itemsLocalStorage'
+import ROUTES from '../utils/constants/routes'
 
 /* Hooks */
 // import useGetItemFromLocalStorage from '../utils/Hooks/useGetItemFromLocalStorage'
@@ -48,9 +49,15 @@ const errorHandler = (error) => {
        * The request was made and the server responded with a
        * status code that falls out of the range of 2xx
        */
-      console.debug('Error fastOrderService', error.response.data);
-      console.debug('Error fastOrderService', error.response.status);
-      console.debug('Error fastOrderService', error.response.headers);
+      // console.debug('Error fastOrderService', error.response.data);
+      // console.debug('Error fastOrderService', error.response.status);
+      // console.debug('Error fastOrderService', error.response.headers);
+      if (error.response.status === 401) {
+        window.localStorage.removeItem(TOKEN)
+        window.localStorage.removeItem(USER)
+        window.localStorage.removeItem(VERIFY)
+        window.location = '/'
+      }
     } else if (error.request) {
       /*
        * The request was made but no response was received, `error.request`
