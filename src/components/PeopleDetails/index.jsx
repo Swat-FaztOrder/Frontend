@@ -5,9 +5,10 @@ import PeopleCard from '../PeopleCard/index.jsx'
 /* i18n  */
 import { useTranslation } from 'react-i18next';
 
-import './styles.styl'
-
+/* Context */
 import { Context } from '../../Context'
+
+import './styles.styl'
 
 import rolservice from '../../services/rol'
 import userService from '../../services/user'
@@ -15,10 +16,7 @@ import userService from '../../services/user'
 const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
 
-  const [
-    modalIsOpen,
-    setmodalIsOpen
-  ] = useState(false)
+  const [modalIsOpen, setmodalIsOpen] = useState(false)
 
   const {
     defaultPeopleDetail,
@@ -97,6 +95,7 @@ const PeopleDetails = () => {
 
   return (
     <div className="People">
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="People__data">
         <div className="People__data--image">
           <label htmlFor="filePeople">

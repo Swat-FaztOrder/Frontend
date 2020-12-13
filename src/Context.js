@@ -14,7 +14,9 @@ const Provider = ({ children }) => {
     PROFILE_UPDATE: 'PROFILE_UPDATE',
     DISH_ADD: 'DISH_ADD',
     DISH_UPDATE: 'DISH_UPDATE',
+    ORDER_ADD: 'ORDER_ADD',
     BASKET: 'BASKET',
+    ORDER_STATUS: 'ORDER_STATUS'
   }
 
   const defaultPeopleDetail = { firstname: '', lastname: '', roleID: 0, email: '', avatar: '', roleId: 0 }
@@ -22,6 +24,7 @@ const Provider = ({ children }) => {
   const [peopleDetail, setPeopleDetail] = useState(defaultPeopleDetail)
 
   const [tables, setTables] = useState(null)
+  const [order, setOrder] = useState(null)
   const [selectedTable, setSelectedTable] = useState(null)
   const [dishes, setDishes] = useState(null)
   const [actionLayout, setActionLayout] = useState(ActionTypes.BASE)
@@ -30,6 +33,7 @@ const Provider = ({ children }) => {
   const [modalDisplay, setModalDisplay] = useState('')
 
   const value = {
+    order,
     defaultPeopleDetail,
     peopleDetail,
     tables,
@@ -57,6 +61,9 @@ const Provider = ({ children }) => {
     },
     updateTable: (table) => {
       setSelectedTable(table)
+    },
+    updateOrder: (order) => {
+      setOrder(order)
     },
     updateCategory: (category) => {
       setCategorySelected(category)

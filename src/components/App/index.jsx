@@ -20,11 +20,11 @@ import useGetItemFromLocalStorage from '../../utils/Hooks/useGetItemFromLocalSto
 
 const App = () => {
   const [token] = useGetItemFromLocalStorage(TOKEN)
-  const role = JSON.parse(window.localStorage.getItem(USER))?.role
+  const user = JSON.parse(window.localStorage.getItem(USER))
 
   const signInPath = () => {
     if (token) {
-      if (role !== 'chef') {
+      if (user?.role !== 'chef') {
         return <Redirect to={ROUTES.TABLES} />
       }
       return <Redirect to={ROUTES.KITCHEN} />
@@ -34,7 +34,7 @@ const App = () => {
 
   const adminAndWaiterPath = (component) => {
     if (token) {
-      if (role !== 'chef') {
+      if (user?.role !== 'chef') {
         return component
       }
       return <Redirect to={ROUTES.KITCHEN} />
@@ -61,10 +61,10 @@ const App = () => {
             {adminAndWaiterPath(<Tables />)}
           </Route>
           <Route exact path={ROUTES.PROFILES}>
-            {token && role === 'admin' ? <Profiles/> : <Redirect to={ROUTES.SIGN_IN} />}
+            {token && user?.role === 'admin' ? <Profiles/> : <Redirect to={ROUTES.SIGN_IN} />}
           </Route>
           <Route exact path={ROUTES.KITCHEN}>
-            {token && role === 'chef' ? <Kitchen/> : <Redirect to={ROUTES.SIGN_IN} />}
+            {token && user?.role === 'chef' ? <Kitchen/> : <Redirect to={ROUTES.SIGN_IN} />}
           </Route>
           <Route>
             <Redirect to={ROUTES.SIGN_IN} /> : <Profiles/>

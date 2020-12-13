@@ -10,9 +10,9 @@ const BasketItem = ({ price, quantity, title, image }) => {
       </div>
       <div className="basketItem__details">
         <h2>{title}</h2>
-        <span className="quantity">x{quantity}</span>
+        <span className="quantity">{quantity}</span>
       </div>
-      <h2 className="basketItem__price">${price}</h2>
+      <h2 className="basketItem__price">{price}</h2>
     </div>
   )
 }

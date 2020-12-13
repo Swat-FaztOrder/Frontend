@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 /* i18n  */
 import { useTranslation } from 'react-i18next';
@@ -6,31 +6,38 @@ import { useTranslation } from 'react-i18next';
 /* styles */
 import './styles.styl';
 
-const ItemDetails = ({ extras, image, title, details, price }) => {
+/* Services */
+import orderDetailsService from '../../services/orderDetails'
+
+/* Context */
+import { Context } from '../../Context'
+
+const ItemDetails = ({ id, image, title, details, price, order }) => {
+
   const { t } = useTranslation(['ItemDetails'])
+
+  const handleClick = () => {
+    return orderDetailsService.create(order, id)
+  }
+
+  const { ActionTypes, updateAction } = useContext(Context)
 
   return (
     <div className="itemDetails">
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="itemDetails__image">
-        <img src="https://i.imgur.com/gfMP09b.jpg" alt="" />
-        <i className="fas fa-arrow-circle-left" />
+        <img src={image} alt="" />
       </div>
-      <h2 className="itemDetails__title">{title}</h2>
-      <div className="itemDetails__subtitle">
-        <div className="itemDetails__subtitle--details">
-          <p>{details}</p>
-        </div>
-        <div className="itemDetails__subtitle--price">
-          <h3>${price}</h3>
-        </div>
-      </div>
-      <input
-        type="text"
-        placeholder="Extra info..."
-        id=""
-        className="itemDetails__inputText"
-      />
-      <button className="itemDetails__addOrder">
+      <h2 className="itemDetails__title">
+        {title}
+      </h2>
+      <p className="itemDetails__details">
+        {details}
+      </p>
+      <h3 className="itemDetails__price">
+        ${price}
+      </h3>
+      <button className="itemDetails__addOrder" onClick={() => handleClick()}>
         {t('ItemDetails:order', 'Add to order')}
       </button>
     </div>

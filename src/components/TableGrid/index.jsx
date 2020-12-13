@@ -15,22 +15,22 @@ import { Context } from '../../Context'
 
 /* Services */
 import tableService from '../../services/table'
+import orderService from '../../services/order'
 
 const TableGrid = () => {
-  const { updateTable } = useContext(Context)
+  const { updateTable, updateOrder } = useContext(Context)
   const [tables, setTables] = useState([]);
   const [change, setChange] = useState(false)
-  const [role, setRole] = useState(JSON.parse(window.localStorage.getItem(USER)).role)
+  const user = JSON.parse(window.localStorage.getItem(USER))
 
   const checkTableAvailability = () => {
     const table = tables.filter(item => !item.isActive).shift()
     if (table) {
-      tableService.update(table.id, table.name, true)
-        .then(() => setChange(!change))
-    } else {
-      return tableService.create(`table ${tables.length + 1}`)
+      return tableService.update(table.id, table.name, true)
         .then(() => setChange(!change))
     }
+    return tableService.create(`table ${tables.length + 1}`)
+      .then(() => setChange(!change))
   }
 
   const handleClick = (action) => {
@@ -52,6 +52,19 @@ const TableGrid = () => {
 
   const handleTableClick = (id) => {
     updateTable(id)
+    orderService.getAll()
+      .then((data) => data.find(item => item.tableId === id))
+      .then((order) => {
+        if (!order) {
+          orderService.create(id)
+            .then(data => {
+              updateOrder(data.id)
+            })
+        } else {
+          updateOrder(order.id)
+        }
+      })
+
   }
 
   const tablesList = tables.map((table) => {
@@ -60,19 +73,19 @@ const TableGrid = () => {
         <TableCard key={table.id} title={`${table.name}`} state="No order" onClick={() => handleTableClick(table.id)} />
       )
     }
+    return null
   })
 
   return (
     <>
       <div className="TableGrid">
         {tablesList}
-        {role === 'admin' &&
+        {user?.role === 'admin' &&
         <>
           <Button onClick={() => handleClick('ADD')} type="Add table"><i className="fas fa-plus"/></Button>
           <Button onClick={() => handleClick('DELETE')} type="Del table"><i className="fas fa-times"/></Button>
         </>
         }
-
       </div>
     </>
   )

@@ -11,10 +11,15 @@ import './styles.styl';
 const MenuGrid = () => {
   const { updateAction, ActionTypes, updateDish, categorySelected } = useContext(Context)
   const [dishes, setDishes] = useState([])
-  const [role, setRole] = useState('')
+  const user = JSON.parse(window.localStorage.getItem(USER))
 
   const handleAction = (dish) => {
-    updateAction(ActionTypes.DISH_UPDATE)
+    if (user?.role === 'admin') {
+      updateAction(ActionTypes.DISH_UPDATE)
+    } else {
+      updateAction(ActionTypes.ORDER_ADD)
+    }
+
     updateDish(dish)
   }
 
@@ -23,24 +28,26 @@ const MenuGrid = () => {
     updateDish('')
   }
 
-  useEffect( () => {
+  useEffect(() => {
     dishService.getAll()
-    .then(dishes => setDishes(dishes));
-    if(window.localStorage.getItem(USER) != null) {
-      setRole(JSON.parse(window.localStorage.getItem(USER)).role)
-    }
+      .then(dishes => setDishes(dishes));
   }, [])
 
-
-  const dishesList = dishes.filter((el)=> el.categoryId == categorySelected.id ).map((dish) =>
-    <MenuCard key={dish.id} title={dish.name} price={dish.price} image={dish.imageUrl}
-      onClick={() => handleAction(dish)} />)
+  const dishesList = dishes.filter((el)=> el.categoryId === categorySelected.id).map((dish) =>(
+    <MenuCard
+      key={dish?.id}
+      title={dish?.name}
+      price={dish?.price}
+      image={dish?.imageUrl}
+      onClick={() => handleAction(dish)}
+    />
+  ))
 
   return (
     <div className="MenuGrid">
       {
-        role == 'admin' &&
-          <button className="MenuGrid--add" onClick={() => handleNew() }><i className="fas fa-plus"/></button>
+        user.role === 'admin' &&
+          <button className="MenuGrid--add" onClick={() => handleNew()}><i className="fas fa-plus"/></button>
       }
       {dishesList}
     </div>

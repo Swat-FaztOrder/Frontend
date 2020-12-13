@@ -1,0 +1,36 @@
+@import '../../stylus/variables.styl'
+
+.orderStatus
+  box-sizing: border-box
+  height 100%
+  padding: 20px
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: center
+  .arrow
+    align-self: flex-start
+    margin-bottom: 10%
+    font-size: 2.2rem
+    color: basicColor1
+    cursor: pointer
+  &__itemsContainer
+    max-height: 50%
+    display: grid
+    grid-template-columns: 1fr
+    overflow-y: auto
+    &--item
+      display: flex
+      justify-content: space-between
+      color: basicColor1
+  &__end
+    margin-top: 10%
+    padding: 2px 4px 4px 4px
+    width: 50%
+    border: none
+    border-radius: 20px
+    color: basicColor1
+    background-color: colorRed
+    font-size: 1.3rem
+    font-weight: bold
+    cursor: pointer
