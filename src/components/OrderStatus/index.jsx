@@ -12,21 +12,25 @@ import orderDetailsService from '../../services/orderDetails.js'
 const OrderStatus = () => {
   const { ActionTypes, updateAction, order } = useContext(Context)
   const [orderItems, setOrderItems] = useState([])
+  const [change, setChange] = useState(true)
 
   useEffect(() => {
     return orderDetailsService.getAll(order)
       .then(data => setOrderItems(data))
-  }, [order])
+  }, [change])
 
   const handleClick = (dish) =>{
     console.log(dish)
+    return orderDetailsService.served(dish.id)
+      .then(() => setChange(!change))
   }
 
   const itemList = orderItems.map(item => {
     return (
       <div className="orderStatus__itemsContainer--item" key={item.id} >
-        <input onClick={() => handleClick(item)} type="checkbox" name="" id=""/>
         <h1>{item.dish.name}</h1>
+        <h1>{item.status}</h1>
+        {item.status === 'ready-to-serve' && <input onClick={() => handleClick(item)} type="checkbox" name="" id=""/>}
       </div>
     )
   })
