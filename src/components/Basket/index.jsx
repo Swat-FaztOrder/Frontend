@@ -48,7 +48,10 @@ const Basket = () => {
 
   return (
     <div className="basket">
-      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
+      <div className="basket__icons">
+        <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left arrow" />
+        <i onClick={() => updateAction(ActionTypes.ORDER_STATUS)} className="fas fa-clipboard-list list"/>
+      </div>
       <div className="basketContainer">
         {dishesList.length > 0 ? dishesList : <h1 className="basket__message">You haven't added any dish to the order :(</h1>}
       </div>

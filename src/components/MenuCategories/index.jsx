@@ -4,11 +4,12 @@ import { Context } from '../../Context'
 import { Link } from 'react-router-dom';
 import categoryService from '../../services/category'
 import { USER } from '../../utils/constants/itemsLocalStorage'
+import ROUTES from '../../utils/constants/routes'
 import './styles.styl'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
-  const { updateAction, ActionTypes, updateCategory } = useContext(Context)
+  const { updateAction, ActionTypes, updateCategory, selectedTable } = useContext(Context)
   const [categories, setCategories] = useState([])
   const user = JSON.parse(window.localStorage.getItem(USER))
   const [change, setChange] = useState(false)
@@ -31,8 +32,9 @@ const MenuCategories = () => {
   }, [change])
 
   const categoriesList = categories.sort((a, b) => a.id - b.id).map((category) => {
+
     return (
-      <Link key={category.id} to="/Menu" onClick={() => handleAction(category)}>
+      <Link key={category.id} to={selectedTable ? ROUTES.MENU : ROUTES.TABLES} onClick={() => handleAction(category)}>
         <div className="menuCategories__popular">
           <h1>{category.name}</h1>
         </div>

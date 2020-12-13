@@ -10,8 +10,6 @@ import { Context } from '../../Context'
 
 import './styles.styl'
 
-import { Context } from '../../Context'
-
 import rolservice from '../../services/rol'
 import userService from '../../services/user'
 
@@ -19,7 +17,6 @@ const PeopleDetails = () => {
   const { t } = useTranslation(['PeopleDetails'])
 
   const [modalIsOpen, setmodalIsOpen] = useState(false)
-  const { updateAction, ActionTypes } = useContext(Context)
 
   const {
     defaultPeopleDetail,

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 
 import waiter from '../../assets/waiter.png'
 
@@ -13,6 +13,7 @@ import Basket from '../Basket/index.jsx'
 import FormRight from '../FormRight/index.jsx'
 import AddItem from '../AddItem/index.jsx'
 import ItemDetails from '../ItemDetails/index.jsx'
+import OrderStatus from '../OrderStatus/index.jsx'
 
 import './styles.styl'
 
@@ -58,6 +59,9 @@ const RightContainer = () => {
           price={dish?.price}
           order={order}
         />
+      }
+      {actionLayout === ActionTypes.ORDER_STATUS &&
+        <OrderStatus/>
       }
       {actionLayout === ActionTypes.BASKET &&
         <Basket title="Title" details="details" price="56" />

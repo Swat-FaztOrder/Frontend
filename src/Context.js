@@ -16,6 +16,7 @@ const Provider = ({ children }) => {
     DISH_UPDATE: 'DISH_UPDATE',
     ORDER_ADD: 'ORDER_ADD',
     BASKET: 'BASKET',
+    ORDER_STATUS: 'ORDER_STATUS'
   }
 
   const defaultPeopleDetail = { firstname: '', lastname: '', roleID: 0, email: '', avatar: '', roleId: 0 }

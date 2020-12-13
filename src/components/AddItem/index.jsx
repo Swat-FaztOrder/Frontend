@@ -5,7 +5,7 @@ import categoryService from '../../services/category'
 import './styles.styl';
 
 const AddItem = () => {
-  const { dishSelected, actionLayout, ActionTypes } = useContext(Context)
+  const { dishSelected, actionLayout, ActionTypes, updateAction } = useContext(Context)
   const [dish, setDish] = useState(dishSelected)
   const [categories, setCategories] = useState([])
 
@@ -43,7 +43,7 @@ const AddItem = () => {
   return (
     <div className="addItem">
       <form key={dish.id} action="" className="addItem__form" onSubmit={()=> handleSubmit()}>
-        <i className="fas fa-arrow-circle-left arrow" />
+        <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left arrow" />
         {dish.imageUrl &&
           <div className="addItem__form--image">
             <img src={dish.imageUrl} alt=""/>
