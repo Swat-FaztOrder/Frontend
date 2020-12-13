@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-
+import BasketItem from '../BasketItem/index.jsx'
 /* Styles */
 import './styles.styl'
 
@@ -8,6 +8,7 @@ import { Context } from '../../Context'
 
 /* Services */
 import orderDetailsService from '../../services/orderDetails.js'
+import Basket from '../Basket/index.jsx'
 
 const OrderStatus = () => {
   const { ActionTypes, updateAction, order } = useContext(Context)
@@ -20,21 +21,40 @@ const OrderStatus = () => {
   }, [change])
 
   const handleClick = (dish) =>{
-    console.log(dish)
     return orderDetailsService.served(dish.id)
       .then(() => setChange(!change))
   }
 
   const itemList = orderItems.map(item => {
     return (
-      <div className="orderStatus__itemsContainer--item" key={item.id} >
-        <h1>{item.dish.name}</h1>
-        <h1>{item.status}</h1>
-        {item.status === 'ready-to-serve' && <input onClick={() => handleClick(item)} type="checkbox" name="" id=""/>}
-      </div>
+      <BasketItem
+        key={item.id}
+        price={item.status === 'ready-to-serve' ?
+          <input onChange={() => handleClick(item)} type="checkbox" checked={false} name="" id=""/> :
+          item.status === 'served' &&
+            <input type="checkbox" checked={true} name="" id="" readOnly/>
+        }
+        quantity={item.status}
+        title={item.dish.name}
+        image={item.dish.imageUrl}
+      />
     )
   })
-  console.log(orderItems)
+
+  const finishButton = () =>{
+    let showButton = true
+    orderItems.forEach(item => {
+      if (item.status !== 'served') {
+        showButton = false
+      }
+    })
+
+    return showButton
+  }
+
+  const handleFinish = () => {
+    console.log('Order finished')
+  }
 
   return (
     <section className="orderStatus">
@@ -42,6 +62,7 @@ const OrderStatus = () => {
       <div className="orderStatus__itemsContainer">
         {itemList}
       </div>
+      {finishButton() && <button onClick={handleFinish} className="orderStatus__end">Finish order</button>}
     </section>
   )
 }

@@ -42,7 +42,7 @@ const Basket = () => {
 
   const dishesList = dishes.map(dish => {
     if (dish?.id) {
-      return <BasketItem key={dish?.id} price={dish?.price} quantity={dish?.quantity} title={dish?.title} image={dish?.image} />
+      return <BasketItem key={dish?.id} price={`$${dish?.price}`} quantity={`x${dish?.quantity}`} title={dish?.title} image={dish?.image} />
     }
   })
 
@@ -50,7 +50,7 @@ const Basket = () => {
     <div className="basket">
       <div className="basket__icons">
         <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left arrow" />
-        <i onClick={() => updateAction(ActionTypes.ORDER_STATUS)} className="fas fa-clipboard-list list"/>
+        {dishes.length > 0 && <i onClick={() => updateAction(ActionTypes.ORDER_STATUS)} className="fas fa-clipboard-list list"/>}
       </div>
       <div className="basketContainer">
         {dishesList.length > 0 ? dishesList : <h1 className="basket__message">You haven't added any dish to the order :(</h1>}
