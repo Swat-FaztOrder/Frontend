@@ -25,7 +25,7 @@ const index = ({ children }) => {
       <div className={`Main${location !== '/signin' && location !== constants.KITCHEN ? '' : '--Login'}`}>
         {location !== constants.SIGN_IN && MenuComponent}
         {children}
-        {location !== constants.SIGN_IN || location !== '/' && RightComponent}
+        {location !== constants.SIGN_IN || location !== '/' ? RightComponent : ''}
       </div>
     </>
   );
