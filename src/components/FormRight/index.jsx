@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext } from 'react'
 
 import './styles.styl'
 
@@ -9,7 +9,7 @@ import categoryService from '../../services/category'
 import { Context } from '../../Context'
 
 const FormRight = ({ buttonMessage, title }) => {
-  const { categorySelected, ActionTypes, actionLayout, } = useContext(Context)
+  const { categorySelected, ActionTypes, actionLayout, updateAction } = useContext(Context)
   const [category, setCategory] = useState(categorySelected.name)
 
   const handleSubmit = (id, name) => {
@@ -20,11 +20,11 @@ const FormRight = ({ buttonMessage, title }) => {
       categoryService.create(category)
         .then(() => location.reload())
     }
-
   }
 
   return (
     <div className="formRight" >
+      <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <form key={categorySelected.name} onSubmit={() => handleSubmit(categorySelected.id, category)} className="formRight__container">
         <h1 className="formRight__container--title">
           {title}

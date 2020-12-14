@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import './styles.styl'
 
-const BasketItem = ({ price, quantity, title, image }) => {
+import orderDetailsService from '../../services/orderDetails.js'
+
+const BasketItem = ({ id, price, quantity, title, image, button, change, setChange }) => {
+
+  const handleClick = () => {
+    orderDetailsService.delete(id)
+      .then(() => setChange(!change))
+  }
+
   return (
     <div className="basketItem">
       <div className="basketItem__image">
@@ -10,9 +18,10 @@ const BasketItem = ({ price, quantity, title, image }) => {
       </div>
       <div className="basketItem__details">
         <h2>{title}</h2>
-        <span className="quantity">x{quantity}</span>
+        <span className="quantity">{quantity}</span>
       </div>
-      <h2 className="basketItem__price">${price}</h2>
+      <h2 className="basketItem__price">{price}</h2>
+      {button && <i onClick={handleClick} className="fas fa-times-circle basketItem__delete"/>}
     </div>
   )
 }

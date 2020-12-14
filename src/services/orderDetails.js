@@ -12,8 +12,8 @@ orderDetailsService.getAll = (id = null) => {
     .catch(err => console.log('[ERROR]', err))
 }
 
-orderDetailsService.create = (orderId, dishId) => {
-  return fastOrderService.post('/order-details', { orderId, dishId })
+orderDetailsService.create = (orderId, menuDishId) => {
+  return fastOrderService.post('/order-details', { orderId, menuDishId })
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
 }

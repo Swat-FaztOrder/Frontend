@@ -5,10 +5,9 @@ import categoryService from '../../services/category'
 import './styles.styl';
 
 const AddItem = () => {
-  const { dishSelected, actionLayout, ActionTypes, categorySelected } = useContext(Context)
+  const { dishSelected, actionLayout, ActionTypes, updateAction } = useContext(Context)
   const [dish, setDish] = useState(dishSelected)
   const [categories, setCategories] = useState([])
-
 
   const handleSubmit = () => {
     if (actionLayout === ActionTypes.DISH_ADD) {
@@ -24,7 +23,7 @@ const AddItem = () => {
   }
 
   const handleChange = (e) => {
-    let newDish = {
+    const newDish = {
       ...dish,
       [e.target.id]: e.target.value
     }
@@ -33,9 +32,9 @@ const AddItem = () => {
 
   useEffect(()=> {
     categoryService.getAll()
-    .then(data => {
-      setCategories(data)
-    })
+      .then(data => {
+        setCategories(data)
+      })
     setDish(dishSelected)
   }, [dishSelected])
 
@@ -43,8 +42,8 @@ const AddItem = () => {
 
   return (
     <div className="addItem">
-      <form key={dish.id} action="" className="addItem__form" onSubmit={ ()=> handleSubmit() }>
-        <i className="fas fa-arrow-circle-left arrow" />
+      <form key={dish.id} action="" className="addItem__form" onSubmit={()=> handleSubmit()}>
+        <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left arrow" />
         {dish.imageUrl &&
           <div className="addItem__form--image">
             <img src={dish.imageUrl} alt=""/>
@@ -56,7 +55,7 @@ const AddItem = () => {
         </div>
         <div className="addItem__form--group">
           <label htmlFor="description">Add details</label>
-          <textarea type="text" id="description" onChange={(e)=>handleChange(e)} defaultValue={dish.description}></textarea>
+          <textarea type="text" id="description" onChange={(e)=>handleChange(e)} defaultValue={dish.description} />
         </div>
         <div className="addItem__form--group">
           <label htmlFor="price">Add price</label>
@@ -69,13 +68,13 @@ const AddItem = () => {
         <div className="addItem__form--group">
           <label htmlFor="categoryId">Categoría</label>
           <select type="text" id="categoryId" onChange={(e)=>handleChange(e)} defaultValue={dish.categoryId}>
-              {categoryOptions}
+            {categoryOptions}
           </select>
         </div>
         <input type="submit" value="Send" className="addItem__form--submit" />
         <div className="empty">this is and empty div</div>
       </form>
-    </div >
+    </div>
   )
 }
 

@@ -21,11 +21,11 @@ const index = ({ children }) => {
 
   return (
     <>
-      {HeaderComponent}
+      {location !== constants.SIGN_IN && HeaderComponent}
       <div className={`Main${location !== '/signin' && location !== constants.KITCHEN ? '' : '--Login'}`}>
-        {MenuComponent}
+        {location !== constants.SIGN_IN && MenuComponent}
         {children}
-        {RightComponent}
+        {location !== constants.SIGN_IN && RightComponent}
       </div>
     </>
   );

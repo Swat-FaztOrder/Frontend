@@ -9,7 +9,7 @@
   position: fixed
   top: 0
   right: 0
-  z-index: 25
+  z-index: 100
   background-color: rgba(32, 68, 112, .5)
   transition: all 0.3s linear
   &__modal
@@ -25,6 +25,11 @@
     text-align: center
     padding: 2%
     padding-bottom: 5%
+    .arrow
+      align-self: flex-start
+      font-size: 2.2rem
+      color: basicColor1
+      cursor: pointer
     &--title
       h1
         font-size: 2.5rem
@@ -41,9 +46,6 @@
         color: darkgray
     &--buttons
       &-1
-        margin-right: 20px
-        background-color: color6
-      &-2
         background-color: colorGreen
       button
         width: 120px
@@ -53,6 +55,7 @@
         color: basicColor1
         font-size: 1.1rem
         font-weight: 900
+        cursor: pointer
 
 
 @media screen and (min-width: 1020px)
