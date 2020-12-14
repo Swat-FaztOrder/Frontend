@@ -19,10 +19,16 @@ const OrderStatus = () => {
   const [orderItems, setOrderItems] = useState([])
   const [change, setChange] = useState(true)
   const [showModal, setShowModal] = useState(false)
+  const [orderDetails, setOrderDetails] = useState('')
 
   useEffect(() => {
     return orderDetailsService.getAll(order)
       .then(data => setOrderItems(data))
+  }, [change])
+
+  useEffect(() => {
+    return orderService.get(order)
+      .then(data => setOrderDetails(data))
   }, [change])
 
   const handleClick = (dish) =>{
@@ -80,8 +86,9 @@ const OrderStatus = () => {
       {showModal &&
         <Modal
           title="Do you want to finish the order?"
-          image={waiter} subtitleA="Total"
-          subtitleB="$555"
+          image={waiter}
+          subtitleA="Total"
+          subtitleB={`$${orderDetails.totalPrice}`}
           last="It was an honor to be with you."
           buttons="true"
           buttonA="Continue"
