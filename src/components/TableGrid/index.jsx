@@ -66,7 +66,8 @@ const TableGrid = () => {
     orderService.getAll()
       .then((data) => data.find(item => item.tableId === selectedTable))
       .then((order) => {
-        if (!order) {
+        console.log(order)
+        if (!order || order.status === 'finished') {
           orderService.create(selectedTable)
             .then(data => {
               updateOrder(data.id)
