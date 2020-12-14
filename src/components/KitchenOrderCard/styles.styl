@@ -27,14 +27,24 @@
     height: 100%
     &--item
       display: flex
-      padding: 5%
+      padding: 8px
       padding-bottom: 0
+      display: flex
+      justify-content: flex-start
+      position: relative
+      text-transform: lowercase
+
       h3
         font-size: 1.1rem
         font-weight: 400
         color: #3E4651
       &Quantity
-        margin-right: 40px
+        margin-right: 10px
+      small
+        position: absolute
+        right: .5em
+
+
   &__icon
     align-self: flex-end
     padding: 10px 20px 20px 0

@@ -8,7 +8,7 @@
   background-color: colorGreen
 
 .kitchenModal
-  width: 45%
+  width: 55%
   max-height: 700px
   border-radius: 5px
   &__table
@@ -22,7 +22,7 @@
       font-size: 1.8rem
   &Content
     display: grid
-    grid-template-columns: 1fr .9fr
+    grid-template-columns: 1fr .6fr
     padding: 20px
     background-color: basicColor1
     &__left
@@ -30,16 +30,22 @@
       height: 100%
       &--item
         display: flex
-        padding: 10px 20px
+        padding: 10px 0px
+        justify-content: space-between
+        align-items: center
+        border-bottom: 1px solid color1
         h3
           font-size: 1.3rem
           font-weight: 400
-          color: #3E4651
-        &Quantity
-          margin-right: 40px
+          color: color1
+        input[type=checkbox]
+          width: 30px
+          height: 30px
+          margin: 8px
     &__right
       display: flex
       flex-direction: column
+      align-items: center;
       .fa-arrow-circle-left
         align-self: flex-end
         font-size: 3rem
