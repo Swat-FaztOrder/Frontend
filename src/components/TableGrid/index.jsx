@@ -64,7 +64,7 @@ const TableGrid = () => {
   const handleTableClick = () => {
     updateTable(selectedTable)
     orderService.getAll()
-      .then((data) => data.find(item => item.tableId === selectedTable))
+      .then((data) => data.find(item => item.tableId === selectedTable && item.status !== 'finished'))
       .then((order) => {
         console.log(order)
         if (!order || order.status === 'finished') {
