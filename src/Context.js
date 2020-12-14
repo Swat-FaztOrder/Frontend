@@ -31,6 +31,7 @@ const Provider = ({ children }) => {
   const [categorySelected, setCategorySelected] = useState('')
   const [dishSelected, setDishSelected] = useState('')
   const [modalDisplay, setModalDisplay] = useState('')
+  const [changeDishStatus, setChangeDishStatus] = useState(1)
   const [categories, setCategories] = useState([])
 
   const value = {
@@ -43,6 +44,7 @@ const Provider = ({ children }) => {
     selectedTable,
     dishSelected,
     modalDisplay,
+    changeDishStatus,
     categories,
     updateCategories: (category) => {
       setCategories(category)
@@ -78,6 +80,10 @@ const Provider = ({ children }) => {
     },
     updateModalDisplay: (modalName) => {
       setModalDisplay(modalName)
+    },
+    updateChangeDishStatus: () => {
+      // refresh orders when dish is updated
+      changeDishStatus == 1 ? setChangeDishStatus(2) : setChangeDishStatus(1)
     },
     user,
     ActionTypes: ActionTypes

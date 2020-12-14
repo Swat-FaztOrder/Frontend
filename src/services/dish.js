@@ -26,4 +26,16 @@ dishService.update = ({ dishId, name, description, imageUrl, categoryId, price, 
     .catch(err => console.log('[ERROR]', err))
 }
 
+dishService.preparing = ({ dishId }) => {
+  return fastOrderService.put(`/order-details/preparing/${dishId}`)
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
+dishService.readyToServe = ({ dishId }) => {
+  return fastOrderService.put(`/order-details/ready-to-serve/${dishId}`)
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
 export default dishService

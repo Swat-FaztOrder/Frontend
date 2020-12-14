@@ -1,70 +1,95 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import KitchenOrderCard from '../../components/KitchenOrderCard/index.jsx'
 import KitchenModal from '../../components/KitchenModal/index.jsx'
-
+import orderDetailsService from '../../services/orderDetails.js'
+import { Context } from '../../Context.js'
 import './styles.styl'
 
 const Kitchen = () => {
-  const itemList1 = [
-    { title: 'Hamburguer', quantity: 1 },
-    { title: 'Pizza', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Subway', quantity: 1 }
-  ]
-  const itemList2 = [
-    { title: 'Hamburguer', quantity: 1 },
-    { title: 'Pizza', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Subway', quantity: 1 }
-  ]
-  const itemList3 = [
-    { title: 'Hamburguer', quantity: 1 },
-    { title: 'Pizza', quantity: 1 },
-    { title: 'Beverage', quantity: 2 },
-    { title: 'Hotdog', quantity: 1 },
-    { title: 'Subway', quantity: 1 },
-    { title: 'Hamburguer', quantity: 1 },
-    { title: 'Pizza', quantity: 1 },
-    { title: 'Beverage', quantity: 2 }
-  ]
 
-  return (
+  const [details, setDetails] = useState([]);
+  const { changeDishStatus } = useContext(Context);
+
+  useEffect(() => {
+    orderDetailsService.getAll()
+    .then(data => prepareCards(data))
+  }, [changeDishStatus]);
+
+  const prepareCards = (data) => {
+      let currentOrderId = null;
+      let currentOrder = [];
+      let currentCicle = null;
+      let orders = [];
+
+      const resetAux = (newCurrentOrderId, newCurrentCicle) => {
+        currentOrderId = newCurrentOrderId;
+        currentCicle = newCurrentCicle;
+      }
+
+      const createCard = (title, status, orderId, cicle, id, tableId) => {
+        currentOrder.push({
+          title,
+          quantity: 1,
+          status,
+          orderId,
+          cicle,
+          id,
+          tableId
+        })
+      }
+
+      data.forEach((el, index)=> {
+        //first iteration set the working values.
+        if (currentOrderId == null) {
+          resetAux(el.order.id, el.cycleInKitchen)
+        }
+        //if order is different close the current order and open a new.
+        if (currentOrderId != el.order.id) {
+          //change the current order
+          resetAux(el.order.id, el.cycleInKitchen)
+          //push a new order in main array
+          orders.push(currentOrder);
+          //reset current order
+          currentOrder = [];
+          createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId)
+
+        } else {
+          //if is the sema order, check if is other cicle
+          if(currentCicle != el.cycleInKitchen) {
+            //if is other cicle close the current order and push in the main orders array
+            resetAux(el.order.id, el.cycleInKitchen)
+            orders.push(currentOrder);
+            currentOrder = [];
+          }
+            createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId)
+            //if it last order we eed to close it
+            if (index == data.length -1 ) {
+              resetAux(null, null)
+              orders.push(currentOrder);
+              currentOrder = [];
+            }
+        }
+      });
+
+
+      setDetails(orders);
+  }
+
+  return details.length > 0 && (
     <section className="kitchen">
-      <div className="kitchen__modals">
-        <KitchenModal tableNum="5" items={itemList2} stat="greenStat" info="Hamburguer without spicy and the fries without salt. The beverages without ice and with a touch of lemon juice" />
-      </div>
+      {/*
+      Commented for future implementation
+      {
+        orderSelected != null && <div className="kitchen__modals">
+          <KitchenModal tableNum={orderSelected[0].tableId} items={orderSelected} stat="redStat" key={orderSelected[0].detailId} info=":)" />
+          </div>
+      } */}
       <main className="kitchen__orders">
-        <ResponsiveMasonry columnsCountBreakPoints={{ 1000: 4, 1400: 5 }}>
+        <ResponsiveMasonry columnsCountBreakPoints={{750: 4}}>
           <Masonry gutter="20px">
-            <KitchenOrderCard tableNum="1" items={itemList1} stat="redStat" />
-            <KitchenOrderCard tableNum="2" items={itemList2} stat="redStat" />
-            <KitchenOrderCard tableNum="3" items={itemList3} stat="greenStat" />
-            <KitchenOrderCard tableNum="4" items={itemList1} stat="redStat" />
-            <KitchenOrderCard tableNum="5" items={itemList2} stat="greenStat" />
-            <KitchenOrderCard tableNum="6" items={itemList3} stat="redStat" />
-            <KitchenOrderCard tableNum="7" items={itemList1} stat="yellowStat" />
-            <KitchenOrderCard tableNum="8" items={itemList1} stat="greenStat" />
-            <KitchenOrderCard tableNum="9" items={itemList2} stat="greenStat" />
-            <KitchenOrderCard tableNum="10" items={itemList3} stat="redStat" />
-            <KitchenOrderCard tableNum="11" items={itemList1} stat="greenStat" />
-            <KitchenOrderCard tableNum="12" items={itemList2} stat="yellowStat" />
-            <KitchenOrderCard tableNum="13" items={itemList3} stat="greenStat" />
-            <KitchenOrderCard tableNum="14" items={itemList1} stat="redStat" />
-            <KitchenOrderCard tableNum="15" items={itemList1} stat="redStat" />
-            <KitchenOrderCard tableNum="16" items={itemList2} stat="yellowStat" />
-            <KitchenOrderCard tableNum="17" items={itemList3} stat="redStat" />
-            <KitchenOrderCard tableNum="18" items={itemList1} stat="yellowStat" />
-            <KitchenOrderCard tableNum="19" items={itemList2} stat="redStat" />
-            <KitchenOrderCard tableNum="20" items={itemList3} stat="redStat" />
+            { details.map((el)=> <KitchenOrderCard tableNum={el[0].tableId} items={el}
+              stat="redStat" key={el[0].id} />) }
           </Masonry>
         </ResponsiveMasonry>
       </main>

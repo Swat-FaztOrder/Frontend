@@ -2,8 +2,12 @@ import fastOrderService from './fastOrderService'
 
 const orderDetailsService = {}
 
-orderDetailsService.getAll = (id) => {
-  return fastOrderService.get(`/order-details?orderId=${id}`)
+orderDetailsService.getAll = (id = null) => {
+  let endpoint = `/order-details`;
+
+  if (id != null) endpoint+=`?orderId=${id}`
+
+  return fastOrderService.get(endpoint)
     .then(res => res.data)
     .catch(err => console.log('[ERROR]', err))
 }
