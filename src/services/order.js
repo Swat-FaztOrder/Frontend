@@ -43,4 +43,10 @@ orderService.send = (id) => {
     .catch(err => console.log('[ERROR]', err))
 }
 
+orderService.finish = (id) => {
+  return fastOrderService.put(`/orders/finish/${id}`, { id })
+    .then(res => res.data)
+    .catch(err => console.log('[ERROR]', err))
+}
+
 export default orderService

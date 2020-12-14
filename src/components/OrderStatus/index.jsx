@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import BasketItem from '../BasketItem/index.jsx'
+import waiter from '../../assets/waiter.png'
 /* Styles */
 import './styles.styl'
 
@@ -8,12 +9,16 @@ import { Context } from '../../Context'
 
 /* Services */
 import orderDetailsService from '../../services/orderDetails.js'
-import Basket from '../Basket/index.jsx'
+import orderService from '../../services/order.js'
+
+/* Components */
+import Modal from '../Modal/index.jsx'
 
 const OrderStatus = () => {
   const { ActionTypes, updateAction, order } = useContext(Context)
   const [orderItems, setOrderItems] = useState([])
   const [change, setChange] = useState(true)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     return orderDetailsService.getAll(order)
@@ -52,8 +57,14 @@ const OrderStatus = () => {
     return showButton
   }
 
+  const handleModal = () => {
+    setShowModal(true)
+  }
+
   const handleFinish = () => {
-    console.log('Order finished')
+    return orderService.finish(order)
+      .then(setShowModal(false))
+      .then(updateAction(ActionTypes.BASE))
   }
 
   return (
@@ -62,7 +73,20 @@ const OrderStatus = () => {
       <div className="orderStatus__itemsContainer">
         {itemList}
       </div>
-      {finishButton() && <button onClick={handleFinish} className="orderStatus__end">Finish order</button>}
+      {finishButton() && <button onClick={handleModal} className="orderStatus__end">Finish order</button>}
+      {showModal &&
+        <Modal
+          title="Do you want to finish the order?"
+          image={waiter} subtitleA="Total"
+          subtitleB="$555"
+          last="It was an honor to be with you."
+          buttons="true"
+          buttonA="Continue"
+          handleClickB={handleFinish}
+          hideModal={() => setShowModal(false)}
+          to="/tables"
+        />}
+
     </section>
   )
 }

@@ -1,5 +1,13 @@
 @import '../../stylus/variables.styl'
 
+active()
+  cursor: pointer
+  background-color: Background
+  i
+    color: color8
+  h1
+    color: color8
+
 .menuCategories
   width: 100%
   height: "calc(100vh - %s)" % headerHeight
@@ -15,18 +23,16 @@
     flex-direction: column
     justify-content: center
     &:hover
-      background-color: Background
-      i
-        color: color8
-      h1
-        color: color8
+      active()
     i
       font-size: 35px
       color: Background
     h1
       color: Background
       font-size: 1rem
-      font-weight: 400 
+      font-weight: 400
+  .active
+    active()
   &--add
     width: 50%
     height: 80%

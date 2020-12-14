@@ -9,8 +9,7 @@ import './styles.styl'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
-  const { updateAction, ActionTypes, updateCategory, selectedTable } = useContext(Context)
-  const [categories, setCategories] = useState([])
+  const { categorySelected, updateAction, ActionTypes, updateCategory, selectedTable, updateCategories, categories } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const [change, setChange] = useState(false)
 
@@ -27,7 +26,7 @@ const MenuCategories = () => {
   useEffect(() => {
     categoryService.getAll()
       .then(data => {
-        setCategories(data)
+        updateCategories(data)
       })
   }, [change])
 
@@ -35,7 +34,7 @@ const MenuCategories = () => {
 
     return (
       <Link key={category.id} to={selectedTable ? ROUTES.MENU : ROUTES.TABLES} onClick={() => handleAction(category)}>
-        <div className="menuCategories__popular">
+        <div className={category.id === categorySelected.id ? 'menuCategories__popular active' : 'menuCategories__popular'}>
           <h1>{category.name}</h1>
         </div>
       </Link>

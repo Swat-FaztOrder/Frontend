@@ -1,10 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import './styles.styl'
 
-const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, buttonB, handleClickB, hideModal, hideButton }) => {
+const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, handleClickB, hideModal, to }) => {
   return (
     <section className="modalContainer">
       <main className="modalContainer__modal">
+        <i onClick={hideModal} className="fas fa-arrow-circle-left arrow" />
         <div className="modalContainer__modal--title">
           <h1>{title}</h1>
         </div>
@@ -19,23 +22,11 @@ const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, but
           <h2>{last}</h2>
         </div>
         {buttons === 'true' &&
-          <div className="modalContainer__modal--buttons">
-            <button className="modalContainer__modal--buttons-1">
+          <Link to={to} className="modalContainer__modal--buttons">
+            <button className="modalContainer__modal--buttons-1" onClick={()=>handleClickB()}>
               {buttonA}
             </button>
-            <button className="modalContainer__modal--buttons-2" onClick={()=>handleClickB()}>
-              {buttonB}
-            </button>
-          </div>
-        }
-        {
-          //only for hide modal
-          buttons == 'false' &&
-          <div className="modalContainer__modal--buttons">
-            <button className="modalContainer__modal--buttons-2" onClick={()=>hideModal()}>
-              {hideButton}
-            </button>
-          </div>
+          </Link>
         }
       </main>
     </section>

@@ -8,14 +8,12 @@
     width: 100%
     height: 100%
     position: relative
-    z-index: 2
     border-radius: 5px
     overflow: hidden
     img
       width: 100%
       height: 100%
       position:absolute
-      z-index: 1
       border-radius: 5px
       object-fit: cover
       &:hover
@@ -26,17 +24,18 @@
       height:30%
       background-color:rgba(32, 68, 112, .7)
       position: absolute
-      z-index: 3
       bottom: 0
       display: flex
       flex-direction: column
       justify-content: center
       padding: 0 10%
-      line-height: 1.3
+      line-height: 1.7
+      box-sizing: border-box
       &Title
         font-size: .8rem
         font-weight: 400
         color: basicColor1
+        line-height: 1rem
       &Price
         font-size: .9rem
         font-weight: 600
@@ -57,9 +56,9 @@
     &__container
       &--text
         &Title
-          font-size: 1.1rem
+          font-size: .8rem
         &Price
-          font-size: 1.1rem
+          font-size: 1rem
 
 @media screen and (min-width: 1400px)
   .menuCard
@@ -68,6 +67,6 @@
     &__container
       &--text
         &Title
-          font-size: 1.5rem
+          font-size: 1.3rem
         &Price
           font-size: 1.5rem
