@@ -102,10 +102,10 @@ const TableGrid = () => {
       </div>
       {showModal &&
         <Modal
-          title="Do you want to finish the order?"
-          image={waiter} subtitleA="Total"
-          subtitleB="$555"
-          last="It was an honor to be with you."
+          image={waiter}
+          subtitleA="You have selected the table"
+          subtitleB={selectedTable}
+          last="Keep that smile:)"
           buttons="true"
           buttonA="Continue"
           handleClickB={handleTableClick}

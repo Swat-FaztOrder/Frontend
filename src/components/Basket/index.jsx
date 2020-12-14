@@ -14,37 +14,46 @@ import orderService from '../../services/order.js'
 const Basket = () => {
   const { order, updateAction, ActionTypes } = useContext(Context)
   const [dishes, setDishes] = useState([])
+  const [dishess, setDishess] = useState([])
 
   const handleClick = () => {
     return orderService.send(order)
   }
 
   useEffect(() => {
-    const usedItemList = []
-    return orderDetailsService.getAll(order)
-      .then(data => data.map(item => {
-
-        let count = 0
-
-        data.forEach(plate => {
-          if (plate.dish.id === item.dish.id) {
-            count++
-          }
-        })
-
-        if (!usedItemList.includes(item.dish.id)) {
-          usedItemList.push(item.dish.id)
-          return { id: item.id, price: item.dish.price, quantity: count, title: item.dish.name, image: item.dish.imageUrl }
-        }
-      }))
-      .then(dish => setDishes(dish))
+    orderDetailsService.getAll(order)
+      .then(data => setDishess(data))
   }, [order]);
 
-  const dishesList = dishes.map(dish => {
-    if (dish?.id) {
+  useEffect(() => {
+    const usedItemList = []
+    const dish = dishess.filter(plate => plate.status === 'ordered').map(item => {
+      let count = 0
+      dishess.filter(plate => plate.status === 'ordered').forEach(plate => {
+
+        if (plate.dish.id === item.dish.id && plate.cycleInKitchen === item.cycleInKitchen) {
+          count++
+        }
+      })
+      console.log(count)
+      if (!usedItemList.includes([item.dish.id, item.cycleInKitchen])) {
+        usedItemList.push([item.dish.id, item.cycleInKitchen])
+        return { id: item.id, price: item.dish.price, quantity: count, title: item.dish.name, image: item.dish.imageUrl, status: item.status }
+      }
+    })
+    console.log('used', usedItemList)
+
+    setDishes(dish)
+  }, [dishess]);
+
+  console.log('dishes', dishes)
+  console.log('dishess', dishess)
+
+  const dishesList = dishes.length > 0 ? dishes.map(dish => {
+    if (dish?.id && dish?.status === 'ordered') {
       return <BasketItem key={dish?.id} price={`$${dish?.price}`} quantity={`x${dish?.quantity}`} title={dish?.title} image={dish?.image} />
     }
-  })
+  }) : ''
 
   return (
     <div className="basket">
