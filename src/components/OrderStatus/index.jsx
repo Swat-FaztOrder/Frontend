@@ -42,6 +42,9 @@ const OrderStatus = () => {
         quantity={item.status}
         title={item.dish.name}
         image={item.dish.imageUrl}
+        button={false}
+        setChange=""
+        change=""
       />
     )
   })

@@ -49,7 +49,7 @@ const Basket = () => {
 
   const dishesList = dishes.length > 0 ? dishes.map(dish => {
     if (dish?.id && dish?.status === 'ordered') {
-      return <BasketItem key={dish?.id} price={`$${dish?.price}`} quantity={`x${dish?.quantity}`} title={dish?.title} image={dish?.image} />
+      return <BasketItem key={dish?.id} id={dish?.id} price={`$${dish?.price}`} quantity={`x${dish?.quantity}`} title={dish?.title} image={dish?.image} button={true} change={change} setChange={setChange} />
     }
   }) : ''
 

@@ -1,12 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
+/* Components */
 import waiter from '../../assets/waiter.png'
-
-/* Constants */
-import { USER } from '../../utils/constants/itemsLocalStorage'
-
-/* Context */
-import { Context } from '../../Context'
 import OrderDetails from '../OrderDetails/index.jsx'
 import PeopleDetails from '../PeopleDetails/index.jsx'
 import Basket from '../Basket/index.jsx'
@@ -15,12 +10,37 @@ import AddItem from '../AddItem/index.jsx'
 import ItemDetails from '../ItemDetails/index.jsx'
 import OrderStatus from '../OrderStatus/index.jsx'
 
+/* Constants */
+import { USER } from '../../utils/constants/itemsLocalStorage'
+
+/* Context */
+import { Context } from '../../Context'
+
+/* Services */
+import orderService from '../../services/order.js'
+
 import './styles.styl'
 
 const RightContainer = () => {
-  const { actionLayout, ActionTypes, selectedTable, dishSelected, order } = useContext(Context)
+  const { actionLayout, ActionTypes, selectedTable, dishSelected, order, updateOrder, updateTable } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const dish = dishSelected
+  const [orderDetails, setOrderDetails] = useState('')
+  const [change, setChange] = useState(false)
+
+  useEffect(() => {
+    return orderService.get(order)
+      .then((data) => setOrderDetails(data))
+  }, [order, change])
+
+  const deleteOrder = () => {
+    return orderService.delete(order)
+      .then(() => {
+        updateOrder('')
+        updateTable('')
+        setChange(!change)
+      })
+  }
 
   return (
     <div className="rightContainer">
@@ -37,11 +57,12 @@ const RightContainer = () => {
       {actionLayout === ActionTypes.BASE && user?.role === 'waitress' ?
         <OrderDetails
           image={waiter}
-          Button="false"
           subtitle1="Waiter"
           title1={`${user?.firstname} ${user?.lastname}`}
           subtitle2="Table"
           title2={selectedTable || '-'}
+          button={orderDetails.totalDishes === 0 && 'true'}
+          handleButton={() => deleteOrder()}
         /> : ''
       }
       {actionLayout === ActionTypes.PROFILE_ADD || actionLayout === ActionTypes.PROFILE_UPDATE ?

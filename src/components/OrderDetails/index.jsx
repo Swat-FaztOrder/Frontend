@@ -1,13 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 import './styles.styl'
 
-/* i18n  */
-import { useTranslation } from 'react-i18next';
-
-const OrderDetails = ({ handleButton, Button = 'false', image, title1, title2, subtitle1, subtitle2 }) => {
-  const { t } = useTranslation(['OrderDetails'])
-
+const OrderDetails = ({ handleButton, button, image, title1, title2, subtitle1, subtitle2 }) => {
   return (
     <div className="orderDetails">
       <img src={image} alt="" />
@@ -19,8 +15,10 @@ const OrderDetails = ({ handleButton, Button = 'false', image, title1, title2, s
         <span>{subtitle2}</span>
         <h2>{title2}</h2>
       </div>
-      {Button === 'true' &&
-        <button onClick={handleButton}>{t('OrderDetails:Finish', 'Finish order')}</button>
+      {button === 'true' &&
+        <Link to="/tables" onClick={handleButton} className="button">
+          Delete Order
+        </Link>
       }
     </div>
   )
