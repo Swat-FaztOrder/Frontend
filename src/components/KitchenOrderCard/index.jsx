@@ -5,12 +5,8 @@ import './styles.styl'
 
 const KitchenOrderCard = ({ tableNum, items, stat }) => {
   const { updateChangeDishStatus } = useContext(Context);
-  const states = {
-    'ready-to-prepare': 'en espera',
-    'preparing': 'preparando',
-  }
 
-  const handleChange = (e, item) => {
+  const handleChange = (item) => {
     const {status} = item;
 
     switch (status) {
@@ -29,15 +25,14 @@ const KitchenOrderCard = ({ tableNum, items, stat }) => {
       default:
         break;
     }
-    e.target.checked = false;
   }
 
   const handleTitle = (item) => {
-   return item.status == 'preparing' ? <strike>{item.title}-{item.id}</strike> : item.title+'-'+item.id
+    return item.status == 'preparing' ? <strike className='text-muted'>{item.title}</strike> : item.title
   }
 
   const handleStatus = (item) => {
-   return item.status == 'preparing' ? 'https://www.flaticon.com/svg/static/icons/svg/3753/3753091.svg' : 'https://www.flaticon.com/svg/static/icons/svg/3445/3445534.svg';
+    return item.status == 'preparing' ? 'https://www.flaticon.com/svg/static/icons/svg/3753/3753091.svg' : 'https://www.flaticon.com/svg/static/icons/svg/3445/3445534.svg';
   }
 
   return (
@@ -47,22 +42,20 @@ const KitchenOrderCard = ({ tableNum, items, stat }) => {
       </div>
       <div className="orderCard__list">
         {items.map((item) => (
-          <div className="orderCard__list--item" key={item.id}>
-            <h3 className="orderCard__list--itemQuantity">
-              <input type="checkbox" onClick={ (e) => handleChange(e, item)}/>
-            </h3>
+          <div className="orderCard__list--item" key={item.id} onClick={ () => handleChange(item) }>
             <h3 className="orderCard__list--itemTitle">
               { handleTitle(item) }
             </h3>
-            <small className="orderCard__list--itemStatus">
+            <figure className="orderCard__list--itemStatus">
                 <img src={ handleStatus(item) } alt="" width="20" height="20"/>
-            </small>
+            </figure>
           </div>
         ))}
       </div>
-      <a className="orderCard__icon">
+      {/* Commented to future implementation */}
+      {/* <a className="orderCard__icon">
         <i className="fas fa-sticky-note" />
-      </a>
+      </a> */}
     </div>
   )
 }
