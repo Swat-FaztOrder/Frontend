@@ -8,11 +8,14 @@ import { USER } from '../../utils/constants/itemsLocalStorage'
 import './styles.styl'
 
 const Header = () => {
-  const { Logout, updateAction, ActionTypes } = useContext(Context)
+  const { Logout, updateAction, ActionTypes, selectedTable } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
 
   const handleAction = (actionType) => {
-    updateAction(actionType)
+    if (selectedTable) {
+      updateAction(actionType)
+    }
+
   }
 
   return (
@@ -34,7 +37,8 @@ const Header = () => {
         </Link>
 
         {
-          user?.role === 'waitress' && <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
+          user?.role === 'waitress' &&
+          <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
             <i className="fas fa-shopping-basket" />
           </span>
         }

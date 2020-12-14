@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 
 /* Constants */
 import { USER } from '../../utils/constants/itemsLocalStorage'
+import ROUTES from '../../utils/constants/routes'
 
 /* Styles */
 import './styles.styl';
@@ -9,6 +10,8 @@ import './styles.styl';
 /* Components */
 import Button from '../Button/index.jsx'
 import TableCard from '../TableCard/index.jsx'
+import Modal from '../Modal/index.jsx'
+import waiter from '../../assets/waiter.png'
 
 /* Context */
 import { Context } from '../../Context'
@@ -18,10 +21,12 @@ import tableService from '../../services/table'
 import orderService from '../../services/order'
 
 const TableGrid = () => {
-  const { updateTable, updateOrder } = useContext(Context)
-  const [tables, setTables] = useState([]);
+  const { updateTable, updateOrder, updateCategory, categories } = useContext(Context)
+  const [tables, setTables] = useState([])
   const [change, setChange] = useState(false)
   const user = JSON.parse(window.localStorage.getItem(USER))
+  const [showModal, setShowModal] = useState(false)
+  const [selectedTable, setSelectedTable] = useState(null)
 
   const checkTableAvailability = () => {
     const table = tables.filter(item => !item.isActive).shift()
@@ -48,15 +53,21 @@ const TableGrid = () => {
       .then(data => {
         setTables(data.sort((a, b) => (a.id - b.id)))
       })
+    updateCategory('')
   }, [change])
 
-  const handleTableClick = (id) => {
-    updateTable(id)
+  const handleModal = (id) => {
+    setSelectedTable(id)
+    setShowModal(true)
+  }
+
+  const handleTableClick = () => {
+    updateTable(selectedTable)
     orderService.getAll()
-      .then((data) => data.find(item => item.tableId === id))
+      .then((data) => data.find(item => item.tableId === selectedTable))
       .then((order) => {
         if (!order) {
-          orderService.create(id)
+          orderService.create(selectedTable)
             .then(data => {
               updateOrder(data.id)
             })
@@ -65,12 +76,14 @@ const TableGrid = () => {
         }
       })
 
+    updateCategory(categories[0])
+
   }
 
   const tablesList = tables.map((table) => {
     if (table?.isActive) {
       return (
-        <TableCard key={table.id} title={`${table.name}`} state="No order" onClick={() => handleTableClick(table.id)} />
+        <TableCard key={table.id} title={`${table.name}`} state={table.isAvailable ? 'No order' : 'In Progress'} onClick={() => handleModal(table.id)} />
       )
     }
     return null
@@ -87,6 +100,18 @@ const TableGrid = () => {
         </>
         }
       </div>
+      {showModal &&
+        <Modal
+          image={waiter}
+          subtitleA="You have selected the table"
+          subtitleB={selectedTable}
+          last="Keep that smile:)"
+          buttons="true"
+          buttonA="Continue"
+          handleClickB={handleTableClick}
+          hideModal={() => setShowModal(false)}
+          to={user?.role === 'waitress' && ROUTES.MENU}
+        />}
     </>
   )
 }

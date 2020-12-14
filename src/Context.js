@@ -31,6 +31,7 @@ const Provider = ({ children }) => {
   const [categorySelected, setCategorySelected] = useState('')
   const [dishSelected, setDishSelected] = useState('')
   const [modalDisplay, setModalDisplay] = useState('')
+  const [categories, setCategories] = useState([])
 
   const value = {
     order,
@@ -42,6 +43,10 @@ const Provider = ({ children }) => {
     selectedTable,
     dishSelected,
     modalDisplay,
+    categories,
+    updateCategories: (category) => {
+      setCategories(category)
+    },
     setPeople: (people) => {
       setPeopleDetail(people)
     },
