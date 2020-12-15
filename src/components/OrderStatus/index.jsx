@@ -88,7 +88,7 @@ const OrderStatus = () => {
           title="Do you want to finish the order?"
           image={waiter}
           subtitleA="Total"
-          subtitleB={`$${orderDetails.totalPrice}`}
+          subtitleB={`${orderDetails.totalPrice.toFixed(2)}`}
           last="It was an honor to be with you."
           buttons="true"
           buttonA="Continue"
