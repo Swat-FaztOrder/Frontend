@@ -11,7 +11,7 @@ import userService from '../../services/user'
 
 import './styles.styl';
 
-const MenuGrid = () => {
+const PeopleGrid = () => {
   const { t } = useTranslation(['Profiles'])
   const { updateAction, ActionTypes, actionLayout, setPeople, defaultPeopleDetail } = useContext(Context);
   const [peoples, setPeoples] = useState([])
@@ -83,4 +83,4 @@ const MenuGrid = () => {
   )
 }
 
-export default MenuGrid;
+export default PeopleGrid;

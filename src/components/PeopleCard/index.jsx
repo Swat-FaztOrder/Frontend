@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.styl';
-import config from '../../../config'
 
 const PeopleCard = ({ avatar, onClick }) => {
   const IMAGE_DEFAULT = 'https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'
