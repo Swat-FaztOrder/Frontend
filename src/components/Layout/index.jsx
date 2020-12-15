@@ -18,14 +18,14 @@ const index = ({ children }) => {
   const HeaderComponent = location !== constants.SIGN_IN ? <Header/> : ''
   const MenuComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <MenuCategories/> : ''
   const RightComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN && location !== '/' ? <RightContainer/> : ''
-  console.log(location)
+  // console.log(location === '/' || location === constants.SIGN_IN)
   return (
     <>
       {location !== constants.SIGN_IN && HeaderComponent}
       <div className={`Main${location !== '/signin' && location !== constants.KITCHEN ? '' : '--Login'}`}>
         {location !== constants.SIGN_IN && MenuComponent}
         {children}
-        {location !== constants.SIGN_IN || location !== '/' ? RightComponent : ''}
+        {location !== constants.SIGN_IN && location !== '/' ? RightComponent : ''}
       </div>
     </>
   );
