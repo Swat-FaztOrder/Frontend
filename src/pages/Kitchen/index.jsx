@@ -52,7 +52,7 @@ const Kitchen = () => {
         resetAux(el.order.id, el.cycleInKitchen)
       }
       //if order is different close the current order and open a new.
-      if (currentOrderId != el.order.id) {
+      if (currentOrderId !== el.order.id) {
         //change the current order
         resetAux(el.order.id, el.cycleInKitchen)
         //push a new order in main array
@@ -63,7 +63,7 @@ const Kitchen = () => {
 
       } else {
         //if is the sema order, check if is other cicle
-        if (currentCicle != el.cycleInKitchen) {
+        if (currentCicle !== el.cycleInKitchen) {
           //if is other cicle close the current order and push in the main orders array
           resetAux(el.order.id, el.cycleInKitchen)
           orders.push(currentOrder);
@@ -71,7 +71,7 @@ const Kitchen = () => {
         }
         createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId, el.dish.imageUrl)
         //if it last order we eed to close it
-        if (index == data.length - 1) {
+        if (index === data.length - 1) {
           resetAux(null, null)
           orders.push(currentOrder);
           currentOrder = [];
@@ -83,15 +83,15 @@ const Kitchen = () => {
   }
 
   const handleQuestion = (item) => {
-    return item.status == 'ready-to-prepare' ? `${t('Kitchen:Prepare', 'Prepare')} ${item.title} ${t('Kitchen:now', 'now?')}` : `${t('Kitchen:Send', 'Send')} ${item.title} ${t('Kitchen:Client', 'to client?')}`
+    return item.status === 'ready-to-prepare' ? `${t('Kitchen:Prepare', 'Prepare')} ${item.title} ${t('Kitchen:now', 'now?')}` : `${t('Kitchen:Send', 'Send')} ${item.title} ${t('Kitchen:Client', 'to client?')}`
   }
 
   const handleConfirm = (option, item = null) => {
-    if (option == 'cancel') {
+    if (option === 'cancel') {
       updateDishForUpdateStatus(null)
     }
 
-    if (option == 'confirm') {
+    if (option === 'confirm') {
       const { status } = item;
 
       switch (status) {
@@ -129,7 +129,7 @@ const Kitchen = () => {
           <Masonry gutter="20px">
             { details.map((el)=> (<KitchenOrderCard tableNum={el[0].tableId} items={el}
               stat="redStat" key={el[0].id}
-            />)) }
+                                  />)) }
           </Masonry>
         </ResponsiveMasonry>
       </main>
