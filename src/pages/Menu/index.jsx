@@ -72,7 +72,7 @@ const Menu = () => {
         <Modal
           title="New dish registered"
           image={Waiter}
-          last="You create a new dish successfully"
+          last="You have created a new dish successfully"
           buttons="false"
           hideModal={() => handleDishCreatedUpdated() }
         />
@@ -82,7 +82,7 @@ const Menu = () => {
         <Modal
           title="Dish Updated!"
           image={Waiter}
-          last="You update a dish successfully"
+          last="You have updated a dish successfully"
           buttons="false"
           hideModal={() => handleDishCreatedUpdated() }
         />
