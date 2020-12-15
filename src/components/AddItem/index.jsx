@@ -5,14 +5,14 @@ import categoryService from '../../services/category'
 import './styles.styl';
 
 const AddItem = () => {
-  const { dishSelected, actionLayout, ActionTypes, updateAction, updateModalDisplay } = useContext(Context)
+  const { dishSelected, actionLayout, ActionTypes, updateAction, updateModalDisplay, categorySelected } = useContext(Context)
   const [dish, setDish] = useState(dishSelected)
   const [categories, setCategories] = useState([])
 
   const handleSubmit = () => {
     if (actionLayout === ActionTypes.DISH_ADD) {
       dish.price = Number(dish.price);
-      dish.categoryId = Number(dish.categoryId);
+      dish.categoryId = Number(categorySelected.id);
       dishService.create(dish)
         .then(() => updateModalDisplay('ADD_DISH'))
     } else {
@@ -38,7 +38,7 @@ const AddItem = () => {
     setDish(dishSelected)
   }, [dishSelected])
 
-  const categoryOptions = categories.map(category => <option value={category.id} key={category.id} >{category.name}</option>)
+  const categoryOptions = categories.map(category => <option value={category.id} key={category.id}  selected={ dish.categoryId==category.id }  >{category.name}</option>)
 
   return (
     <div className="addItem">
@@ -67,8 +67,8 @@ const AddItem = () => {
         </div>
         <div className="addItem__form--group">
           <label htmlFor="categoryId">Categoría</label>
-          <select type="text" id="categoryId" onChange={(e)=>handleChange(e)} defaultValue={dish.categoryId}>
-            {categoryOptions}
+          <select type="text" id="categoryId" disabled>
+            <option value={categorySelected.id} selected>{categorySelected.name}</option>
           </select>
         </div>
         <input type="submit" value="Send" className="addItem__form--submit" />
