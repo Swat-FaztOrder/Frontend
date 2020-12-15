@@ -55,7 +55,7 @@ const MenuGrid = () => {
   return (
     <div className="Profile">
       <h2 className="Profile__Title">{t('Profiles:Cheffs', 'Cocineros')}</h2>
-      <div className="Profile__ChefGrid">
+      <div className="Profile__WaiterGrid">
         {peoples.filter(people => people.role.id === 2 && people.isActive).map(p => {
           return (
             <div key={p.id}>

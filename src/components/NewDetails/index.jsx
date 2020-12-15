@@ -35,7 +35,7 @@ const NewDetails = () => {
         <button
           onClick={() => setmodalIsOpen(true)}
           className="New__buttons--add"
-        >{t('NewDetails:Add', 'Agregar')}</button>
+        >{t('NewDetails:Add', 'Add')}</button>
       </div>
     </div>
   )
