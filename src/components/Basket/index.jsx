@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import '../BasketItem/index.jsx'
 import BasketItem from '../BasketItem/index.jsx'
 
+/* Styles */
 import './styles.styl'
 
 /* Context */
@@ -11,7 +12,11 @@ import { Context } from '../../Context'
 import orderDetailsService from '../../services/orderDetails.js'
 import orderService from '../../services/order.js'
 
+/* i18n */
+import { useTranslation } from 'react-i18next';
+
 const Basket = () => {
+  const { t } = useTranslation(['Basket'])
   const { order, updateAction, ActionTypes } = useContext(Context)
   const [dishes, setDishes] = useState([])
   const [dishess, setDishess] = useState([])
@@ -61,11 +66,11 @@ const Basket = () => {
         {dishess.length > 0 && <i onClick={() => updateAction(ActionTypes.ORDER_STATUS)} className="fas fa-clipboard-list list"/>}
       </div>
       <div className="basketContainer">
-        {dishesList.length > 0 ? dishesList : <h1 className="basket__message">You haven't added any dish to the order :(</h1>}
+        {dishesList.length > 0 ? dishesList : <h1 className="basket__message">{t('Basket:Dish', "You haven't added any dish to the order ")} :(</h1>}
       </div>
       {dishesList.length > 0 &&
         <button className="basket__send" onClick={handleClick}>
-          Send order
+          {t('Basket:Order', 'Send order')}
         </button>
       }
     </div>

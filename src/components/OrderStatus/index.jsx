@@ -14,7 +14,11 @@ import orderService from '../../services/order.js'
 /* Components */
 import Modal from '../Modal/index.jsx'
 
+/* i18n */
+import { useTranslation } from 'react-i18next';
+
 const OrderStatus = () => {
+  const { t } = useTranslation(['OrderStatus'])
   const { ActionTypes, updateAction, order } = useContext(Context)
   const [orderItems, setOrderItems] = useState([])
   const [change, setChange] = useState(true)
@@ -37,6 +41,23 @@ const OrderStatus = () => {
   }
 
   const itemList = orderItems.map(item => {
+    const statusTranslation = (status) => {
+      switch (status) {
+        case 'served':
+          return t('OrderStatus:Served', 'Served')
+        case 'ordered':
+          return t('OrderStatus:Ordered', 'Ordered')
+        case 'ready-to-prepare':
+          return t('OrderStatus:Prepare', 'Ready to prepare')
+        case 'preparing':
+          return t('OrderStatus:Preparing', 'Preparing')
+        case 'ready-to-serve':
+          return t('OrderStatus:Serve', 'Ready to serve')
+        default:
+          return 'N/A'
+      }
+
+    }
     return (
       <BasketItem
         key={item.id}
@@ -45,7 +66,7 @@ const OrderStatus = () => {
           item.status === 'served' &&
             <input type="checkbox" checked={true} name="" id="" readOnly/>
         }
-        quantity={item.status}
+        quantity={statusTranslation(item.status)}
         title={item.dish.name}
         image={item.dish.imageUrl}
         button={false}
@@ -85,13 +106,13 @@ const OrderStatus = () => {
       {finishButton() && <button onClick={handleModal} className="orderStatus__end">Finish order</button>}
       {showModal &&
         <Modal
-          title="Do you want to finish the order?"
+          title={t('OrderStatus:Want', 'Do you want to finish the order?')}
           image={waiter}
           subtitleA="Total"
           subtitleB={`$${orderDetails.totalPrice}`}
-          last="It was an honor to be with you."
+          last={t('OrderStatus:Honor', 'It was an honor to be with you.')}
           buttons="true"
-          buttonA="Continue"
+          buttonA={t('OrderStatus:Continue', 'Continue')}
           handleClickB={handleFinish}
           hideModal={() => setShowModal(false)}
           to="/tables"
