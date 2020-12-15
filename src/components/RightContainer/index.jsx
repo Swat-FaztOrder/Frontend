@@ -19,9 +19,13 @@ import { Context } from '../../Context'
 /* Services */
 import orderService from '../../services/order.js'
 
+/* i18n */
+import { useTranslation } from 'react-i18next';
+
 import './styles.styl'
 
 const RightContainer = () => {
+  const { t } = useTranslation(['RightContainer'])
   const { actionLayout, ActionTypes, selectedTable, dishSelected, order, updateOrder, updateTable } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const dish = dishSelected
@@ -57,9 +61,9 @@ const RightContainer = () => {
       {actionLayout === ActionTypes.BASE && user?.role === 'waitress' ?
         <OrderDetails
           image={waiter}
-          subtitle1="Waiter"
+          subtitle1={t('RightContainer:Waiter', 'Waiter')}
           title1={`${user?.firstname} ${user?.lastname}`}
-          subtitle2="Table"
+          subtitle2={t('RightContainer:Table', 'Table')}
           title2={selectedTable || '-'}
           button={orderDetails.totalDishes === 0 && 'true'}
           handleButton={() => deleteOrder()}
@@ -85,10 +89,10 @@ const RightContainer = () => {
         <OrderStatus/>
       }
       {actionLayout === ActionTypes.BASKET &&
-        <Basket title="Title" details="details" price="56" />
+        <Basket title={t('RightContainer:Title', 'Title')} details={t('RightContainer:Details', 'details')} price="56" />
       }
       {actionLayout === ActionTypes.CATEGORY_ADD || actionLayout === ActionTypes.CATEGORY_UPDATE ?
-        <FormRight buttonMessage="Send" title="Enter the name of the new categorie" /> :
+        <FormRight buttonMessage={t('RightContainer:Send', 'Send')} title={t('RightContainer:NewCategory', 'Enter the name of the new categorie')} /> :
         ''}
     </div>
   )

@@ -20,7 +20,11 @@ import { Context } from '../../Context'
 import tableService from '../../services/table'
 import orderService from '../../services/order'
 
+/* i18n */
+import { useTranslation } from 'react-i18next';
+
 const TableGrid = () => {
+  const { t } = useTranslation(['TablesGrid'])
   const { updateTable, updateOrder, updateCategory, categories } = useContext(Context)
   const [tables, setTables] = useState([])
   const [change, setChange] = useState(false)
@@ -34,7 +38,7 @@ const TableGrid = () => {
       return tableService.update(table.id, table.name, true)
         .then(() => setChange(!change))
     }
-    return tableService.create(`table ${tables.length + 1}`)
+    return tableService.create(`${tables.length + 1}`)
       .then(() => setChange(!change))
   }
 
@@ -84,7 +88,7 @@ const TableGrid = () => {
   const tablesList = tables.map((table) => {
     if (table?.isActive) {
       return (
-        <TableCard key={table.id} title={`${table.name}`} state={table.isAvailable ? 'No order' : 'In Progress'} onClick={() => handleModal(table.id)} />
+        <TableCard key={table.id} title={`${t('TablesGrid:Table', 'Table')} ${table.name}`} state={table.isAvailable ? t('TablesGrid:NoOrder', 'No order') : t('TablesGrid:InProgress', 'In Progress')} onClick={() => handleModal(table.id)} />
       )
     }
     return null
@@ -104,11 +108,11 @@ const TableGrid = () => {
       {showModal &&
         <Modal
           image={waiter}
-          subtitleA="You have selected the table"
+          subtitleA={t('TablesGrid:Selected', 'You have selected the table')}
           subtitleB={selectedTable}
-          last="Keep that smile:)"
+          last={t('TablesGrid:Smile', 'Keep that smile:)')}
           buttons="true"
-          buttonA="Continue"
+          buttonA={t('TablesGrid:Continue', 'Continue')}
           handleClickB={handleTableClick}
           hideModal={() => setShowModal(false)}
           to={user?.role === 'waitress' && ROUTES.MENU}
