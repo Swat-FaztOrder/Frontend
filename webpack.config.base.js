@@ -48,7 +48,7 @@ module.exports = {
     }),
     new Dotenv(),
     new FaviconsWebpackPlugin({
-      logo: './src/assets/favicon.ico',
+      logo: './src/assets/favicon.png',
       favicon: {
         appName: 'FastOrder',
       },
