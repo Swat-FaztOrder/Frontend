@@ -36,11 +36,14 @@ const PeopleDetails = () => {
   }, [])
 
   const addPeople = () => {
+    const formData = new FormData();
     userService.create(peopleDetail)
+    // console.log(peopleDetail)
       .then(userService.updateAvatar(peopleDetail))
       .then(res => {
         const { id } = res
         setPeople({ ...peopleDetail, id })
+        console.log(peopleDetail.avatar)
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
 
           userService.updateAvatar(peopleDetail, formData)

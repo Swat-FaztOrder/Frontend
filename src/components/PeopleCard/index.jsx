@@ -11,7 +11,7 @@ const PeopleCard = ({ avatar, onClick }) => {
         <img
           aria-label="people card image"
           className="PeopleCard__containter--image"
-          src={avatar ? (typeof avatar === 'string') ? config.API_URL_SERVER.substr(0, config.API_URL_SERVER.length - 1) + avatar : URL.createObjectURL(avatar) : IMAGE_DEFAULT}
+          src={avatar ? (typeof avatar === 'string') ? avatar : URL.createObjectURL(avatar) : IMAGE_DEFAULT}
         />
       </div>
     </div>
