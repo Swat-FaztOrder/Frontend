@@ -8,7 +8,7 @@ import { USER } from '../../utils/constants/itemsLocalStorage'
 import './styles.styl'
 
 const Header = () => {
-  const { Logout, updateAction, ActionTypes, selectedTable } = useContext(Context)
+  const { Logout, updateAction, ActionTypes, selectedTable, updateTable, updateOrder } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
 
   const handleAction = (actionType) => {
@@ -33,15 +33,20 @@ const Header = () => {
           </Link>
         }
         {
-          user?.role !== 'chef' && <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Tables" className="header__right--grid">
+          user?.role !== 'chef' && <Link onClick={() => {
+            handleAction(ActionTypes.BASE)
+            updateTable('')
+            updateOrder('')
+          }} to="/Tables" className="header__right--grid"
+          >
             <i className="fas fa-th" />
           </Link>
         }
         {
-          user?.role === 'waitress' &&
-          <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
-            <i className="fas fa-shopping-basket" />
-          </span>
+          user?.role === 'waitress' && selectedTable ?
+            <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
+              <i className="fas fa-shopping-basket" />
+            </span> : ''
         }
         <div className="header__right--logout">
           <Button onClick={Logout} type={BUTTONS.CANCEL}>Log out</Button>
