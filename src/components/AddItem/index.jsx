@@ -5,7 +5,7 @@ import categoryService from '../../services/category'
 import './styles.styl';
 
 const AddItem = () => {
-  const { dishSelected, actionLayout, ActionTypes, updateAction } = useContext(Context)
+  const { dishSelected, actionLayout, ActionTypes, updateAction, updateModalDisplay } = useContext(Context)
   const [dish, setDish] = useState(dishSelected)
   const [categories, setCategories] = useState([])
 
@@ -14,11 +14,11 @@ const AddItem = () => {
       dish.price = Number(dish.price);
       dish.categoryId = Number(dish.categoryId);
       dishService.create(dish)
-        .then(() => location.reload())
+        .then(() => updateModalDisplay('ADD_DISH'))
     } else {
       dish.dishId = dish.id;
       dishService.update(dish)
-        .then((res) => location.reload())
+        .then((res) =>  updateModalDisplay('UPDATED_DISH'))
     }
   }
 

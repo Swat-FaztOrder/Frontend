@@ -8,7 +8,7 @@ import './styles.styl'
 // The commented components in Menu's return are the calls of different modals for menu
 // You can uncomment to see how they are
 const Menu = () => {
-  const { modalDisplay } = useContext(Context)
+  const { modalDisplay, updateAction, updateModalDisplay } = useContext(Context)
   const [modal, setModal] = useState(modalDisplay)
 
   useEffect(()=> {
@@ -16,8 +16,13 @@ const Menu = () => {
   }, [modalDisplay])
 
   const handleOrderFinishAction = () => {
-    setModal('')
+    updateModalDisplay('')
     window.location.replace('#/tables');
+  }
+
+  const handleDishCreatedUpdated = () => {
+    updateAction('BASE')
+    updateModalDisplay('')
   }
 
   return (
@@ -60,7 +65,26 @@ const Menu = () => {
           last="Be ready for the deliciousness"
           buttons="false"
           hideModal={() => setModal('')}
-          hideButton="Ok"
+        />
+      }
+      {
+        modal === 'ADD_DISH' &&
+        <Modal
+          title="New dish registered"
+          image={Waiter}
+          last="You create a new dish successfully"
+          buttons="false"
+          hideModal={() => handleDishCreatedUpdated() }
+        />
+      }
+      {
+        modal === 'UPDATED_DISH' &&
+        <Modal
+          title="Dish Updated!"
+          image={Waiter}
+          last="You update a dish successfully"
+          buttons="false"
+          hideModal={() => handleDishCreatedUpdated() }
         />
       }
     </>
