@@ -18,3 +18,62 @@
     z-index: 25
     background-color: rgba(80, 133, 173, .5)
     transition: all 0.3s linear
+
+  .confirm-change
+    position: absolute;
+    width: 100%
+    height: 100vh
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: rgba(0,0,0,0.3)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &__content
+      width: 25rem;
+      height: 280px;
+      background: color6
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      align-items: center
+      border-radius: 0.3125rem
+      &-message
+        color: basicColor1
+      &-image
+        width: 260px
+        height : 170px
+        overflow hidden
+        img
+          object-fit: cover;
+          border-radius: 0.3125rem
+          width: 100%
+          height: 100%
+      &-buttons
+        width: 220px;
+        display: flex;
+        justify-content: space-between
+        .button--confirm, .button--cancel
+          border-radius: 0.3125rem
+          padding: 5px 15px
+          color: basicColor1
+          outline: none
+          border: none
+          cursor pointer
+          font-weight: bold
+        .button--confirm
+          background: colorGreen
+        .button--cancel
+          background: colorRed
+
+.empty-message
+  display: flex;
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  margin: 10%
+  img
+    width: 250px

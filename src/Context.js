@@ -33,6 +33,7 @@ const Provider = ({ children }) => {
   const [modalDisplay, setModalDisplay] = useState('')
   const [changeDishStatus, setChangeDishStatus] = useState(1)
   const [categories, setCategories] = useState([])
+  const [dishForChangeStatus, setDishForChangeStatus] = useState(null)
 
   const value = {
     order,
@@ -46,6 +47,7 @@ const Provider = ({ children }) => {
     modalDisplay,
     changeDishStatus,
     categories,
+    dishForChangeStatus,
     updateCategories: (category) => {
       setCategories(category)
     },
@@ -84,6 +86,9 @@ const Provider = ({ children }) => {
     updateChangeDishStatus: () => {
       // refresh orders when dish is updated
       changeDishStatus == 1 ? setChangeDishStatus(2) : setChangeDishStatus(1)
+    },
+    updateDishForUpdateStatus: (dish) => {
+      setDishForChangeStatus(dish)
     },
     user,
     ActionTypes: ActionTypes

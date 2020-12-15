@@ -2,14 +2,16 @@ import React, { useContext, useEffect, useState } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import KitchenOrderCard from '../../components/KitchenOrderCard/index.jsx'
 import KitchenModal from '../../components/KitchenModal/index.jsx'
+import waiter from '../../assets/waiter.png'
 import orderDetailsService from '../../services/orderDetails.js'
 import { Context } from '../../Context.js'
 import './styles.styl'
+import dishService from '../../services/dish.js'
 
 const Kitchen = () => {
 
   const [details, setDetails] = useState([]);
-  const { changeDishStatus } = useContext(Context);
+  const { changeDishStatus, dishForChangeStatus, updateDishForUpdateStatus, updateChangeDishStatus } = useContext(Context);
 
   useEffect(() => {
     orderDetailsService.getAll()
@@ -27,7 +29,7 @@ const Kitchen = () => {
         currentCicle = newCurrentCicle;
       }
 
-      const createCard = (title, status, orderId, cicle, id, tableId) => {
+      const createCard = (title, status, orderId, cicle, id, tableId, imageUrl) => {
         currentOrder.push({
           title,
           quantity: 1,
@@ -35,7 +37,8 @@ const Kitchen = () => {
           orderId,
           cicle,
           id,
-          tableId
+          tableId,
+          imageUrl
         })
       }
 
@@ -52,7 +55,7 @@ const Kitchen = () => {
           orders.push(currentOrder);
           //reset current order
           currentOrder = [];
-          createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId)
+          createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId, el.dish.imageUrl)
 
         } else {
           //if is the sema order, check if is other cicle
@@ -62,7 +65,7 @@ const Kitchen = () => {
             orders.push(currentOrder);
             currentOrder = [];
           }
-            createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId)
+            createCard(el.dish.name, el.status, el.order.id, el.cycleInKitchen, el.id, el.order.tableId, el.dish.imageUrl)
             //if it last order we eed to close it
             if (index == data.length -1 ) {
               resetAux(null, null)
@@ -76,7 +79,40 @@ const Kitchen = () => {
       setDetails(orders);
   }
 
-  return details.length > 0 && (
+  const handleQuestion = (item) => {
+    return item.status == 'ready-to-prepare' ? `¿Preparar ${item.title} ahora?` : `¿Enviar ${item.title} al cliente?`
+  }
+
+  const handleConfirm = (option, item = null) => {
+    if (option == 'cancel') {
+      updateDishForUpdateStatus(null)
+    }
+
+    if (option == 'confirm') {
+      const {status} = item;
+
+      switch (status) {
+        case 'ready-to-prepare':
+            dishService.preparing({ dishId: item.id})
+            .then(()=> {
+              updateChangeDishStatus()
+              updateDishForUpdateStatus(null)
+            })
+        break;
+        case 'preparing':
+            dishService.readyToServe({ dishId: item.id})
+            .then(()=> {
+              updateChangeDishStatus()
+              updateDishForUpdateStatus(null)
+            })
+        break;
+        default:
+          break;
+      }
+    }
+  }
+
+  return details.length > 0 ? (
     <section className="kitchen">
       {/*
       Commented for future implementation
@@ -93,8 +129,27 @@ const Kitchen = () => {
           </Masonry>
         </ResponsiveMasonry>
       </main>
+      {
+        dishForChangeStatus != null && <div className='confirm-change'>
+        <div className="confirm-change__content">
+          <h3 className='confirm-change__content-message'>{ handleQuestion(dishForChangeStatus) }</h3>
+          <figure className='confirm-change__content-image'>
+            <img src={dishForChangeStatus.imageUrl} alt="Dish"/>
+          </figure>
+          <div className='confirm-change__content-buttons'>
+            <button className='button button--confirm' onClick={ () => handleConfirm('confirm', dishForChangeStatus)}>Confirmar</button>
+            <button className='button button--cancel' onClick={ () => handleConfirm('cancel')}>Cancelar</button>
+          </div>
+        </div>
+      </div>
+      }
     </section>
-  )
+  ) : <h3 className='empty-message'>
+        Sin ordenes para atender
+        <figure>
+          <img src={waiter} alt="Waiter"/>
+        </figure>
+    </h3>
 }
 
 export default Kitchen
