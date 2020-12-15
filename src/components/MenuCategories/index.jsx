@@ -19,7 +19,6 @@ const MenuCategories = () => {
     } else {
       updateAction(ActionTypes.BASE)
     }
-
     updateCategory(category)
   }
 
@@ -33,7 +32,7 @@ const MenuCategories = () => {
   const categoriesList = categories.sort((a, b) => a.id - b.id).map((category) => {
 
     return (
-      <Link key={category.id} to={selectedTable ? ROUTES.MENU : ROUTES.TABLES} onClick={() => handleAction(category)}>
+      <Link key={category.id} to={selectedTable || user?.role === 'admin' ? ROUTES.MENU : ROUTES.TABLES} onClick={() => handleAction(category)}>
         <div className={category.id === categorySelected.id ? 'menuCategories__popular active' : 'menuCategories__popular'}>
           <h1>{category.name}</h1>
         </div>
