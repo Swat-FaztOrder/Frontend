@@ -17,7 +17,7 @@ const index = ({ children }) => {
 
   const HeaderComponent = location !== constants.SIGN_IN ? <Header/> : ''
   const MenuComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <MenuCategories/> : ''
-  const RightComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN ? <RightContainer/> : ''
+  const RightComponent = location !== constants.SIGN_IN && location !== constants.KITCHEN && location !== '/' ? <RightContainer/> : ''
   console.log(location)
   return (
     <>
