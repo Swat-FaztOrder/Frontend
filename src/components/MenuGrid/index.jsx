@@ -9,7 +9,7 @@ import { USER } from '../../utils/constants/itemsLocalStorage'
 import './styles.styl';
 
 const MenuGrid = () => {
-  const { updateAction, ActionTypes, updateDish, categorySelected } = useContext(Context)
+  const { updateAction, ActionTypes, updateDish, categorySelected, modalDisplay } = useContext(Context)
   const [dishes, setDishes] = useState([])
   const user = JSON.parse(window.localStorage.getItem(USER))
 
@@ -31,7 +31,7 @@ const MenuGrid = () => {
   useEffect(() => {
     dishService.getAll()
       .then(dishes => setDishes(dishes));
-  }, [])
+  }, [modalDisplay])
 
   const dishesList = dishes.filter((el)=> el.categoryId === categorySelected.id).map((dish) =>(
     <MenuCard

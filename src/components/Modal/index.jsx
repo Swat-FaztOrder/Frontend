@@ -7,7 +7,7 @@ const Modal = ({ title, image, subtitleA, subtitleB, last, buttons, buttonA, han
   return (
     <section className="modalContainer">
       <main className="modalContainer__modal">
-        <i onClick={hideModal} className="fas fa-arrow-circle-left arrow" />
+        <i onClick={hideModal} className="fas fa-times-circle arrow" />
         <div className="modalContainer__modal--title">
           <h1>{title}</h1>
         </div>
