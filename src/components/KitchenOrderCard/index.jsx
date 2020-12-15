@@ -1,30 +1,14 @@
 import React, { useContext } from 'react'
 import { Context } from '../../Context'
 import dishService from '../../services/dish';
+import KitchenModal from '../../components/KitchenModal/index.jsx';
 import './styles.styl'
 
 const KitchenOrderCard = ({ tableNum, items, stat }) => {
-  const { updateChangeDishStatus } = useContext(Context);
+  const { updateDishForUpdateStatus } = useContext(Context);
 
   const handleChange = (item) => {
-    const {status} = item;
-
-    switch (status) {
-      case 'ready-to-prepare':
-        if(confirm(`¿Preparar ${item.title} ahora?`)) {
-          dishService.preparing({ dishId: item.id})
-          .then(()=> updateChangeDishStatus())
-        }
-      break;
-      case 'preparing':
-        if(confirm(`¿Enviar ${item.title} al cliente ahora?`)) {
-          dishService.readyToServe({ dishId: item.id})
-          .then(()=> updateChangeDishStatus())
-        }
-      break;
-      default:
-        break;
-    }
+    updateDishForUpdateStatus(item)
   }
 
   const handleTitle = (item) => {
@@ -38,7 +22,7 @@ const KitchenOrderCard = ({ tableNum, items, stat }) => {
   return (
     <div className="orderCard">
       <div className={`orderCard__table ${stat}`}>
-        <h1>Table {tableNum} {`#${items[0].orderId}`}</h1>
+        <h1>Table {tableNum}</h1>
       </div>
       <div className="orderCard__list">
         {items.map((item) => (

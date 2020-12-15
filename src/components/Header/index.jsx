@@ -32,10 +32,11 @@ const Header = () => {
             <i className="fas fa-users" />
           </Link>
         }
-        <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Tables" className="header__right--grid">
-          <i className="fas fa-th" />
-        </Link>
-
+        {
+          user?.role !== 'chef' && <Link onClick={() => handleAction(ActionTypes.BASE)} to="/Tables" className="header__right--grid">
+              <i className="fas fa-th" />
+            </Link>
+        }
         {
           user?.role === 'waitress' &&
           <span onClick={() => handleAction(ActionTypes.BASKET)} className="header__right--basket">
