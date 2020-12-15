@@ -1,5 +1,4 @@
 .TableGrid
-  max-width: 1024px
   min-width: 320px
   padding: 2% 2% 10%
   display: grid
@@ -7,3 +6,7 @@
   grid-auto-rows: 100px
   grid-gap: 2%
   margin-bottom: 50px
+
+@media screen and (min-width: 1400px)
+  .TableGrid
+    grid-template-columns: repeat(5, 1fr)
