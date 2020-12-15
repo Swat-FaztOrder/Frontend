@@ -11,7 +11,7 @@ const TableCard = ({ title, state, onClick }) => {
   const { t } = useTranslation(['TablesGrid'])
   const user = JSON.parse(window.localStorage.getItem(USER))
   return (
-    <div className={state === t('TablesGrid:InProgress', 'In Progress') ? 'tableCard occupied' : 'tableCard'} aria-label="table card" onClick={user?.role === 'waitress' && onClick}>
+    <div className={state === t('TablesGrid:InProgress', 'In Progress') ? 'tableCard occupied' : 'tableCard'} aria-label="table card" onClick={user?.role === 'waitress' ? onClick : undefined}>
       <h3 aria-label="table card title" className="tableCard--Title">
         {title}
       </h3>

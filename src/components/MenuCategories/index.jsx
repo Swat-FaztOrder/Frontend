@@ -19,7 +19,9 @@ const MenuCategories = () => {
     } else {
       updateAction(ActionTypes.BASE)
     }
+
     updateCategory(category)
+
   }
 
   useEffect(() => {
@@ -46,7 +48,12 @@ const MenuCategories = () => {
       {
         user?.role === 'admin' &&
         <div>
-          <button className="menuCategories--add" onClick={() => updateAction(ActionTypes.CATEGORY_ADD)}><i className="fas fa-plus"/></button>
+          <button className="menuCategories--add" onClick={() => {
+
+            updateAction(ActionTypes.CATEGORY_ADD)
+            updateCategory('')
+          }}
+          ><i className="fas fa-plus"/></button>
         </div>
       }
       {categoriesList}
