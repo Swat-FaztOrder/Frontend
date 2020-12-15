@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Context } from '../../Context'
-import dishService from '../../services/dish';
-import KitchenModal from '../../components/KitchenModal/index.jsx';
+// import dishService from '../../services/dish'
+// import KitchenModal from '../../components/KitchenModal/index.jsx'
 import './styles.styl'
 
 /* i18n */
@@ -17,11 +17,11 @@ const KitchenOrderCard = ({ tableNum, items, stat }) => {
   }
 
   const handleTitle = (item) => {
-    return item.status == 'preparing' ? <strike className="text-muted">{item.title}</strike> : item.title
+    return item.status === 'preparing' ? <strike className="text-muted">{item.title}</strike> : item.title
   }
 
   const handleStatus = (item) => {
-    return item.status == 'preparing' ? 'https://www.flaticon.com/svg/static/icons/svg/3753/3753091.svg' : 'https://www.flaticon.com/svg/static/icons/svg/3445/3445534.svg';
+    return item.status === 'preparing' ? 'https://www.flaticon.com/svg/static/icons/svg/3753/3753091.svg' : 'https://www.flaticon.com/svg/static/icons/svg/3445/3445534.svg';
   }
 
   return (

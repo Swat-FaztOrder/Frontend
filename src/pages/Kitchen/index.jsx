@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry'
 import KitchenOrderCard from '../../components/KitchenOrderCard/index.jsx'
-import KitchenModal from '../../components/KitchenModal/index.jsx'
+// import KitchenModal from '../../components/KitchenModal/index.jsx'
 import waiter from '../../assets/waiter.png'
 import orderDetailsService from '../../services/orderDetails.js'
 import { Context } from '../../Context.js'
@@ -127,9 +127,14 @@ const Kitchen = () => {
       <main className="kitchen__orders">
         <ResponsiveMasonry columnsCountBreakPoints={{ 750: 4 }}>
           <Masonry gutter="20px">
-            { details.map((el)=> (<KitchenOrderCard tableNum={el[0].tableId} items={el}
-              stat="redStat" key={el[0].id}
-                                  />)) }
+            { details.map((el)=> (
+              <KitchenOrderCard
+                tableNum={el[0].tableId}
+                items={el}
+                stat="redStat"
+                key={el[0].id}
+              />))
+            }
           </Masonry>
         </ResponsiveMasonry>
       </main>
@@ -148,12 +153,13 @@ const Kitchen = () => {
         </div>
       }
     </section>
-  ) : <h3 className="empty-message">
-    {t('Kitchen:Orders', 'Without order to attend')}
-    <figure>
-      <img src={waiter} alt="Waiter"/>
-    </figure>
-  </h3>
+  ) :
+    <h3 className="empty-message">
+      {t('Kitchen:Orders', 'Without order to attend')}
+      <figure>
+        <img src={waiter} alt="Waiter"/>
+      </figure>
+    </h3>
 }
 
 export default Kitchen

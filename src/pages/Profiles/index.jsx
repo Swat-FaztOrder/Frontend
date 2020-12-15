@@ -17,22 +17,41 @@ const Menu = () => {
     <>
       <PeopleGrid />
       {
-        modal == 'ADD_USER' && <Modal
-          title="Added User!!!" image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          subtitleA="Diego Valdez" subtitleB="Cheff" last="Your added user will be available to login right now" buttons="false"
-          hideModal={ () => setModal('') } hideButton="Ok" />
+        modal === 'ADD_USER' &&
+        <Modal
+          title="Added User!!!"
+          image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          subtitleA="Diego Valdez"
+          subtitleB="Cheff"
+          last="Your added user will be available to login right now"
+          buttons="false"
+          hideModal={() => setModal('')}
+          hideButton="Ok"
+        />
       }
       {
-        modal == 'UPDATE_USER' && <Modal
-          title="Updated User!!!" image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          subtitleA="Diego Valdez" subtitleB="Cheff" last="Your added user will be available to login right now" buttons="false"
-          hideModal={ () => setModal('') } hideButton="Ok" />
+        modal === 'UPDATE_USER' &&
+        <Modal
+          title="Updated User!!!"
+          image="https://images.pexels.com/photos/4871397/pexels-photo-4871397.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          subtitleA="Diego Valdez"
+          subtitleB="Cheff"
+          last="Your added user will be available to login right now"
+          buttons="false"
+          hideModal={() => setModal('')}
+          hideButton="Ok"
+        />
       }
       {
-        modal == 'DELETE_USER' && <Modal
-          title="Deleted User!!!" image={Waiter}
-          last="Your added user will be available to login right now" buttons="false"
-          hideModal={ () => setModal('') } hideButton="Ok" />
+        modal === 'DELETE_USER' &&
+        <Modal
+          title="Deleted User!!!"
+          image={Waiter}
+          last="Your added user will be available to login right now"
+          buttons="false"
+          hideModal={() => setModal('')}
+          hideButton="Ok"
+        />
       }
     </>
   )

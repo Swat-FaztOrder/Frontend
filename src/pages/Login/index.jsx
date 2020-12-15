@@ -36,9 +36,6 @@ const Login = () => {
     setError(null)
     setLoading(true)
 
-    console.log('email', email)
-    console.log('password', password)
-
     authService.login(email, password)
       .then((data) => {
         console.debug('data', data)

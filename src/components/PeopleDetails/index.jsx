@@ -36,7 +36,6 @@ const PeopleDetails = () => {
   }, [])
 
   const addPeople = () => {
-    console.log(peopleDetail)
     userService.create(peopleDetail)
       .then(userService.updateAvatar(peopleDetail))
       .then(res => {
@@ -60,7 +59,7 @@ const PeopleDetails = () => {
   const updatePeople = () => {
     const formData = new FormData();
     userService.update(peopleDetail)
-      .then((res) => {
+      .then((data) => {
 
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
 
@@ -148,11 +147,9 @@ const PeopleDetails = () => {
       </div>
       <div className="People__buttons">
         {actionLayout === ActionTypes.PROFILE_ADD ?
-
-          <button
-            onClick={() => addPeople()}
-            className="People__buttons--add"
-          >{t('NewDetails:Add', 'Agregar')}</button> :
+          <button onClick={() => addPeople()} className="People__buttons--add">
+            {t('NewDetails:Add', 'Agregar')}
+          </button> :
           <>
             <button onClick={() => updatePeople()} className="People__buttons--update" >
               {t('PeopleDetails:Update', 'Actualizar')}

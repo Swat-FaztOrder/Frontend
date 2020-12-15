@@ -109,7 +109,7 @@ const OrderStatus = () => {
           title={t('OrderStatus:Want', 'Do you want to finish the order?')}
           image={waiter}
           subtitleA="Total"
-          subtitleB={`${orderDetails.totalPrice.toFixed(2)}`}
+          subtitleB={`$${orderDetails.totalPrice.toFixed(2)}`}
           last={t('OrderStatus:Honor', 'It was an honor to be with you.')}
           buttons="true"
           buttonA={t('OrderStatus:Continue', 'Continue')}
