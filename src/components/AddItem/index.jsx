@@ -38,7 +38,7 @@ const AddItem = () => {
     setDish(dishSelected)
   }, [dishSelected])
 
-  const categoryOptions = categories.map(category => <option value={category.id} key={category.id} >{category.name}</option>)
+  const categoryOptions = categories.map(category => <option value={category.id} key={category.id}  selected={ dish.categoryId==category.id }  >{category.name}</option>)
 
   return (
     <div className="addItem">
@@ -67,7 +67,7 @@ const AddItem = () => {
         </div>
         <div className="addItem__form--group">
           <label htmlFor="categoryId">Categoría</label>
-          <select type="text" id="categoryId" onChange={(e)=>handleChange(e)} defaultValue={dish.categoryId}>
+          <select type="text" id="categoryId" onChange={(e)=>handleChange(e)}>
             {categoryOptions}
           </select>
         </div>
