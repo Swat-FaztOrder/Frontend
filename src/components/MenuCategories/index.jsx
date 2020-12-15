@@ -43,6 +43,7 @@ const MenuCategories = () => {
 
   return (
     <div className="menuCategories">
+      <h1 className="menuCategories--title">Menu</h1>
       {
         user?.role === 'admin' &&
         <div>
