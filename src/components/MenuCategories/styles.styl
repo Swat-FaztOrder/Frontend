@@ -18,7 +18,8 @@ active()
   overflow-y: scroll
   a
     text-decoration: none
-  div
+  &__popular
+    height: 50px;
     display: flex
     flex-direction: column
     justify-content: center
@@ -34,8 +35,7 @@ active()
   .active
     active()
   &--add
-    width: 50%
-    height: 80%
+    padding: 5px
     margin: 0 auto
     background-color: color8
     border-radius 50%
@@ -44,7 +44,7 @@ active()
     .fa-plus
       align-self: center
       justify-self: center
-      font-size: 30px
+      font-size: 20px
       color: Background
     &:hover
       background-color: Background
@@ -61,7 +61,7 @@ active()
 @media screen and (min-width: 1020px)
   .menuCategories
     div
-      height: 10%
+      height: 50px
       i
         font-size: 40px
       h1
@@ -71,10 +71,8 @@ active()
     height: "calc(100vh - %s)" % bigHeaderHeight
     top: bigHeaderHeight
     div
-      height: 12%
+      height: 50px
       i
         font-size: 65px
       h1
         font-size: 1.8rem
-    &--add
-      width: 60%

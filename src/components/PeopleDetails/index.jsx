@@ -14,7 +14,7 @@ import rolservice from '../../services/rol'
 import userService from '../../services/user'
 
 const PeopleDetails = () => {
-  const { t } = useTranslation(['PeopleDetails'])
+  const { t } = useTranslation(['PeopleDetails', 'NewDetails'])
 
   const [modalIsOpen, setmodalIsOpen] = useState(false)
 
@@ -36,11 +36,14 @@ const PeopleDetails = () => {
   }, [])
 
   const addPeople = () => {
+    const formData = new FormData();
     userService.create(peopleDetail)
+    // console.log(peopleDetail)
       .then(userService.updateAvatar(peopleDetail))
       .then(res => {
         const { id } = res
         setPeople({ ...peopleDetail, id })
+        console.log(peopleDetail.avatar)
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
 
           userService.updateAvatar(peopleDetail, formData)
@@ -148,7 +151,7 @@ const PeopleDetails = () => {
       <div className="People__buttons">
         {actionLayout === ActionTypes.PROFILE_ADD ?
           <button onClick={() => addPeople()} className="People__buttons--add">
-            {t('NewDetails:Add', 'Agregar')}
+            {t('NewDetails:Add', 'Add')}
           </button> :
           <>
             <button onClick={() => updatePeople()} className="People__buttons--update" >
