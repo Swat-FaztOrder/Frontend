@@ -10,10 +10,12 @@ import { Context } from '../../Context'
 import userService from '../../services/user'
 
 import './styles.styl';
+import Modal from '../Modal/index.jsx';
+import Waiter from '../../assets/waiter.png';
 
 const PeopleGrid = () => {
   const { t } = useTranslation(['Profiles'])
-  const { updateAction, ActionTypes, actionLayout, setPeople, defaultPeopleDetail } = useContext(Context);
+  const { updateAction, ActionTypes, actionLayout, setPeople, defaultPeopleDetail, modalDisplay, updateModalDisplay } = useContext(Context);
   const [peoples, setPeoples] = useState([])
 
   const PEOPLE_ROLES = {
@@ -53,11 +55,11 @@ const PeopleGrid = () => {
   }
 
   return (
-    <div className="Profile">
+    <>
+      <div className="Profile">
       <h2 className="Profile__Title">{t('Profiles:Cheffs', 'Cocineros')}</h2>
       <div className="Profile__WaiterGrid">
         {peoples.filter(people => people.role.id === 2 && people.isActive).map(p => {
-          console.log(p)
           return (
             <div key={p.id}>
               <PeopleCard avatar={p.avatar} onClick={() => handleClick(p)}/>
@@ -80,6 +82,26 @@ const PeopleGrid = () => {
         <button className="Profile--add" onClick={() => handleClickAdd(PEOPLE_ROLES.WAITRESS)}><i className="fas fa-plus"/></button>
       </div>
     </div>
+      {
+        modalDisplay === 'USER_CREATED' &&
+        <Modal title="User Created!"
+        image={Waiter}
+        last="You created a new user successfully"
+        buttons="false"
+        hideModal={()=> updateModalDisplay('')} />
+      }
+      {
+        modalDisplay === 'USER_UPDATED' &&
+        <Modal
+          title="User Updated!"
+          image={Waiter}
+          last="You have updated a user successfully"
+          buttons="false"
+          hideModal={() => updateModalDisplay('') }
+        />
+      }
+
+    </>
   )
 }
 

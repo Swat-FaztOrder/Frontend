@@ -9,16 +9,22 @@ import categoryService from '../../services/category'
 import { Context } from '../../Context'
 
 const FormRight = ({ buttonMessage, title }) => {
-  const { categorySelected, ActionTypes, actionLayout, updateAction } = useContext(Context)
+  const { categorySelected, ActionTypes, actionLayout, updateAction, updateModalDisplay } = useContext(Context)
   const [category, setCategory] = useState(categorySelected.name)
 
   const handleSubmit = (id, name) => {
     if (actionLayout === ActionTypes.CATEGORY_UPDATE) {
       categoryService.update(id, name)
-        .then(() => location.reload())
+        .then(() => {
+          updateModalDisplay('CATEGORY_UPDATED')
+          window.location.replace('#/menu');
+        })
     } else {
       categoryService.create(category)
-        .then(() => location.reload())
+        .then(() => {
+          updateModalDisplay('CATEGORY_CREATED')
+          window.location.replace('#/menu');
+        })
     }
   }
 
