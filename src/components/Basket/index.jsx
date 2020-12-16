@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 
 const Basket = () => {
   const { t } = useTranslation(['Basket'])
-  const { order, updateAction, ActionTypes, updateModalDisplay } = useContext(Context)
+  const { order, updateAction, ActionTypes } = useContext(Context)
   const [dishes, setDishes] = useState([])
   const [dishess, setDishess] = useState([])
   const [change, setChange] = useState(false)
@@ -26,7 +26,6 @@ const Basket = () => {
 
     return orderService.send(order)
       .then(() => setChange(!change))
-      .then(() => updateModalDisplay('ORDER_ON_ITS_WAY') )
   }
 
   useEffect(() => {
@@ -59,6 +58,7 @@ const Basket = () => {
     }
   }) : ''
 
+  console.log(dishesList)
   return (
     <div className="basket">
       <div className="basket__icons">

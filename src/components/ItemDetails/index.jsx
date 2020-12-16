@@ -18,10 +18,9 @@ const ItemDetails = ({ id, image, title, details, price, order }) => {
 
   const handleClick = () => {
     return orderDetailsService.create(order, id)
-            .then(()=> updateModalDisplay('ADDED_TO_ORDER'))
   }
 
-  const { ActionTypes, updateAction, updateModalDisplay } = useContext(Context)
+  const { ActionTypes, updateAction } = useContext(Context)
 
   return (
     <div className="itemDetails">

@@ -25,7 +25,7 @@ import { useTranslation } from 'react-i18next';
 
 const TableGrid = () => {
   const { t } = useTranslation(['TablesGrid'])
-  const { updateTable, updateOrder, updateCategory, categories, modalDisplay } = useContext(Context)
+  const { updateTable, updateOrder, updateCategory, categories } = useContext(Context)
   const [tables, setTables] = useState([])
   const [change, setChange] = useState(false)
   const user = JSON.parse(window.localStorage.getItem(USER))
@@ -58,7 +58,7 @@ const TableGrid = () => {
         setTables(data.sort((a, b) => (a.id - b.id)))
       })
     updateCategory('')
-  }, [change, modalDisplay])
+  }, [change])
 
   const handleModal = (id) => {
     setSelectedTable(id)

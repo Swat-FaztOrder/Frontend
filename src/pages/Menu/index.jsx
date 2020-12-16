@@ -51,7 +51,7 @@ const Menu = () => {
           subtitleB="$5.99"
           last="What a great choice"
           buttons="false"
-          hideModal={() => updateModalDisplay('')}
+          hideModal={() => setModal('')}
           hideButton="Ok"
         />
       }
@@ -64,7 +64,7 @@ const Menu = () => {
           subtitleB=""
           last="Be ready for the deliciousness"
           buttons="false"
-          hideModal={() => updateModalDisplay('') }
+          hideModal={() => setModal('')}
         />
       }
       {
@@ -85,27 +85,6 @@ const Menu = () => {
           last="You have updated a dish successfully"
           buttons="false"
           hideModal={() => handleDishCreatedUpdated() }
-        />
-      }
-
-      {
-        modal === 'CATEGORY_CREATED' &&
-        <Modal
-          title="Category created!"
-          image={Waiter}
-          last="You have created a category successfully"
-          buttons="false"
-          hideModal={() => updateModalDisplay('') }
-        />
-      }
-      {
-        modal === 'CATEGORY_UPDATED' &&
-        <Modal
-          title="Category updated!"
-          image={Waiter}
-          last="You have updated a category successfully"
-          buttons="false"
-          hideModal={() => updateModalDisplay('') }
         />
       }
     </>

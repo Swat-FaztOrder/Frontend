@@ -24,8 +24,7 @@ const PeopleDetails = () => {
     setPeople,
     actionLayout,
     updateAction,
-    ActionTypes,
-    updateModalDisplay
+    ActionTypes
   } = useContext(Context)
 
   const [roles, setRoles] = useState([])
@@ -37,19 +36,21 @@ const PeopleDetails = () => {
   }, [])
 
   const addPeople = () => {
+    const formData = new FormData();
     userService.create(peopleDetail)
+    // console.log(peopleDetail)
       .then(userService.updateAvatar(peopleDetail))
       .then(res => {
         const { id } = res
         setPeople({ ...peopleDetail, id })
+        console.log(peopleDetail.avatar)
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
-          const user = { ...peopleDetail, id }
-          userService.updateAvatar(user)
+
+          userService.updateAvatar(peopleDetail, formData)
             .then(res => {
               setPeople(defaultPeopleDetail)
               setmodalIsOpen(true)
               updateAction(ActionTypes.BASE)
-              updateModalDisplay('USER_CREATED')
             })
         }
       })
@@ -62,7 +63,7 @@ const PeopleDetails = () => {
     const formData = new FormData();
     userService.update(peopleDetail)
       .then((data) => {
-        updateModalDisplay('USER_UPDATED')
+
         if (peopleDetail.avatar != null && typeof peopleDetail.avatar === 'object') {
 
           userService.updateAvatar(peopleDetail, formData)
@@ -85,7 +86,6 @@ const PeopleDetails = () => {
   const deletePeople = () => {
     userService.delete(peopleDetail.id)
       .then(res => {
-        updateModalDisplay('USER_DELETED')
         setPeople(defaultPeopleDetail)
         setmodalIsOpen(true)
         updateAction(ActionTypes.BASE)
@@ -95,7 +95,8 @@ const PeopleDetails = () => {
     setmodalIsOpen(true)
   }
 
-  return ( <div className="People">
+  return (
+    <div className="People">
       <i onClick={() => updateAction(ActionTypes.BASE)} className="fas fa-arrow-circle-left" />
       <div className="People__data">
         <div className="People__data--image">
@@ -162,7 +163,8 @@ const PeopleDetails = () => {
           </>
         }
       </div>
-    </div>)
+    </div>
+  )
 }
 
 export default PeopleDetails
