@@ -9,7 +9,7 @@ import './styles.styl'
 
 const MenuCategories = () => {
   const { t } = useTranslation(['MenuCategories'])
-  const { categorySelected, updateAction, ActionTypes, updateCategory, selectedTable, updateCategories, categories, modalDisplay } = useContext(Context)
+  const { categorySelected, updateAction, ActionTypes, updateCategory, selectedTable, updateCategories, categories } = useContext(Context)
   const user = JSON.parse(window.localStorage.getItem(USER))
   const [change, setChange] = useState(false)
 
@@ -29,7 +29,7 @@ const MenuCategories = () => {
       .then(data => {
         updateCategories(data)
       })
-  }, [change, modalDisplay])
+  }, [change])
 
   const categoriesList = categories.sort((a, b) => a.id - b.id).map((category) => {
 
